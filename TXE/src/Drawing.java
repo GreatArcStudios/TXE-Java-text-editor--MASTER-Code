@@ -5,22 +5,28 @@ import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
-    
+
 public class Drawing {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		JToolBar Tb = new JToolBar();
 		JScrollBar Sb = new JScrollBar();
 		frame.setVisible(true);
-		
+		JButton sShot = new JButton("Screenshot");
 		JRadioButton blue = new JRadioButton("Blue");
 		JRadioButton red = new JRadioButton("Red");
 		JRadioButton green = new JRadioButton("Green");
@@ -59,24 +65,43 @@ public class Drawing {
 				drawPad.graphics2D.setPaint(Color.GRAY);
 			}
 		});
+		sShot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+
+					Rectangle screenshotRect = new Rectangle(Toolkit
+							.getDefaultToolkit().getScreenSize());
+					BufferedImage Capture = new Robot()
+							.createScreenCapture(screenshotRect);
+					ImageIO.write(Capture, "png", new File(
+							"SketchPad Screenshot"));
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex);
+
+				}
+			}
+		});
 		frame.add(clearButton, BorderLayout.SOUTH);
 		Tb.add(blue);
 		Tb.add(red);
 		Tb.add(green);
 		Tb.add(black);
 		Tb.add(gray);
-		JScrollPane Sp = new JScrollPane(drawPad,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		Tb.add(sShot);
+		JScrollPane Sp = new JScrollPane(drawPad,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		frame.add(Sp, BorderLayout.CENTER);
 
 		frame.add(Tb, BorderLayout.NORTH);
 		frame.setMaximumSize(new Dimension(1920, 1080));
 		frame.setSize(500, 500);
-		frame.setMinimumSize(new Dimension(400,400));
+		frame.setMinimumSize(new Dimension(400, 400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 	}
-
 }
 
 class DrawPad extends JComponent {
