@@ -77,7 +77,7 @@ public class Drawing {
 					ImageIO.write(Capture, "png", new File(
 							"SketchPad Screenshot"));
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex);
+					JOptionPane.showMessageDialog(null, "The file has been saved please change to avoid overwriting" );
 
 				}
 			}
