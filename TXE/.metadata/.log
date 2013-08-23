@@ -30,3 +30,16 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86 -keyring /Users/ericzhu/
 
 !ENTRY org.eclipse.core.net 1 0 2013-03-10 12:43:43.169
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2013-08-20 09:18:47.876 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.6.0_51
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/ericzhu/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -product org.eclipse.epp.package.standard.product -keyring /Users/ericzhu/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-08-20 09:18:58.520
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 4 4 2013-08-20 09:18:59.077
+!MESSAGE Unable to find Action Set: org.eclipse.wb.core.ui.actionset

@@ -12,6 +12,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -36,10 +37,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="clear" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="divide" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="reset" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="reset" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Component id="display2" alignment="0" max="32767" attributes="0"/>
                   <Component id="display1" alignment="1" pref="0" max="32767" attributes="0"/>
@@ -71,17 +69,16 @@
                       <Component id="six" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="squareroot" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="subtract" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="one" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="two" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="zero" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="decpoint" min="-2" pref="50" max="-2" attributes="0"/>
@@ -93,15 +90,18 @@
                               <Component id="three" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="cubed" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="multiply" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="negate" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="cuberoot" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="subtract" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="add" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -122,14 +122,17 @@
                           </Group>
                       </Group>
                       <EmptySpace min="117" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="squared" min="-2" pref="50" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="add" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="multiply" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="divide" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="shift" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -183,7 +186,6 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                       <Component id="sin" pref="30" max="32767" attributes="0"/>
@@ -195,35 +197,50 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="seven" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="eight" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="nine" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="add" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="squared" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="seven" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="eight" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="nine" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="squared" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="squareroot" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="four" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="five" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="six" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="divide" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="multiply" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="subtract" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="squareroot" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="four" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="five" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="six" min="-2" pref="50" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="multiply" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="cubed" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="one" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cubed" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="subtract" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="add" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="one" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="zero" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="decpoint" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="negate" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="cuberoot" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Component id="two" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="three" min="-2" pref="50" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="divide" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="cuberoot" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="negate" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="decpoint" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="zero" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -231,7 +248,7 @@
                   <Component id="clear" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="reset" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -375,7 +392,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="%"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -395,7 +412,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x207f;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -415,7 +432,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cos"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -435,7 +452,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Tan"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -455,7 +472,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Sin"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -475,7 +492,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="7"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -495,7 +512,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="8"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -515,7 +532,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="9"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -535,7 +552,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="+"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -555,7 +572,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="x&#xb2;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -575,7 +592,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="-"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -595,7 +612,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#x221a;x"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -613,9 +630,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="10" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="*"/>
+        <Property name="text" type="java.lang.String" value="x"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -635,7 +652,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="x&#xb3;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -655,7 +672,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="/"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -675,7 +692,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xb3;&#x221a;x"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -695,7 +712,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="4"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -715,7 +732,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="5"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -735,7 +752,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="6"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -755,7 +772,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -775,7 +792,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="2"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -795,7 +812,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="3"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -815,7 +832,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&#xb1;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -835,7 +852,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -855,7 +872,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="0"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -922,7 +939,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="="/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -942,7 +959,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="CE"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -962,7 +979,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="C"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -982,7 +999,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Sh"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
@@ -1022,7 +1039,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Avg."/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+          <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
           </Border>
         </Property>
