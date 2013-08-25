@@ -32,8 +32,9 @@ public class Drawing {
 		JRadioButton green = new JRadioButton("Green");
 		JRadioButton black = new JRadioButton("Black");
 		JRadioButton gray = new JRadioButton("Gray");
+		JButton col = new JButton("Color");
 		final DrawPad drawPad = new DrawPad();
-
+		Color color = (Color.BLACK);
 		JButton clearButton = new JButton("Clear");
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,9 +78,20 @@ public class Drawing {
 					ImageIO.write(Capture, "png", new File(
 							"SketchPad Screenshot"));
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "The file has been saved please change to avoid overwriting" );
+					JOptionPane
+							.showMessageDialog(null,
+									"The file has been saved please change to avoid overwriting");
 
 				}
+			}
+		});
+
+		col.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color color = (Color.BLACK);
+				color = JColorChooser
+						.showDialog(null, "Pick Text Color", color);
+				drawPad.graphics2D.setPaint(color);
 			}
 		});
 		frame.add(clearButton, BorderLayout.SOUTH);
@@ -88,6 +100,9 @@ public class Drawing {
 		Tb.add(green);
 		Tb.add(black);
 		Tb.add(gray);
+		Tb.addSeparator();
+		Tb.add(col);
+		Tb.addSeparator();
 		Tb.add(sShot);
 		JScrollPane Sp = new JScrollPane(drawPad,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -147,9 +162,9 @@ class DrawPad extends JComponent {
 	}
 
 	public void clear() {
-		graphics2D.setPaint(Color.white);
+		graphics2D.setPaint(Color.WHITE);
 		graphics2D.fillRect(0, 0, 1920, 1080);
-		graphics2D.setPaint(Color.black);
+		graphics2D.setPaint(Color.BLACK);
 		repaint();
 	}
 }
