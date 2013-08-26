@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.Graphics;
@@ -26,12 +27,15 @@ public class Drawing {
 		JToolBar Tb = new JToolBar();
 		JScrollBar Sb = new JScrollBar();
 		frame.setVisible(true);
+		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+		
 		JButton sShot = new JButton("Screenshot");
 		JRadioButton blue = new JRadioButton("Blue");
 		JRadioButton red = new JRadioButton("Red");
 		JRadioButton green = new JRadioButton("Green");
 		JRadioButton black = new JRadioButton("Black");
 		JRadioButton gray = new JRadioButton("Gray");
+		JRadioButton rect = new JRadioButton("rect");
 		JButton col = new JButton("Color");
 		final DrawPad drawPad = new DrawPad();
 		Color color = (Color.BLACK);
@@ -119,10 +123,8 @@ public class Drawing {
 	}
 }
 
-class DrawPad extends JComponent {
-	/**
-	 * 
-	 */
+/**class DrawPad extends JComponent {
+	
 	private static final long serialVersionUID = 1L;
 	Image image;
 	Graphics2D graphics2D;
@@ -167,4 +169,4 @@ class DrawPad extends JComponent {
 		graphics2D.setPaint(Color.BLACK);
 		repaint();
 	}
-}
+}**/
