@@ -123,7 +123,7 @@ public class Drawing {
 	}
 }
 
-/**class DrawPad extends JComponent {
+class DrawPad extends JComponent {
 	
 	private static final long serialVersionUID = 1L;
 	Image image;
@@ -169,4 +169,4 @@ public class Drawing {
 		graphics2D.setPaint(Color.BLACK);
 		repaint();
 	}
-}**/
+}
