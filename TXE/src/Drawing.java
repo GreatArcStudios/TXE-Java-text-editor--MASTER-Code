@@ -12,6 +12,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -28,7 +30,7 @@ public class Drawing {
 		JScrollBar Sb = new JScrollBar();
 		frame.setVisible(true);
 		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-		
+
 		JButton sShot = new JButton("Screenshot");
 		JRadioButton blue = new JRadioButton("Blue");
 		JRadioButton red = new JRadioButton("Red");
@@ -81,6 +83,10 @@ public class Drawing {
 							.createScreenCapture(screenshotRect);
 					ImageIO.write(Capture, "png", new File(
 							"SketchPad Screenshot"));
+					JOptionPane
+					.showMessageDialog(null,
+							"The file has been saved please change to avoid overwriting");
+
 				} catch (Exception ex) {
 					JOptionPane
 							.showMessageDialog(null,
@@ -124,12 +130,12 @@ public class Drawing {
 }
 
 class DrawPad extends JComponent {
-	
+
 	private static final long serialVersionUID = 1L;
 	Image image;
 	Graphics2D graphics2D;
 	int currentX, currentY, oldX, oldY;
-
+	
 	public DrawPad() {
 
 		setDoubleBuffered(false);
@@ -139,17 +145,23 @@ class DrawPad extends JComponent {
 				oldY = Me.getY();
 			}
 		});
+
 		addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				currentX = e.getX();
 				currentY = e.getY();
 				if (graphics2D != null)
-					graphics2D.drawLine(oldX, oldY, currentX, currentY);
-				repaint();
-				oldX = currentX;
-				oldY = currentY;
-			}
+					graphics2D.drawRect(oldX, oldY, currentX, currentY);
+				else{
+					graphics2D.drawRect(oldX, oldY, currentX, currentY);
+				}
+					repaint();
+					oldX = currentX;
+					oldY = currentY;
+				}
+			
 		});
+
 	}
 
 	public void paintComponent(Graphics g) {
