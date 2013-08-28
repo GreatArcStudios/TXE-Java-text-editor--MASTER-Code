@@ -38,6 +38,7 @@ public class Drawing {
 		JRadioButton black = new JRadioButton("Black");
 		JRadioButton gray = new JRadioButton("Gray");
 		JRadioButton rect = new JRadioButton("rect");
+		JRadioButton white = new JRadioButton("White");
 		JButton col = new JButton("Color");
 		final DrawPad drawPad = new DrawPad();
 		Color color = (Color.BLACK);
@@ -72,6 +73,11 @@ public class Drawing {
 				drawPad.graphics2D.setPaint(Color.GRAY);
 			}
 		});
+		white.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				drawPad.graphics2D.setPaint(Color.WHITE);
+			}
+		});
 		sShot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -82,7 +88,7 @@ public class Drawing {
 					BufferedImage Capture = new Robot()
 							.createScreenCapture(screenshotRect);
 					ImageIO.write(Capture, "png", new File(
-							"SketchPad Screenshot"));
+							"SketchPad Screenshot.png"));
 					JOptionPane
 					.showMessageDialog(null,
 							"The file has been saved please change to avoid overwriting");
@@ -110,10 +116,13 @@ public class Drawing {
 		Tb.add(green);
 		Tb.add(black);
 		Tb.add(gray);
+		Tb.add(white);
 		Tb.addSeparator();
 		Tb.add(col);
 		Tb.addSeparator();
 		Tb.add(sShot);
+		
+		
 		JScrollPane Sp = new JScrollPane(drawPad,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -121,7 +130,7 @@ public class Drawing {
 
 		frame.add(Tb, BorderLayout.NORTH);
 		frame.setMaximumSize(new Dimension(1920, 1080));
-		frame.setSize(500, 500);
+		frame.setSize(570, 530);
 		frame.setMinimumSize(new Dimension(400, 400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -150,10 +159,14 @@ class DrawPad extends JComponent {
 			public void mouseDragged(MouseEvent e) {
 				currentX = e.getX();
 				currentY = e.getY();
-				if (graphics2D != null)
+				if (SwingUtilities.isLeftMouseButton(e))
+					graphics2D.drawLine(oldX, oldY, currentX, currentY);
+				if(SwingUtilities.isRightMouseButton(e))
+					graphics2D.draw3DRect(oldX, oldY, currentX, currentY,true);
+				if(SwingUtilities.isMiddleMouseButton(e)){
 					graphics2D.drawRect(oldX, oldY, currentX, currentY);
-				else{
-					graphics2D.drawRect(oldX, oldY, currentX, currentY);
+					graphics2D.fillRect(oldX, oldY, currentX, currentY);
+					graphics2D.setPaint(Color.white);
 				}
 					repaint();
 					oldX = currentX;
