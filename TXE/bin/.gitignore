@@ -1,10 +1,20 @@
 /.DS_Store
+/About.form
+/Accept.form
+/Calculator.form
+/Encrypt.form
+/License.form
+/Settings
+/TXESHOT.form
+/bcprov-jdk15on-149.jar
+/images
+/say
+/say src
 /About$1.class
 /About$2.class
 /About$3.class
 /About$4.class
 /About.class
-/About.form
 /Accept$1.class
 /Accept$2.class
 /Accept$3.class
@@ -12,7 +22,6 @@
 /Accept$5$1.class
 /Accept$5.class
 /Accept.class
-/Accept.form
 /Calculator$1.class
 /Calculator$10.class
 /Calculator$11.class
@@ -52,7 +61,6 @@
 /Calculator$8.class
 /Calculator$9.class
 /Calculator.class
-/Calculator.form
 /CreatingTreeModel.class
 /DrawPad$1.class
 /DrawPad$2.class
@@ -63,6 +71,9 @@
 /Drawing$4.class
 /Drawing$5.class
 /Drawing$6.class
+/Drawing$7.class
+/Drawing$8.class
+/Drawing$9.class
 /Drawing.class
 /Encrypt$1.class
 /Encrypt$2.class
@@ -71,16 +82,15 @@
 /Encrypt$5.class
 /Encrypt$6.class
 /Encrypt.class
-/Encrypt.form
 /FileSystemModel.class
 /License$1.class
 /License.class
-/License.form
 /MySnipTool$1.class
 /MySnipTool$CapturePane$1.class
 /MySnipTool$CapturePane.class
 /MySnipTool.class
-/Settings
+/RubberBand$Display.class
+/RubberBand.class
 /Settings$1.class
 /Settings$2.class
 /Settings$3.class
@@ -134,19 +144,6 @@
 /TXESHOT$1.class
 /TXESHOT$2.class
 /TXESHOT.class
-/TXESHOT.form
 /Test$1.class
 /Test$2.class
 /Test.class
-/bcprov-jdk15on-149.jar
-/images
-/say
-/say src
-/Drawing$7.class
-/Drawing$8.class
-/DrawPadComp.class
-/DrawPad$3.class
-/test1.class
-/RubberBand$Display.class
-/RubberBand.class
-/Drawing$9.class
