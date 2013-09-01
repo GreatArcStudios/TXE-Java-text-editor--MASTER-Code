@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.RenderingHints.Key;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -90,8 +91,8 @@ public class Drawing {
 					ImageIO.write(Capture, "png", new File(
 							"SketchPad Screenshot.png"));
 					JOptionPane
-					.showMessageDialog(null,
-							"The file has been saved please change to avoid overwriting");
+							.showMessageDialog(null,
+									"The file has been saved please change to avoid overwriting");
 
 				} catch (Exception ex) {
 					JOptionPane
@@ -121,8 +122,7 @@ public class Drawing {
 		Tb.add(col);
 		Tb.addSeparator();
 		Tb.add(sShot);
-		
-		
+
 		JScrollPane Sp = new JScrollPane(drawPad,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -144,9 +144,12 @@ class DrawPad extends JComponent {
 	Image image;
 	Graphics2D graphics2D;
 	int currentX, currentY, oldX, oldY;
-	
-	public DrawPad() {
+	boolean isright;
+	boolean isleft;
 
+	public DrawPad() {
+		isright = false;
+		isleft = false;
 		setDoubleBuffered(false);
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent Me) {
@@ -159,20 +162,34 @@ class DrawPad extends JComponent {
 			public void mouseDragged(MouseEvent e) {
 				currentX = e.getX();
 				currentY = e.getY();
+				if (SwingUtilities.isRightMouseButton(e) && SwingUtilities.isLeftMouseButton(e)) {
+					if (oldX != currentX || oldY != currentY) {
+						graphics2D.setColor(Color.RED);
+						graphics2D.drawLine(oldX, oldY, currentX, currentY);
+						graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+					}
+				}
 				if (SwingUtilities.isLeftMouseButton(e))
+
 					graphics2D.drawLine(oldX, oldY, currentX, currentY);
-				if(SwingUtilities.isRightMouseButton(e))
-					graphics2D.draw3DRect(oldX, oldY, currentX, currentY,true);
-				if(SwingUtilities.isMiddleMouseButton(e)){
+
+				if (SwingUtilities.isRightMouseButton(e))
+
+					graphics2D.draw3DRect(oldX, oldY, currentX, currentY, true);
+
+				
+				if (SwingUtilities.isMiddleMouseButton(e)) {
 					graphics2D.drawRect(oldX, oldY, currentX, currentY);
 					graphics2D.fillRect(oldX, oldY, currentX, currentY);
 					graphics2D.setPaint(Color.white);
+					
 				}
-					repaint();
-					oldX = currentX;
-					oldY = currentY;
-				}
-			
+				repaint();
+				oldX = currentX;
+				oldY = currentY;
+				
+			}
+
 		});
 
 	}
