@@ -24,7 +24,7 @@ import javax.*;
 public class Encrypt extends javax.swing.JFrame {
     byte[] input;
     byte[] keyBytes = "12345678".getBytes();
-    byte[] ivBytes = "bthdmc45".getBytes();
+    byte[] ivBytes = "input476".getBytes();
         SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
         IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
         Cipher cipher;
@@ -119,7 +119,7 @@ public class Encrypt extends javax.swing.JFrame {
         jLabel2.setText("Encrypt Text Here");
 
         jLabel3.setFont(new java.awt.Font("Batang", 0, 13)); // NOI18N
-        jLabel3.setText("Text Encryption Version 0.5");
+        jLabel3.setText("Text Encryption Version 1.0");
 
         jMenu1.setText("File");
         
