@@ -46,6 +46,7 @@ public class Drawing {
 		JButton clearButton = new JButton("Clear");
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showConfirmDialog(null, "THIS CAN NOT BE UNDONE, ARE YOU SURE YOU WANT TO CLEAR THE PAGE");
 				drawPad.clear();
 			}
 		});
