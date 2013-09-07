@@ -45,6 +45,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyleContext;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.UndoManager;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -202,7 +210,7 @@ public class TXE1 extends JFrame {
 				highlight(TXEAREA, findText.getText());
 			}
 		});
-		
+
 		sA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.selectAll();
