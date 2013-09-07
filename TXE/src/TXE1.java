@@ -155,14 +155,17 @@ public class TXE1 extends JFrame {
 
 	StyleContext styleContext;
 
+	JMenuItem undo = new JMenuItem("Undo");
+	JMenuItem redo = new JMenuItem("Redo");
+
 	public TXE1() {
 
 		undoManager = new UndoManager();
-		
+
 		styleContext = new StyleContext();
-       
-        document = new DefaultStyledDocument(styleContext);
-		
+
+		document = new DefaultStyledDocument(styleContext);
+
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
@@ -216,30 +219,38 @@ public class TXE1 extends JFrame {
 		JMenuItem print = new JMenuItem("Print");
 		JMenuItem date = new JMenuItem("Insert Date");
 		JMenuItem sA = new JMenuItem("Select All");
-		final JMenuItem undo = new JMenuItem("Undo");
-		final JMenuItem redo = new JMenuItem("Redo");
+
 		JButton findButton = new JButton("Find");
+
+		document.addUndoableEditListener(new UndoableEditListener() {
+			@Override
+			public void undoableEditHappened(UndoableEditEvent e) {
+				undoManager.addEdit(e.getEdit());
+				updateUndoRedoMenu();
+			}
+
+		});
 
 		undo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					undoManager.undo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane, "Exception: " + ex.getLocalizedMessage(), "Undo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
 			}
 		});
-		
-		document.addUndoableEditListener(
-                new UndoableEditListener() {
-                    @Override
-                    public void undoableEditHappened(UndoableEditEvent e) {
-                        undoManager.addEdit(e.getEdit());
-                        updateUndoRedoMenu();
-                    }
-
-					private void updateUndoRedoMenu() {
-						 undo.setEnabled(undoManager.canUndo());
-					        redo.setEnabled(undoManager.canRedo());
-						
-					}
-                });
+		redo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					undoManager.redo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane, "Exception: " + ex.getLocalizedMessage(), "Redo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
+			}
+		});
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -535,9 +546,6 @@ public class TXE1 extends JFrame {
 
 			}
 		});
-		
-		
-
 
 		ScrollSettings.add(vsbA);
 		ScrollSettings.add(hsbA);
@@ -590,8 +598,8 @@ public class TXE1 extends JFrame {
 			file.getItem(i).setIcon(null);
 
 		// file.getItem(1).setText("New");
-		
-		//edit.addSeparator();
+
+		// edit.addSeparator();
 		edit.add(Cut);
 		edit.add(Copy);
 		edit.add(Paste);
@@ -668,6 +676,12 @@ public class TXE1 extends JFrame {
 		this.setTitle("TXE 1.7.1 Beta - " + currentFile);
 
 		this.setVisible(true);
+
+	}
+
+	public void updateUndoRedoMenu() {
+		undo.setEnabled(undoManager.canUndo());
+		redo.setEnabled(undoManager.canRedo());
 
 	}
 
