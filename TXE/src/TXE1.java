@@ -149,7 +149,20 @@ public class TXE1 extends JFrame {
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 			new JScrollPane(tree), TXEAREA);
 
+	UndoManager undoManager = null;
+
+	DefaultStyledDocument document;
+
+	StyleContext styleContext;
+
 	public TXE1() {
+
+		undoManager = new UndoManager();
+		
+		styleContext = new StyleContext();
+       
+        document = new DefaultStyledDocument(styleContext);
+		
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
@@ -203,7 +216,30 @@ public class TXE1 extends JFrame {
 		JMenuItem print = new JMenuItem("Print");
 		JMenuItem date = new JMenuItem("Insert Date");
 		JMenuItem sA = new JMenuItem("Select All");
+		final JMenuItem undo = new JMenuItem("Undo");
+		final JMenuItem redo = new JMenuItem("Redo");
 		JButton findButton = new JButton("Find");
+
+		undo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		document.addUndoableEditListener(
+                new UndoableEditListener() {
+                    @Override
+                    public void undoableEditHappened(UndoableEditEvent e) {
+                        undoManager.addEdit(e.getEdit());
+                        updateUndoRedoMenu();
+                    }
+
+					private void updateUndoRedoMenu() {
+						 undo.setEnabled(undoManager.canUndo());
+					        redo.setEnabled(undoManager.canRedo());
+						
+					}
+                });
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -499,6 +535,9 @@ public class TXE1 extends JFrame {
 
 			}
 		});
+		
+		
+
 
 		ScrollSettings.add(vsbA);
 		ScrollSettings.add(hsbA);
@@ -551,10 +590,14 @@ public class TXE1 extends JFrame {
 			file.getItem(i).setIcon(null);
 
 		// file.getItem(1).setText("New");
-
+		
+		//edit.addSeparator();
 		edit.add(Cut);
 		edit.add(Copy);
 		edit.add(Paste);
+		edit.addSeparator();
+		edit.add(undo);
+		edit.add(redo);
 		edit.addSeparator();
 		edit.add(date);
 		edit.addSeparator();
