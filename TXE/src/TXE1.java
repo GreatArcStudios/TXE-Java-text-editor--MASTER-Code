@@ -1,16 +1,15 @@
 import java.awt.*;
-
 import java.awt.event.*;
 import java.awt.Window;
 import java.io.*;
 
 import javax.swing.*;
-
 import javax.swing.text.*;
 import javax.swing.text.Highlighter.Highlight;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -18,15 +17,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.*;
-
 import java.awt.event.*;
-
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Vector;
 
 import javax.swing.*;
-
 import javax.swing.text.*;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
@@ -34,6 +32,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import java.awt.print.*;
+
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
@@ -64,14 +63,20 @@ import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.BoxLayout;
+
 import java.awt.CardLayout;
 
 import javax.swing.JFileChooser;
@@ -80,11 +85,9 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.SpringLayout;
-
 import javax.swing.JMenuBar;
 
 import java.awt.Toolkit;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -146,9 +149,9 @@ public class TXE1 extends JFrame {
 		TXEAREA.add(scroll);
 		this.setIcon();
 		this.add(scroll);
-		
+
 		findText.setToolTipText("Type Word to Be Found");
-                findText.setSize(50, 200);
+		findText.setSize(50, 200);
 
 		this.getContentPane().add(splitpane);
 
@@ -190,11 +193,30 @@ public class TXE1 extends JFrame {
 		JMenuItem metal = new JMenuItem("Metal Style");
 		JMenuItem natives = new JMenuItem("Native Style");
 		JMenuItem print = new JMenuItem("Print");
+		JMenuItem date = new JMenuItem("Insert Date");
+		JMenuItem sA = new JMenuItem("Select All");
 		JButton findButton = new JButton("Find");
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(TXEAREA, findText.getText());
+			}
+		});
+		
+		sA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TXEAREA.selectAll();
+
+			}
+		});
+
+		date.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Date date = new Date();
+				SimpleDateFormat sdt = new SimpleDateFormat(
+						"E dd.MM.yyyy 'at' hh:mm:ss a zzz");
+				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
+
 			}
 		});
 
@@ -203,7 +225,8 @@ public class TXE1 extends JFrame {
 				try {
 					boolean print = TXEAREA.print();
 					if (print) {
-						JOptionPane.showMessageDialog(null, "Printing is Done!");
+						JOptionPane
+								.showMessageDialog(null, "Printing is Done!");
 					} else {
 
 					}
@@ -519,11 +542,15 @@ public class TXE1 extends JFrame {
 
 			file.getItem(i).setIcon(null);
 
-		//file.getItem(1).setText("New");
+		// file.getItem(1).setText("New");
 
 		edit.add(Cut);
 		edit.add(Copy);
 		edit.add(Paste);
+		edit.addSeparator();
+		edit.add(date);
+		edit.addSeparator();
+		edit.add(sA);
 
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
