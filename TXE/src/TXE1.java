@@ -171,8 +171,7 @@ public class TXE1 extends JFrame {
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		TXEAREA.add(scroll);
-		this.setIcon();
-		this.add(scroll);
+			
 
 		findText.setToolTipText("Type word to be found");
 		findText.setSize(50, 200);
