@@ -146,6 +146,7 @@ public class TXE1 extends JFrame {
 
 	JScrollPane scrollTree = new JScrollPane(tree);
 
+	//DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 			new JScrollPane(tree), scroll);
 
@@ -175,7 +176,7 @@ public class TXE1 extends JFrame {
 		findText.setSize(50, 200);
 
 		this.getContentPane().add(splitpane);
-
+		
 		splitpane.setLeftComponent(tree);
 		splitpane.setResizeWeight(1);
 		splitpane.setOneTouchExpandable(true);
