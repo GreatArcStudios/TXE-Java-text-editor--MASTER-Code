@@ -18,7 +18,7 @@ Watch the TXE development happen, with new code updated frequently!
 <b><a href= "http://eclipse.org">Eclipse</a> instructions</b>
 
 
-1.Create new workspace, preferably named: TXE 1.7 Forked
+1.Create new workspace, preferably named: TXE Forked
 
 
 2.Make a new project named TXE 
@@ -53,7 +53,7 @@ into the project folder, from either finder or Windows explorer.
 <b><a href="https://netbeans.org">NetBeans</a> instructions</b>
 
 
-1.Create new workspace, preferably named: TXE 1.7 Forked
+1.Create new workspace, preferably named: TXE Forked.
 
 
 2.Make a new project named TXE
