@@ -147,7 +147,7 @@ public class TXE1 extends JFrame {
 	JScrollPane scrollTree = new JScrollPane(tree);
 
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-			new JScrollPane(tree), TXEAREA);
+			new JScrollPane(tree), scroll);
 
 	UndoManager undoManager = null;
 
@@ -170,17 +170,14 @@ public class TXE1 extends JFrame {
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		TXEAREA.add(scroll);
-			
 
 		findText.setToolTipText("Type word to be found");
 		findText.setSize(50, 200);
 
 		this.getContentPane().add(splitpane);
 
-		splitpane.setRightComponent(TXEAREA);
 		splitpane.setLeftComponent(tree);
-		splitpane.setResizeWeight(0.5);
+		splitpane.setResizeWeight(1);
 		splitpane.setOneTouchExpandable(true);
 		Dimension minimumSize = new Dimension(0, 0);
 		TXEAREA.setMinimumSize(minimumSize);
@@ -256,7 +253,8 @@ public class TXE1 extends JFrame {
 				updateUndoRedoMenu();
 			}
 		});
-		redo.setIcon(new ImageIcon(getClass().getResource("images/Redo_16x16.png")));
+		redo.setIcon(new ImageIcon(getClass().getResource(
+				"images/Redo_16x16.png")));
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(TXEAREA, findText.getText());
