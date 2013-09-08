@@ -174,7 +174,7 @@ public class TXE1 extends JFrame {
 		this.setIcon();
 		this.add(scroll);
 
-		findText.setToolTipText("Type Word to Be Found");
+		findText.setToolTipText("Type word to be found");
 		findText.setSize(50, 200);
 
 		this.getContentPane().add(splitpane);
@@ -187,7 +187,7 @@ public class TXE1 extends JFrame {
 		TXEAREA.setMinimumSize(minimumSize);
 		tree.setMinimumSize(minimumSize);
 		tree.setVisible(true);
-		tree.setSize(500, 1000);
+		tree.setSize(100, 1000);
 
 		JMenuItem About = new JMenuItem("About");
 		JMenu format = new JMenu("Format");
@@ -236,22 +236,28 @@ public class TXE1 extends JFrame {
 				try {
 					undoManager.undo();
 				} catch (CannotRedoException ex) {
-					JOptionPane.showMessageDialog(rootPane, "Exception: " + ex.getLocalizedMessage(), "Undo Exception", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Undo Exception", JOptionPane.ERROR_MESSAGE);
 				}
 				updateUndoRedoMenu();
 			}
 		});
+		undo.setIcon(new ImageIcon(getClass().getResource(
+				"images/Undo_16x16.png")));
 		redo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					undoManager.redo();
 				} catch (CannotRedoException ex) {
-					JOptionPane.showMessageDialog(rootPane, "Exception: " + ex.getLocalizedMessage(), "Redo Exception", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Redo Exception", JOptionPane.ERROR_MESSAGE);
 				}
 				updateUndoRedoMenu();
 			}
 		});
-
+		redo.setIcon(new ImageIcon(getClass().getResource("images/Redo_16x16.png")));
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(TXEAREA, findText.getText());
