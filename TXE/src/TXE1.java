@@ -228,6 +228,7 @@ public class TXE1 extends JFrame {
 		print.setToolTipText("Print current document");
 		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
+		sA.setToolTipText("Select All Text In Document");
 
 		JButton findButton = new JButton("Find");
 
