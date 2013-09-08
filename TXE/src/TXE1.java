@@ -177,7 +177,7 @@ public class TXE1 extends JFrame {
 
 		this.getContentPane().add(splitpane);
 
-		splitpane.setResizeWeight(1);
+		splitpane.setResizeWeight(0.5);
 		splitpane.setOneTouchExpandable(true);
 		Dimension minimumSize = new Dimension(0, 0);
 		TXEAREA.setMinimumSize(minimumSize);
@@ -197,23 +197,36 @@ public class TXE1 extends JFrame {
 		JMenuItem plain = new JMenuItem("Normal Style");
 		JMenuItem bI = new JMenuItem("Bold and Italicize Document");
 		JMenuItem Fr = new JMenuItem("Font");
+		Fr.setToolTipText("Choose a font");
 		JMenuItem bL = new JMenuItem("Blue");
+		bL.setToolTipText("Make text blue");
 		JMenuItem rD = new JMenuItem("Red");
+		rD.setToolTipText("Make text red");
 		JMenuItem gR = new JMenuItem("Green");
+		gR.setToolTipText("Make text green");
 		JMenuItem bLa = new JMenuItem("Normal");
+		bLa.setToolTipText("Make text black");
 		JMenuItem rsA = new JMenuItem("Text Align Right");
+		rsA.setToolTipText("Align text right");
 		JMenuItem lsA = new JMenuItem("Text Align Left");
+		lsA.setToolTipText("Align text left");
 		JMenuItem csA = new JMenuItem("Text Align Center");
+		csA.setToolTipText("Align text middle");
 		JMenuItem cL = new JMenuItem("Change Log");
 		JMenuItem caL = new JMenuItem("Calculator");
+		caL.setToolTipText("Do some math");
 		JMenuItem enC = new JMenuItem("Encryption");
+		enC.setToolTipText("Encrypt a message");
 		JMenuItem coL = new JMenuItem("Color Chooser");
+		coL.setToolTipText("Choose a color");
 		JMenuItem srenSht = new JMenuItem("Screenshot");
+		srenSht.setToolTipText("Take Screenshot");
 		JMenuItem nimbus = new JMenuItem("Nimbus Style");
 		JMenuItem metal = new JMenuItem("Metal Style");
 		JMenuItem natives = new JMenuItem("Native Style");
 		JMenuItem print = new JMenuItem("Print");
-		JMenuItem date = new JMenuItem("Insert Date");
+		print.setToolTipText("Print current document");
+		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 
 		JButton findButton = new JButton("Find");
@@ -241,6 +254,7 @@ public class TXE1 extends JFrame {
 		});
 		undo.setIcon(new ImageIcon(getClass().getResource(
 				"images/Undo_16x16.png")));
+
 		redo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -255,6 +269,7 @@ public class TXE1 extends JFrame {
 		});
 		redo.setIcon(new ImageIcon(getClass().getResource(
 				"images/Redo_16x16.png")));
+
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highlight(TXEAREA, findText.getText());
