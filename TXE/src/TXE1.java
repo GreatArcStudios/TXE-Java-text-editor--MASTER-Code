@@ -272,7 +272,20 @@ public class TXE1 extends JFrame {
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				highlight(TXEAREA, findText.getText());
+
+				try {
+
+					if (findText.getText().length() == 0) {
+						JOptionPane.showMessageDialog(rootPane,
+								"Please type something to be found", "WARNING",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					highlight(TXEAREA, findText.getText());
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(rootPane,
+							"Please type something to be found", "WARNING",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 
