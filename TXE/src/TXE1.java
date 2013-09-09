@@ -1059,7 +1059,7 @@ public class TXE1 extends JFrame {
 			root = System.getProperty("user.dir");
 			File tempFile = new File(root);
 			root = tempFile.getParent();
-
+			
 			listeners = new Vector();
 		}
 
