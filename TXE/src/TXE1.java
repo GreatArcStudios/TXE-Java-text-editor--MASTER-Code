@@ -143,7 +143,9 @@ public class TXE1 extends JFrame {
 	FileSystemModel fsm = new FileSystemModel();
 
 	JTree tree = new JTree(fsm);
-
+	
+	
+	
 	JScrollPane scrollTree = new JScrollPane(tree);
 
 	// DO NOT CHANGE
@@ -1045,7 +1047,7 @@ public class TXE1 extends JFrame {
 
 	/**
 	 * 
-	 * @author http://www.java2s.com/
+	 * @author Eric Zhu of Great Ark Studios and http://www.java2s.com/
 	 * 
 	 */
 
