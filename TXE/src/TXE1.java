@@ -174,8 +174,9 @@ public class TXE1 extends JFrame {
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 
-		findText.setToolTipText("Type word to be found");
+		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
+		findText.setText("Type word or phrase to be found here.");
 
 		this.getContentPane().add(splitpane);
 
