@@ -198,7 +198,9 @@ public class TXE1 extends JFrame {
 		JMenuItem bold = new JMenuItem("Bold Document");
 		JMenuItem italics = new JMenuItem("Italicize Document");
 		JMenuItem plain = new JMenuItem("Normal Style");
+		plain.setToolTipText("Normal style and Times New Roman 12 pt font");
 		JMenuItem bI = new JMenuItem("Bold and Italicize Document");
+		bI.setToolTipText("Bold and Italicize");
 		JMenuItem Fr = new JMenuItem("Font");
 		Fr.setToolTipText("Choose a font");
 		JMenuItem bL = new JMenuItem("Blue");
@@ -494,8 +496,8 @@ public class TXE1 extends JFrame {
 		bI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
-							+ Font.ITALIC, 12));
+						TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
+								+ Font.ITALIC, 12));
 				}
 			}
 
@@ -708,7 +710,7 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE 1.7.1 Beta - " + currentFile);
+		this.setTitle("Nightly Build Ð " + currentFile);
 
 		this.setVisible(true);
 
