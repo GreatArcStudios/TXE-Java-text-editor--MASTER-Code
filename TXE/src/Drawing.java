@@ -47,18 +47,20 @@ public class Drawing {
 		JButton clearButton = new JButton("Clear");
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			}
+
+			 }
 		});
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(JOptionPane.showConfirmDialog(null, "THIS CAN NOT BE UNDONE, ARE YOU SURE YOU WANT TO CLEAR THE PAGE")==JOptionPane.YES_OPTION){
+
+				if (JOptionPane
+						.showConfirmDialog(null,
+								"THIS CAN NOT BE UNDONE, ARE YOU SURE YOU WANT TO CLEAR THE PAGE") == JOptionPane.YES_OPTION) {
 					drawPad.clear();
-				}else{
+				} else {
 					return;
 				}
-		
+
 			}
 		});
 		blue.addActionListener(new ActionListener() {
@@ -174,11 +176,14 @@ class DrawPad extends JComponent {
 			public void mouseDragged(MouseEvent e) {
 				currentX = e.getX();
 				currentY = e.getY();
-				if (SwingUtilities.isRightMouseButton(e) && SwingUtilities.isLeftMouseButton(e)) {
+				if (SwingUtilities.isRightMouseButton(e)
+						&& SwingUtilities.isLeftMouseButton(e)) {
 					if (oldX != currentX || oldY != currentY) {
 						graphics2D.setColor(Color.RED);
 						graphics2D.drawLine(oldX, oldY, currentX, currentY);
-						graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+						graphics2D.setRenderingHint(
+								RenderingHints.KEY_ANTIALIASING,
+								RenderingHints.VALUE_ANTIALIAS_OFF);
 					}
 				}
 				if (SwingUtilities.isLeftMouseButton(e))
@@ -189,17 +194,16 @@ class DrawPad extends JComponent {
 
 					graphics2D.draw3DRect(oldX, oldY, currentX, currentY, true);
 
-				
 				if (SwingUtilities.isMiddleMouseButton(e)) {
 					graphics2D.drawRect(oldX, oldY, currentX, currentY);
 					graphics2D.fillRect(oldX, oldY, currentX, currentY);
 					graphics2D.setPaint(Color.white);
-					
+
 				}
 				repaint();
 				oldX = currentX;
 				oldY = currentY;
-				
+
 			}
 
 		});
