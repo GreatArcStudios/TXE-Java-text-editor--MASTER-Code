@@ -33,6 +33,7 @@ public class Drawing {
 		frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 
 		JButton sShot = new JButton("Screenshot");
+		JButton save = new JButton("Save");
 		JRadioButton blue = new JRadioButton("Blue");
 		JRadioButton red = new JRadioButton("Red");
 		JRadioButton green = new JRadioButton("Green");
@@ -44,10 +45,20 @@ public class Drawing {
 		final DrawPad drawPad = new DrawPad();
 		Color color = (Color.BLACK);
 		JButton clearButton = new JButton("Clear");
+		save.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showConfirmDialog(null, "THIS CAN NOT BE UNDONE, ARE YOU SURE YOU WANT TO CLEAR THE PAGE");
-				drawPad.clear();
+				
+				if(JOptionPane.showConfirmDialog(null, "THIS CAN NOT BE UNDONE, ARE YOU SURE YOU WANT TO CLEAR THE PAGE")==JOptionPane.YES_OPTION){
+					drawPad.clear();
+				}else{
+					return;
+				}
+		
 			}
 		});
 		blue.addActionListener(new ActionListener() {
