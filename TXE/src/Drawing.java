@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
@@ -47,7 +48,7 @@ public class Drawing {
 		JButton clearButton = new JButton("Clear");
 		save.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 			 }
 		});
 		clearButton.addActionListener(new ActionListener() {
