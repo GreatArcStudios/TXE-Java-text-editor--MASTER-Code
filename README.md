@@ -10,7 +10,14 @@ Watch the TXE development happen, with new code updated frequently!
 <p>TXE is a open source, fully Java based word processor.</p>
 <p>Featuring a fully functional font chooser, color chooser, file manager, write, read, find and highlight text, print, insert date, select all, calculator, and encryption mini app.</p>
 ========
-
+<h3>Notable Places and Code areas</h3>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+=====
 
 
 
