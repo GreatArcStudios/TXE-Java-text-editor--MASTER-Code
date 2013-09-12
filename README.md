@@ -14,11 +14,6 @@ Watch the TXE development happen, with new code updated frequently!
 <ul>
 <li>The first frame is titled accept.java</li>
 <li>The main program (TXE) is in TXE.java</li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
 </ul>
 =
 
