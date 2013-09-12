@@ -162,7 +162,9 @@ public class TXE1 extends JFrame {
 	JMenuItem redo = new JMenuItem("Redo");
 
 	public TXE1() {
-
+		
+		TXEAREA.getDocument().addUndoableEditListener(undoManager);
+		
 		undoManager = new UndoManager();
 
 		styleContext = new StyleContext();
@@ -719,13 +721,12 @@ public class TXE1 extends JFrame {
 	}
 
 	public void updateUndoRedoMenu() {
-		undo.setEnabled(undoManager.canUndo());
-		redo.setEnabled(undoManager.canRedo());
+		
 
 	}
 
 	private void setIcon() {
-		// setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Italic.gif")));
+		 setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Italic.gif")));
 
 	}
 
