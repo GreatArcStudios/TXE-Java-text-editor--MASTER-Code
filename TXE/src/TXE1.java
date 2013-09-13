@@ -143,9 +143,7 @@ public class TXE1 extends JFrame {
 	FileSystemModel fsm = new FileSystemModel();
 
 	JTree tree = new JTree(fsm);
-	
-	
-	
+
 	JScrollPane scrollTree = new JScrollPane(tree);
 
 	// DO NOT CHANGE
@@ -162,15 +160,14 @@ public class TXE1 extends JFrame {
 	JMenuItem redo = new JMenuItem("Redo");
 
 	public TXE1() {
-		
-		//DELETE THIS LINE IF YOU WANT IT TO WORK
-		TXEAREA.setDocument(document);
-		
+
 		undoManager = new UndoManager();
 
 		styleContext = new StyleContext();
 
 		document = new DefaultStyledDocument(styleContext);
+
+		TXEAREA.setDocument(document);
 
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
@@ -501,8 +498,8 @@ public class TXE1 extends JFrame {
 		bI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				{
-						TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
-								+ Font.ITALIC, 12));
+					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
+							+ Font.ITALIC, 12));
 				}
 			}
 
@@ -722,13 +719,13 @@ public class TXE1 extends JFrame {
 	}
 
 	public void updateUndoRedoMenu() {
-		
 
 	}
 
 	private void setIcon() {
-		 setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Neptune.png")));
-		 
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				getClass().getResource("Neptune.png")));
+
 	}
 
 	private KeyListener k1 = new KeyAdapter() {
@@ -1068,7 +1065,7 @@ public class TXE1 extends JFrame {
 			root = System.getProperty("user.dir");
 			File tempFile = new File(root);
 			root = tempFile.getParent();
-			
+
 			listeners = new Vector();
 		}
 
