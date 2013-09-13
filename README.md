@@ -14,8 +14,10 @@ Watch the TXE development happen, with new code updated frequently!
 <ul>
 <li>The first frame is titled accept.java</li>
 <li>The main program (TXE) is in TXE.java</li>
+<li>The encryption app is in the java file: Encrypt.java</li>
+<li>The calculator apps is in the java file: Calculator.java</li>
 </ul>
-=
+
 
 =====
 
