@@ -163,7 +163,8 @@ public class TXE1 extends JFrame {
 
 	public TXE1() {
 		
-		TXEAREA.getDocument().addUndoableEditListener(undoManager);
+		//DELETE THIS LINE IF YOU WANT IT TO WORK
+		TXEAREA.setDocument(document);
 		
 		undoManager = new UndoManager();
 
