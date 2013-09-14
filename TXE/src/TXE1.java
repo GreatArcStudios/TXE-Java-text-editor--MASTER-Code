@@ -263,7 +263,9 @@ public class TXE1 extends JFrame {
 		});
 		undo.setIcon(new ImageIcon(getClass().getResource(
 				"images/Undo_16x16.png")));
-		undo.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+		undo.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_Z,
+				java.awt.event.InputEvent.CTRL_MASK));
 
 		redo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -279,6 +281,10 @@ public class TXE1 extends JFrame {
 		});
 		redo.setIcon(new ImageIcon(getClass().getResource(
 				"images/Redo_16x16.png")));
+		redo.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_X,
+				java.awt.event.InputEvent.CTRL_MASK));
+
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
