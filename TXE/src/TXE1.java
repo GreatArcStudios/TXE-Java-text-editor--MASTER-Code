@@ -157,6 +157,7 @@ public class TXE1 extends JFrame {
 	StyleContext styleContext;
 
 	JMenuItem undo = new JMenuItem("Undo");
+
 	JMenuItem redo = new JMenuItem("Redo");
 
 	public TXE1() {
