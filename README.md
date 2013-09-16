@@ -22,8 +22,16 @@ Watch the TXE development happen, with new code updated frequently!
 
 
 =====
-
-
+<h3>Instructions of finding the Nightly Build</h3>
+<ul>
+<ol>Download the Zip or Tar of TXE project, the file is about 100mbs.</ol>
+<ol>The .zip or .tar will now be in your downloads folder unless other wise specified, under the name: "GreatArkStudios-TXE-MASTER-Code-xxxxxx"</ol>
+<ol>Use your favorite unarchiver, The Unarchiver on mac would do fine, Win Rar on Windows would also do fine.</ol>
+<ol>Now open the unarchived folder and open the TXE folder.</ol>
+<ol>You will see a bunch of random stuff, such as code, images, and lots of other development items, if you are not a developer don't worry about this.</ol>
+<ol>Near the bottom of the folder, you will see a file/.jar, this is the app. It is named "TXE Nightly Build Java 7.jar".</ol> 
+</ul>
+=
 
 
 <b><a href= "http://eclipse.org">Eclipse</a> instructions</b>
