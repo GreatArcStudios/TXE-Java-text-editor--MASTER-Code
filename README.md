@@ -30,7 +30,7 @@ Watch the TXE development happen, with new code updated frequently!
 <li>Now open the unarchived folder and open the TXE folder.</li>
 <li>You will see a bunch of random stuff, such as code, images, and lots of other development items, if you are not a developer don't worry about this.</li>
 <li>Near the bottom of the folder, you will see a file/.jar, this is the app. It is named "TXE Nightly Build Java 7.jar".</li> 
-<li>Open it if you have java 7, if not go to <a href>http//www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html>Java 7 Website.</a></li>
+<li>Open it if you have java 7, if not go to Java 7 Website.</li>
 <li>Follow the steps and then reopen it, and volia! You can use TXE!
 </ol>
 =
