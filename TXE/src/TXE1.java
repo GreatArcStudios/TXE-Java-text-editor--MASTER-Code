@@ -112,9 +112,9 @@ public class TXE1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public JTextArea TXEAREA = new JTextArea();
+	public JTextPane TXEAREA = new JTextPane();
 
-	public JTextArea saveField = new JTextArea();
+	public JEditorPane saveField = new JEditorPane();
 
 	private JFileChooser dialog = new JFileChooser(
 			System.getProperty("home.dir"));
@@ -317,7 +317,7 @@ public class TXE1 extends JFrame {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
 						"E dd.MM.yyyy 'at' hh:mm:ss a zzz");
-				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
+				//TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
 
 			}
 		});
