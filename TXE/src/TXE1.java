@@ -112,7 +112,7 @@ public class TXE1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public JTextPane TXEAREA = new JTextPane();
+	public JTextArea TXEAREA = new JTextArea();
 
 	public JEditorPane saveField = new JEditorPane();
 
