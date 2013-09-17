@@ -317,7 +317,7 @@ public class TXE1 extends JFrame {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
 						"E dd.MM.yyyy 'at' hh:mm:ss a zzz");
-				//TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
+				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
 
 			}
 		});
