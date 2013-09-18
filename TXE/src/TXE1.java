@@ -124,6 +124,8 @@ public class TXE1 extends JFrame {
 	private boolean changed = false;
 
 	private Color color = (Color.WHITE);
+	
+	public Color CoL = (Color.YELLOW);
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
@@ -145,6 +147,8 @@ public class TXE1 extends JFrame {
 	JTree tree = new JTree(fsm);
 
 	JScrollPane scrollTree = new JScrollPane(tree);
+	
+	Highlighter.HighlightPainter HighLight = new highLight(CoL);
 
 	// DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -227,6 +231,8 @@ public class TXE1 extends JFrame {
 		enC.setToolTipText("Encrypt a message");
 		JMenuItem coL = new JMenuItem("Color Chooser");
 		coL.setToolTipText("Choose a color");
+		JMenuItem HcoL = new JMenuItem("Color Chooser");
+		HcoL.setToolTipText("Choose a highlighter color");
 		JMenuItem srenSht = new JMenuItem("Screenshot");
 		srenSht.setToolTipText("Take Screenshot");
 		JMenuItem nimbus = new JMenuItem("Nimbus Style");
@@ -285,6 +291,15 @@ public class TXE1 extends JFrame {
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
 
+		HcoL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
+						CoL);
+				
+				new highLight(CoL);
+				
+			}
+		});
 
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -639,6 +654,8 @@ public class TXE1 extends JFrame {
 		TXESettings.addSeparator();
 		TXESettings.add(nimbus);
 		TXESettings.add(natives);
+		TXESettings.addSeparator();
+		TXESettings.add(HcoL);
 
 		for (int i = 0; i < 1; i++)
 
@@ -1188,7 +1205,7 @@ public class TXE1 extends JFrame {
 
 	}
 
-	Highlighter.HighlightPainter HighLight = new highLight(Color.yellow);
+
 
 	public void removeHighlight(JTextComponent comp) {
 		Highlighter highlighte = comp.getHighlighter();
