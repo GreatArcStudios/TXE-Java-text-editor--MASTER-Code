@@ -129,7 +129,7 @@ public class TXE1 extends JFrame {
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
-	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is a Nightly Build1\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
+	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is a Nightly Build!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
 
 	public String currentText = TXEAREA.getText();
 
@@ -163,6 +163,8 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
+	
+	public String colS;
 
 	public TXE1() {
 
@@ -296,7 +298,7 @@ public class TXE1 extends JFrame {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
 				
-				new highLight(CoL);
+				CoL.toString();
 				
 			}
 		});
