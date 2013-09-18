@@ -22,7 +22,7 @@ Watch the TXE development happen, with new code updated frequently!
 
 
 =====
-<h3>Instructions of finding the Nightly Build</h3>
+<h3>Instructions for finding the Nightly Build</h3>
 <ol>
 <li>Download the Zip or Tar of TXE project, the file is about 100mbs.</li>
 <li>The .zip or .tar will now be in your downloads folder unless other wise specified, under the name: "GreatArkStudios-TXE-MASTER-Code-xxxxxx"</li>
