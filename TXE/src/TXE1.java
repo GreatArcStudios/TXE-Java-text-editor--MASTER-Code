@@ -298,7 +298,7 @@ public class TXE1 extends JFrame {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
 				
-				CoL.toString();
+				
 				
 			}
 		});
