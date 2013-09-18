@@ -65,7 +65,7 @@ import java.awt.Robot;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JPanel;	
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -297,7 +297,7 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
-				
+					
 				
 				
 			}
