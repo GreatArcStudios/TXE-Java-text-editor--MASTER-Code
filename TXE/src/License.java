@@ -40,10 +40,9 @@ public class License extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-        setType(Type.UTILITY);
-        
+
         jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 0, 18)); // NOI18N
-        jLabel1.setText("TXE 1.6.5 Closed Beta License");
+        jLabel1.setText("TXE Nightly Build License");
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 

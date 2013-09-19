@@ -102,6 +102,9 @@ import java.awt.image.BufferedImage;
 
 import say.swing.JFontChooser;
 
+import org.fife.ui.rsyntaxtextarea.*;
+import org.fife.*;
+
 /**
  * 
  * @author ericzhu

@@ -77,7 +77,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Handwriting" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TXE 1.6.5 Closed Beta License"/>
+        <Property name="text" type="java.lang.String" value="TXE Nightly Build License"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
