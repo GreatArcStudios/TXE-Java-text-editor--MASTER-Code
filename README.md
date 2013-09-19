@@ -1,3 +1,6 @@
+<h1><b>STATUS:</b></h1><h2>WE WILL NOT BE ABLE TO PUSH NEW COMMITS FOR THE TIME BEING DUE TO THE PROBLEM: YOUR BRANCH IS AHEAD OF THE MASTER BY 3 COMMITS. THIS WILL BE FIXED AS SOOON AS POSSIBLE. THANKS FOR UNDERSTANDING. </h2>
+=
+
 ![TXE](http://greatarkstudios.weebly.com/uploads/1/3/0/5/13052964/6677706.png?481 "TXE")
 
 TXE-MASTER-Code Resopsitory 
@@ -22,7 +25,7 @@ Watch the TXE development happen, with new code updated frequently!
 
 
 =====
-<h3>Instructions of finding the Nightly Build</h3>
+<h3>Instructions for finding the Nightly Build</h3>
 <ol>
 <li>Download the Zip or Tar of TXE project, the file is about 100mbs.</li>
 <li>The .zip or .tar will now be in your downloads folder unless other wise specified, under the name: "GreatArkStudios-TXE-MASTER-Code-xxxxxx"</li>
