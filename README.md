@@ -21,8 +21,13 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 <li>The calculator apps is in the java file: Calculator.java</li>
 <li>The sketch pad is in the java file: Drawing.java </li>
 <li>The setting is in the java file: Setting.java </li>
+<li>The about frame is in the java file: about.java</li>
 </ul>
+=
+Notable spots in the main program(TXE)
+<ul>
 
+</ul>
 
 =====
 <h3>Instructions for finding the Nightly Build</h3>
