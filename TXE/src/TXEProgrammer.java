@@ -185,6 +185,7 @@ public class TXEProgrammer extends JFrame {
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
                 TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+                TXEAREA.setAntiAliasingEnabled(true);
 
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
