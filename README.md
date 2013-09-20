@@ -24,7 +24,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 <li>The about frame is in the java file: about.java</li>
 </ul>
 =
-Notable spots in the main program(TXE)
+<H4><b>Notable spots in the main program(TXE)</b></h4>
 
 
 Starting at line 156 and ending at line 158 it will say:
