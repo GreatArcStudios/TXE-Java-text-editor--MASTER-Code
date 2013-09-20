@@ -38,7 +38,7 @@ Notable spots in the main program(TXE)
 <li>Now open the unarchived folder and open the TXE folder.</li>
 <li>You will see a bunch of random stuff, such as code, images, and lots of other development items, if you are not a developer don't worry about this.</li>
 <li>Near the bottom of the folder, you will see a file/.jar, this is the app. It is named "TXE Nightly Build Java 7.jar".</li> 
-<li>Open it if you have java 7, if not go to Java 7 Website.</li>
+<li>Open it if you have <b>java 7</b>, if not go to Java 7 Website.</li>
 <li>Follow the steps and then reopen it, and volia! You can use TXE!
 </ol>
 =
