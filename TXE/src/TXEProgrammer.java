@@ -184,6 +184,7 @@ public class TXEProgrammer extends JFrame {
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+                TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
@@ -743,7 +744,7 @@ public class TXEProgrammer extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("Nightly Build Ð " + currentFile);
+		this.setTitle("Nightly Build ï¿½ " + currentFile);
 
 		this.setVisible(true);
 
