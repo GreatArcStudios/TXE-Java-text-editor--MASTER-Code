@@ -26,7 +26,6 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 =
 Notable spots in the main program(TXE)
 
-# Example Usage 
 
 Starting at line 156 and ending at line 158 it will say:
 
