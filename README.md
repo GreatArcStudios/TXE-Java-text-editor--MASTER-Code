@@ -25,9 +25,16 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 </ul>
 =
 Notable spots in the main program(TXE)
-<ul>
 
-</ul>
+# Example Usage 
+
+Starting at line 156 and ending at line 158 it will say:
+
+```java
+	// DO NOT CHANGE
+        JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+			new JScrollPane(tree), scroll);
+
 
 =====
 <h3>Instructions for finding the Nightly Build</h3>
