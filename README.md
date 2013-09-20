@@ -6,7 +6,7 @@
 TXE-MASTER-Code Resopsitory 
 ===============
 
-Watch the TXE development happen, with new code updated frequently!
+Watch the TXE development happen, with new code updated frequently and with a nightly build!
 
 ===========
 <h2>Overview</h2>
