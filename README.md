@@ -35,6 +35,8 @@ Starting at line 156 and ending at line 158 it will say:
 			new JScrollPane(tree), scroll);
 
 ```
+Do not change it if you the split pane.
+
 =====
 <h3>Instructions for finding the Nightly Build</h3>
 <ol>
