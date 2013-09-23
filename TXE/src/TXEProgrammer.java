@@ -65,7 +65,7 @@ import java.awt.Robot;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;	
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -106,6 +106,7 @@ import org.fife.ui.rsyntaxtextarea.*;
 import org.fife.*;
 import org.fife.ui.rtextarea.*;
 import org.fife.ui.rsyntaxtextarea.*;
+
 /**
  * 
  * @author ericzhu
@@ -116,7 +117,7 @@ public class TXEProgrammer extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public RSyntaxTextArea TXEAREA = new RSyntaxTextArea();
+	public static RSyntaxTextArea TXEAREA = new RSyntaxTextArea();
 
 	public JEditorPane saveField = new JEditorPane();
 
@@ -128,12 +129,12 @@ public class TXEProgrammer extends JFrame {
 	private boolean changed = false;
 
 	private Color color = (Color.WHITE);
-	
+
 	public Color CoL = (Color.YELLOW);
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
-	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is a Nightly Build!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
+	public String DefualtText = ("'Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n'*Note* this is a Nightly Build!'\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/'");
 
 	public String currentText = TXEAREA.getText();
 
@@ -151,7 +152,7 @@ public class TXEProgrammer extends JFrame {
 	JTree tree = new JTree(fsm);
 
 	JScrollPane scrollTree = new JScrollPane(tree);
-	
+
 	Highlighter.HighlightPainter HighLight = new highLight(CoL);
 
 	// DO NOT CHANGE
@@ -167,7 +168,7 @@ public class TXEProgrammer extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
-	
+
 	public String colS;
 
 	public TXEProgrammer() {
@@ -178,15 +179,21 @@ public class TXEProgrammer extends JFrame {
 
 		document = new DefaultStyledDocument(styleContext);
 
-		//TXEAREA.setDocument(document);
+		// TXEAREA.setDocument(document);
 
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-                TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-                TXEAREA.setAntiAliasingEnabled(true);
-
+		TXEAREA.setAntiAliasingEnabled(true);
+		TXEAREA.setBracketMatchingEnabled(true);
+		TXEAREA.setAnimateBracketMatching(true);
+		TXEAREA.setAutoscrolls(true);
+		TXEAREA.setCloseMarkupTags(true);
+		TXEAREA.setHyperlinksEnabled(true);
+		TXEAREA.setCodeFoldingEnabled(true);
+		TXEAREA.setEOLMarkersVisible(false);
+		
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
 		findText.setText("Type word or phrase to be found here.");
@@ -303,9 +310,7 @@ public class TXEProgrammer extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
-					
-				
-				
+
 			}
 		});
 
@@ -452,27 +457,27 @@ public class TXEProgrammer extends JFrame {
 		});
 		settingsFrame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Settings txesettings = new Settings();
+				SettingsProgrammer txesettings = new SettingsProgrammer();
 				txesettings.setVisible(true);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Settings settingsWeb = new Settings();
+				SettingsProgrammer settingsWeb = new SettingsProgrammer();
 
 				TXEAREA.setText(currentText + settingsWeb.webText1);
 			}
 		});
 		addname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Settings settingsWeb = new Settings();
-				;
+				SettingsProgrammer settingsWeb = new SettingsProgrammer();
+
 				TXEAREA.setText(currentText + settingsWeb.nameText);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Settings settingsWeb = new Settings();
+				SettingsProgrammer settingsWeb = new SettingsProgrammer();
 
 				TXEAREA.setText(currentText + settingsWeb.companyText1);
 			}
@@ -676,9 +681,9 @@ public class TXEProgrammer extends JFrame {
 		edit.add(Copy);
 		edit.add(Paste);
 		edit.addSeparator();
-		edit.add(undo);
-		edit.add(redo);
-		edit.addSeparator();
+		// edit.add(undo);
+		// edit.add(redo);
+		// edit.addSeparator();
 		edit.add(date);
 		edit.addSeparator();
 		edit.add(sA);
@@ -1212,8 +1217,6 @@ public class TXEProgrammer extends JFrame {
 		}
 
 	}
-
-
 
 	public void removeHighlight(JTextComponent comp) {
 		Highlighter highlighte = comp.getHighlighter();

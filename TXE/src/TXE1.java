@@ -115,7 +115,7 @@ public class TXE1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public JTextArea TXEAREA = new JTextArea();
+	public static JTextArea TXEAREA = new JTextArea();
 
 	public JEditorPane saveField = new JEditorPane();
 
@@ -336,7 +336,7 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
-						"E dd.MM.yyyy 'at' hh:mm:ss a zzz");
+						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
 				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
 
 			}

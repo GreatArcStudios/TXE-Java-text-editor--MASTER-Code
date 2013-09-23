@@ -1,15 +1,14 @@
 import java.awt.*;
-
 import java.awt.event.*;
 import java.awt.Window;
 import java.io.*;
 
 import javax.swing.*;
-
 import javax.swing.text.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -24,16 +23,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Vector;
 import java.awt.*;
-
 import java.awt.event.*;
-
 import java.io.*;
 
 import javax.swing.*;
-
 import javax.swing.text.*;
 
 import java.awt.print.*;
+
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.Action;
@@ -45,6 +42,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -53,15 +51,22 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JPasswordField;
+
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.BoxLayout;
+
 import java.awt.CardLayout;
 
 import javax.swing.JFileChooser;
@@ -72,13 +77,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.SpringLayout;
 
 import java.awt.Component;
+
 import javax.swing.JMenuBar;
+
 import java.awt.TextField;
+
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+
 import java.awt.Toolkit;
+
 import javax.swing.JTabbedPane;
+
 import java.awt.Dimension;
 import java.awt.AWTException;
 import java.awt.GridBagLayout;
@@ -91,19 +102,22 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.*;
+
 import javax.imageio.ImageIO;
 
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+
 @SuppressWarnings("unused")
-public class Settings extends JFrame {
+public class SettingsProgrammer extends JFrame {
 	public static void main(String[] args) {
-		new Settings();
+		new SettingsProgrammer();
 	}
 
 	public String webText = "Your website url here";
 	JTextField name = new JTextField(20);
 	JTextField website = new JTextField(20);
 	JTextField company = new JTextField(20);
-    JButton okButton, cancelButton;
+	JButton okButton, cancelButton;
 	public JRadioButton bold, italics, boldI, normal;
 	public String nameText = name.getText();
 	public String webText1 = website.getText();
@@ -113,8 +127,9 @@ public class Settings extends JFrame {
 	public JButton nameB = new JButton("Name:");
 	public JButton webB = new JButton("Website:");
 	public JButton compB = new JButton("Company:");
-	public Settings() {
-		
+
+	public SettingsProgrammer() {
+
 		this.setSize(500, 500);
 		this.setTitle("TXE Settings");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -122,21 +137,18 @@ public class Settings extends JFrame {
 		this.setLocationRelativeTo(null);
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new GridBagLayout());
-		addItem(panel1, nameB, 0, 0, 1, 1,
-				GridBagConstraints.EAST);
-		addItem(panel1, webB, 0, 1, 1, 1,
-				GridBagConstraints.EAST);
-		addItem(panel1, compB, 0, 2, 1, 1,
-				GridBagConstraints.EAST);
+		addItem(panel1, nameB, 0, 0, 1, 1, GridBagConstraints.EAST);
+		addItem(panel1, webB, 0, 1, 1, 1, GridBagConstraints.EAST);
+		addItem(panel1, compB, 0, 2, 1, 1, GridBagConstraints.EAST);
 		addItem(panel1, name, 1, 0, 2, 1, GridBagConstraints.WEST);
 		addItem(panel1, website, 1, 1, 1, 1, GridBagConstraints.WEST);
 		addItem(panel1, company, 1, 2, 2, 1, GridBagConstraints.WEST);
-		
+
 		Box formatBox = Box.createVerticalBox();
-		bold = new JRadioButton("Defualt Bold");
-		italics = new JRadioButton("Defualt Italics");
-		boldI = new JRadioButton("Defualt Bold And Italics");
-		normal = new JRadioButton("Defualt Normal");
+		bold = new JRadioButton("Java Syntax Style");
+		italics = new JRadioButton("C++ Syntax Style");
+		boldI = new JRadioButton("C Syntax Style");
+		normal = new JRadioButton("Html Syntax Style");
 		ButtonGroup formatGroup = new ButtonGroup();
 		formatGroup.add(bold);
 		formatGroup.add(boldI);
@@ -146,8 +158,7 @@ public class Settings extends JFrame {
 		formatBox.add(boldI);
 		formatBox.add(italics);
 		formatBox.add(normal);
-		formatBox.setBorder(BorderFactory
-				.createTitledBorder("Defualt Style Of Text"));
+		formatBox.setBorder(BorderFactory.createTitledBorder("Syntax Styles"));
 		addItem(panel1, formatBox, 1, 3, 1, 1, GridBagConstraints.NORTH);
 		// add panel1
 		this.add(panel1);
@@ -155,40 +166,39 @@ public class Settings extends JFrame {
 		this.pack();
 		nameB.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				TXE1.TXEAREA.getCaretPosition();
-				TXE1.TXEAREA.insert(nameText, 20);
+				TXEProgrammer.TXEAREA.getCaretPosition();
+				TXEProgrammer.TXEAREA.insert(nameText, 20);
 
 			}
 		});
 		bold.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-				TXE1.TXEAREA
-						.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				TXEProgrammer.TXEAREA
+						.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 
 			}
 		});
 		italics.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-				TXE1.TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC,
-						12));
+				TXEProgrammer.TXEAREA
+						.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
 
 			}
 		});
 		boldI.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-				TXE1.TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
-						+ Font.ITALIC, 12));
+				TXEProgrammer.TXEAREA
+						.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
 
 			}
 		});
 		normal.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 
-				TXE1.TXEAREA
-						.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+				TXEProgrammer.TXEAREA
+						.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_HTML);
 
 			}
 		});
