@@ -38,6 +38,12 @@ Starting at line 156 and ending at line 158 it will say:
 Do not change it if you want the split pane.
 =
 ```java
+              //variable declarations 
+	      UndoManager undoManager = null;
+	      DefaultStyledDocument document;
+              StyleContext styleContext;
+
+
 174|		undoManager = new UndoManager();
 175|
 176|		styleContext = new StyleContext();
