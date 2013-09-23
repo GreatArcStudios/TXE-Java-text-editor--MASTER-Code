@@ -36,7 +36,17 @@ Starting at line 156 and ending at line 158 it will say:
 
 ```
 Do not change it if you want the split pane.
-
+=
+```java
+174|		undoManager = new UndoManager();
+175|
+176|		styleContext = new StyleContext();
+177|
+178|            document = new DefaultStyledDocument(styleContext);
+179|
+180|		TXEAREA.setDocument(document);
+```
+Don't change the order if your want the undo and redo to work, as it seemed to fix a undo and redo not working bug.
 =====
 <h3>Instructions for finding the Nightly Build</h3>
 <ol>
