@@ -27,7 +27,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 <H4><b>Notable spots in the main program(TXE)</b></h4>
 
 
-Starting at line 156 and ending at line 158 it will say:
+<H5>Starting at line 156 and ending at line 158 it will say:</h5>
 
 ```java
 	 // DO NOT CHANGE
@@ -35,7 +35,7 @@ Starting at line 156 and ending at line 158 it will say:
 			new JScrollPane(tree), scroll);
 
 ```
-Do not change it if you want the split pane.
+<H5>Do not change it if you want the split pane.</h5>
 =
 ```java
               //variable declarations 
@@ -52,7 +52,7 @@ Do not change it if you want the split pane.
 179|
 180|		TXEAREA.setDocument(document);
 ```
-Don't change the order if your want the undo and redo to work, as it seemed to fix a undo and redo not working bug.
+<H5>Don't change the order if your want the undo and redo to work, as it seemed to fix a undo and redo not working bug.</h5>
 =====
 <h3>Instructions for finding the Nightly Build</h3>
 <ol>
