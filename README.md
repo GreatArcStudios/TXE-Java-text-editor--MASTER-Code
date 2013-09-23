@@ -30,8 +30,8 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 Starting at line 156 and ending at line 158 it will say:
 
 ```java
-	// DO NOT CHANGE
-        JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+	 // DO NOT CHANGE
+       JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
 			new JScrollPane(tree), scroll);
 
 ```
@@ -42,7 +42,7 @@ Do not change it if you want the split pane.
 175|
 176|		styleContext = new StyleContext();
 177|
-178|            document = new DefaultStyledDocument(styleContext);
+178|          document = new DefaultStyledDocument(styleContext);
 179|
 180|		TXEAREA.setDocument(document);
 ```
