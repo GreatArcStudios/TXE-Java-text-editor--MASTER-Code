@@ -1,4 +1,4 @@
-<h1><b>STATUS:</b></h1><h2>Our router has died and we will be making updates via the iPhone.</h2>
+<h1><b>STATUS:</b></h1><h2>Working and new nightly builds coming!</h2>
 =
 
 ![TXE](http://greatarkstudios.weebly.com/uploads/1/3/0/5/13052964/6677706.png?481 "TXE")
