@@ -116,12 +116,12 @@ public class SettingsProgrammer extends JFrame {
 	public String webText = "Your website url here";
 	JTextField name = new JTextField(20);
 	JTextField website = new JTextField(20);
-	JTextField company = new JTextField(20);
+	static JTextField company = new JTextField(20);
 	JButton okButton, cancelButton;
 	public JRadioButton bold, italics, boldI, normal;
 	public String nameText = name.getText();
 	public String webText1 = website.getText();
-	public String companyText1 = company.getText();
+	public static String companyText1 = company.getText();
 	private static final long serialVersionUID = 1L;
 	public String companyText = "Your Company/Orgniztion name here";
 	public JButton nameB = new JButton("Name:");

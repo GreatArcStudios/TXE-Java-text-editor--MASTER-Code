@@ -193,6 +193,7 @@ public class TXEProgrammer extends JFrame {
 		TXEAREA.setHyperlinksEnabled(true);
 		TXEAREA.setCodeFoldingEnabled(true);
 		TXEAREA.setEOLMarkersVisible(false);
+		TXEAREA.setAutoIndentEnabled(true);
 		
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
@@ -470,16 +471,14 @@ public class TXEProgrammer extends JFrame {
 		});
 		addname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsProgrammer settingsWeb = new SettingsProgrammer();
-
-				TXEAREA.setText(currentText + settingsWeb.nameText);
+				TXEAREA.insert(SettingProgrammer.nameText, pos);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsProgrammer settingsWeb = new SettingsProgrammer();
+				
 
-				TXEAREA.setText(currentText + settingsWeb.companyText1);
+				TXEAREA.insert(SettingsProgrammer.companyText1, TXEAREA.getCaretPosition());
 			}
 		});
 		cL.addActionListener(new ActionListener() {
