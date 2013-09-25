@@ -56,7 +56,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 =
 <h5>At line 184:</h5>
 ```java 
-		this.setLocationRelativeTo(null);
+184|		this.setLocationRelativeTo(null);
 ```
 <h5>Neat trick for getting the frame in the center of the screen.</h5>
 =====
