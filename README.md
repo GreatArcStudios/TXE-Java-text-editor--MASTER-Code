@@ -53,6 +53,11 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 180|		TXEAREA.setDocument(document);
 ```
 <H5>Don't change the order if your want the undo and redo to work, as it seemed to fix a undo and redo not working bug.</h5>
+<h5>At line 184:<\h5>
+```java 
+		this.setLocationRelativeTo(null);
+```
+<h5>Neat trick for getting the frame in the center of the screen.</h5>
 =====
 <h3>Instructions for finding the Nightly Build</h3>
 <ol>
