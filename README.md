@@ -59,6 +59,16 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 184|		this.setLocationRelativeTo(null);
 ```
 <h5>Neat trick for getting the frame in the center of the screen.</h5>
+=
+<H4>TXE Programmers Notable Areas</h4>
+=
+<h5>At line 683-685 it will say:<\h5>
+```java
+683|		// edit.add(undo);
+684|		// edit.add(redo);
+685|		// edit.addSeparator();
+```
+<h5>Undo and Redo is build into RSyntaxTextArea so the custom build is obsolete</h5>
 =====
 <h3>Instructions for finding the Nightly Build</h3>
 <ol>
