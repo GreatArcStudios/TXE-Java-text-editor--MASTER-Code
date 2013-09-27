@@ -62,7 +62,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 =
 <H4>TXE Programmers Notable Areas</h4>
 =
-<h5>At line 683-685 it will say:<\h5>
+<h5>At line 683-685 it will say:</h5>
 ```java
 683|		// edit.add(undo);
 684|		// edit.add(redo);
