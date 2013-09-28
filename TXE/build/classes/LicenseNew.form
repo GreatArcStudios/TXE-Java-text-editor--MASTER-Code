@@ -55,7 +55,11 @@
             <Component class="javax.swing.JTextArea" name="jTextArea1">
               <Properties>
                 <Property name="columns" type="int" value="50"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Meiryo" size="14" style="0"/>
+                </Property>
                 <Property name="rows" type="int" value="20"/>
+                <Property name="text" type="java.lang.String" value="                &#x9;&#x9;&#x9;TXE Source License&#xa;&#xa9;Eric Zhu and Great Ark Studios 2012, 2013 &#xa;&#xae; All Rights Reserved &#xa;&#xa;Redistribution and use in source and binary forms, with or without&#xa;modification, are permitted provided that the following conditions are met:&#xa;    * Redistributions of source code must retain the above copyright&#xa;      notice, this list of conditions and the following disclaimer.&#xa;    * Redistributions in binary form must reproduce the above copyright&#xa;      notice, this list of conditions and the following disclaimer in the&#xa;      documentation and/or other materials provided with the distribution.&#xa;    * Neither the name of the author nor the names of its contributors may&#xa;      be used to endorse or promote products derived from this software&#xa;      without  prior written permission.&#xa;&#xa;THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND&#xa;ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED&#xa;WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE&#xa;DISCLAIMED. IN NO EVENT SHALL (COPYRIGHT HOLDER) BE LIABLE FOR ANY&#xa;DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES&#xa;(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;&#xa;LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND&#xa;ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT&#xa;(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS&#xa;SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."/>
               </Properties>
             </Component>
           </SubComponents>
