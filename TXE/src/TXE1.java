@@ -39,6 +39,7 @@ import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -248,6 +249,8 @@ public class TXE1 extends JFrame {
 		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
+		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
+		pT.setToolTipText("Programmer's Text Pad");
 
 		JButton findButton = new JButton("Find");
 
@@ -295,7 +298,12 @@ public class TXE1 extends JFrame {
 		redo.setAccelerator(KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
-
+		pT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TXEProgrammer TP = new TXEProgrammer();
+			
+			}
+		});
 		HcoL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
@@ -661,7 +669,8 @@ public class TXE1 extends JFrame {
 		TXESettings.add(natives);
 		TXESettings.addSeparator();
 		TXESettings.add(HcoL);
-
+		TXESettings.addSeparator();
+		TXESettings.add(pT);
 		for (int i = 0; i < 1; i++)
 
 			file.getItem(i).setIcon(null);

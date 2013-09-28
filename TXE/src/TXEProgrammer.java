@@ -259,6 +259,8 @@ public class TXEProgrammer extends JFrame {
 		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
+		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
+		pT.setToolTipText("Programmer's Text Pad");
 
 		JButton findButton = new JButton("Find");
 
@@ -333,7 +335,12 @@ public class TXEProgrammer extends JFrame {
 				}
 			}
 		});
-
+		pT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TXEProgrammer TP = new TXEProgrammer();
+			
+			}
+		});
 		sA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.selectAll();
@@ -464,14 +471,14 @@ public class TXEProgrammer extends JFrame {
 		});
 		addwebsite.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsProgrammer settingsWeb = new SettingsProgrammer();
+				
 
-				TXEAREA.setText(currentText + settingsWeb.webText1);
+				TXEAREA.setText(currentText + SettingsProgrammer.webText1);
 			}
 		});
 		addname.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TXEAREA.insert(SettingProgrammer.nameText, pos);
+				TXEAREA.insert(SettingsProgrammer.nameText, TXEAREA.getCaretPosition());
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
@@ -668,7 +675,8 @@ public class TXEProgrammer extends JFrame {
 		TXESettings.add(natives);
 		TXESettings.addSeparator();
 		TXESettings.add(HcoL);
-
+		//TXESettings.addSeparator();
+		//TXESettings.add(pT);
 		for (int i = 0; i < 1; i++)
 
 			file.getItem(i).setIcon(null);
