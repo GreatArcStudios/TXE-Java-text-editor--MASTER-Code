@@ -1,7 +1,7 @@
 <h1><b>STATUS:</b></h1><h2>Working and new nightly builds coming!</h2>
 =
 
-![TXE](http://greatarkstudios.weebly.com/uploads/1/3/0/5/13052964/6677706.png?481 "TXE")
+![TXE](http://greatarkstudios.weebly.com/uploads/1/3/0/5/13052964/_6082803.png "TXE")
 
 TXE-MASTER-Code Resopsitory 
 ===============
