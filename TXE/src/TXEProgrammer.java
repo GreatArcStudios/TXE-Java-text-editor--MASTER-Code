@@ -757,7 +757,7 @@ public class TXEProgrammer extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("Nightly Build � " + currentFile);
+		this.setTitle("Nightly Build – " + currentFile);
 
 		this.setVisible(true);
 
