@@ -34,6 +34,7 @@ public class LicenseNew extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane1.setOneTouchExpandable(true);
 
         jTextArea1.setColumns(50);
         jTextArea1.setFont(new java.awt.Font("Meiryo", 0, 14)); // NOI18N
