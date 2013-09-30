@@ -409,7 +409,9 @@ public class TXEProgrammer extends JFrame {
 				/**
 				 * TXESHOT txesh = new TXESHOT(); txesh.setVisible(true);
 				 **/
-
+				Date date = new Date();
+				SimpleDateFormat sdt = new SimpleDateFormat(
+						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
 				try {
 
 					Rectangle screenshotRect = new Rectangle(Toolkit
@@ -423,11 +425,11 @@ public class TXEProgrammer extends JFrame {
 					// frame.add(saveField);
 					// saveField.setText("Screenshot name.png");
 					ImageIO.write(Capture, "png",
-							new File("TXE Screenshot.png"));
+							new File("TXE Screenshot "+sdt.format(date)+".png"));
 					JOptionPane
 							.showMessageDialog(
 									getParent(),
-									"Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot.png.");
+									"Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot"+sdt.format(date)+".png.");
 				} catch (Exception ex) {
 
 					JOptionPane.showMessageDialog(getParent(),
