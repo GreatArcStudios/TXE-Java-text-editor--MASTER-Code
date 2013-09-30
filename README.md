@@ -14,7 +14,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 <p>Featuring a fully functional font chooser, color chooser, file manager, write, read, find and highlight text, print, insert date, select all, calculator, and encryption mini app.</p>
 
 =
-Our main website is at http://greatarkstudios.weebly.com.
+<P>Our main website is at http://greatarkstudios.weebly.com </p>
 ========
 <h3>Notable Places and Code areas</h3>
 <ul>
