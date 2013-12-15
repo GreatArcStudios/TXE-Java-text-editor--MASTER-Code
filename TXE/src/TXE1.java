@@ -9,6 +9,8 @@ import javax.swing.text.Highlighter.Highlight;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -66,7 +68,7 @@ import java.awt.Robot;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;	
+import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -128,12 +130,12 @@ public class TXE1 extends JFrame {
 	private boolean changed = false;
 
 	private Color color = (Color.WHITE);
-	
+
 	public Color CoL = (Color.YELLOW);
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
-	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is a Nightly Build!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
+	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is TXE 1.8!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
 
 	public String currentText = TXEAREA.getText();
 
@@ -151,7 +153,7 @@ public class TXE1 extends JFrame {
 	JTree tree = new JTree(fsm);
 
 	JScrollPane scrollTree = new JScrollPane(tree);
-	
+
 	Highlighter.HighlightPainter HighLight = new highLight(CoL);
 
 	// DO NOT CHANGE
@@ -167,7 +169,7 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
-	
+
 	public String colS;
 
 	public TXE1() {
@@ -301,16 +303,14 @@ public class TXE1 extends JFrame {
 		pT.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TXEProgrammer TP = new TXEProgrammer();
-			
+
 			}
 		});
 		HcoL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
-					
-				
-				
+
 			}
 		});
 
@@ -370,30 +370,14 @@ public class TXE1 extends JFrame {
 
 		natives.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
-				} catch (Exception exc) {
-
-				}
+				nativeActionPerformed(e);
 			}
 
 		});
 
 		nimbus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					for (LookAndFeelInfo feel : UIManager
-							.getInstalledLookAndFeels()) {
-						if ("Nimbus".equals(feel.getName())) {
-							UIManager.setLookAndFeel(feel.getClassName());
-							break;
-						}
-					}
-				} catch (Exception exc) {
-
-				}
-
+				nimbusActionPerformed(e);
 			}
 		});
 		srenSht.addActionListener(new ActionListener() {
@@ -416,8 +400,8 @@ public class TXE1 extends JFrame {
 					// frame.setSize(500,50);
 					// frame.add(saveField);
 					// saveField.setText("Screenshot name.png");
-					ImageIO.write(Capture, "png",
-							new File("TXE Screenshot "+sdt.format(date)+".png"));
+					ImageIO.write(Capture, "png", new File("TXE Screenshot "
+							+ sdt.format(date) + ".png"));
 					JOptionPane
 							.showMessageDialog(
 									getParent(),
@@ -753,10 +737,33 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("Nightly Build Ð " + currentFile);
+		this.setTitle("TXE 1.8 Ð " + currentFile);
 
 		this.setVisible(true);
 
+	}
+
+	public void nimbusActionPerformed(ActionEvent e) {
+		try {
+			for (LookAndFeelInfo feel : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(feel.getName())) {
+					UIManager.setLookAndFeel(feel.getClassName());
+					SwingUtilities.updateComponentTreeUI(this);
+					break;
+				}
+			}
+		} catch (Exception exc) {
+
+		}
+
+	}
+
+	public void nativeActionPerformed(java.awt.event.ActionEvent e) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			
+		} catch (Exception exc) {
+		}
 	}
 
 	public void updateUndoRedoMenu() {
@@ -1220,8 +1227,6 @@ public class TXE1 extends JFrame {
 		}
 
 	}
-
-
 
 	public void removeHighlight(JTextComponent comp) {
 		Highlighter highlighte = comp.getHighlighter();
