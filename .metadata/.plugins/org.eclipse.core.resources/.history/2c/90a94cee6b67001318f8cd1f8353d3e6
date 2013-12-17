@@ -1222,7 +1222,7 @@ public class TXE1 extends JFrame {
 	 * 
 	 */
 	 static class highLight extends DefaultHighlighter.DefaultHighlightPainter {
-		public highLight(final Color color) {
+		public highLight(static Color color) {
 			super(color);
 		}
 

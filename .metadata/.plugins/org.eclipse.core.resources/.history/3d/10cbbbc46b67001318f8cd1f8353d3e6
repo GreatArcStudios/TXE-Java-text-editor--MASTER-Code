@@ -132,6 +132,8 @@ public class TXE1 extends JFrame {
 	private Color color = (Color.WHITE);
 
 	public Color CoL = (Color.YELLOW);
+	
+	public static Color colC = ();
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
@@ -1221,8 +1223,8 @@ public class TXE1 extends JFrame {
 	 * @author ericzhu
 	 * 
 	 */
-	 static class highLight extends DefaultHighlighter.DefaultHighlightPainter {
-		public highLight(final Color color) {
+	class highLight extends DefaultHighlighter.DefaultHighlightPainter {
+		public static highLight(colC color) {
 			super(color);
 		}
 

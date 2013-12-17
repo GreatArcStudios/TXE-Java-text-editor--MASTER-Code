@@ -5,9 +5,9 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry exported="true" kind="lib" path="src/bcprov-jdk15on-149.jar"/>
 	<classpathentry exported="true" kind="lib" path="src/swing-layout-1.0.1.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Library/Java/JavaVirtualMachines/jdk1.7.0_10.jdk/Contents/Home/jre/lib/rt.jar"/>
 	<classpathentry exported="true" kind="lib" path="src/rt.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Downloads/rsyntaxtextarea_2.5.0/rsyntaxtextarea.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
