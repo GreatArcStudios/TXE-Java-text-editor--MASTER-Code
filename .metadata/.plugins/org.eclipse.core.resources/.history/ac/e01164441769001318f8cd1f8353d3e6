@@ -153,6 +153,7 @@ public class TXE1 extends JFrame {
 	JScrollPane scrollTree = new JScrollPane(tree);
 	public Color CoL = Color.YELLOW;
 	public Color Colors = CoL;
+	@SuppressWarnings("static-access")
 	Highlighter.HighlightPainter HighLight = new highLight(Colors);
 	
 
@@ -169,8 +170,6 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
-	
-	JColorChooser CC = new JColorChooser();
 	
 	public String colS;
 
@@ -310,9 +309,9 @@ public class TXE1 extends JFrame {
 		});
 		
 		HcoL.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				CC.showDialog(null, "Pick Highlighter Color", CoL); 
+				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
+						CoL);
 				Colors = CoL;
 				System.out.println(CoL);
 				System.out.println(Colors);

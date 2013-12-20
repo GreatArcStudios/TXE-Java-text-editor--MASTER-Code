@@ -170,8 +170,6 @@ public class TXE1 extends JFrame {
 
 	JMenuItem redo = new JMenuItem("Redo");
 	
-	JColorChooser CC = new JColorChooser();
-	
 	public String colS;
 
 	public TXE1() {
@@ -310,9 +308,9 @@ public class TXE1 extends JFrame {
 		});
 		
 		HcoL.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				CC.showDialog(null, "Pick Highlighter Color", CoL); 
+				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
+						CoL);
 				Colors = CoL;
 				System.out.println(CoL);
 				System.out.println(Colors);
