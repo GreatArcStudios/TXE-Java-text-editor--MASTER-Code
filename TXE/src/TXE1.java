@@ -130,9 +130,7 @@ public class TXE1 extends JFrame {
 	private boolean changed = false;
 
 	private Color color = (Color.WHITE);
-
-	public Color CoL = (Color.YELLOW);
-
+			
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
 	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is TXE 1.8!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
@@ -153,8 +151,11 @@ public class TXE1 extends JFrame {
 	JTree tree = new JTree(fsm);
 
 	JScrollPane scrollTree = new JScrollPane(tree);
-
-	Highlighter.HighlightPainter HighLight = new highLight(CoL);
+	public Color CoL = Color.YELLOW;
+	public Color Colors = CoL;
+	@SuppressWarnings("static-access")
+	Highlighter.HighlightPainter HighLight = new highLight(Colors);
+	
 
 	// DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -173,7 +174,7 @@ public class TXE1 extends JFrame {
 	public String colS;
 
 	public TXE1() {
-
+		
 		undoManager = new UndoManager();
 
 		styleContext = new StyleContext();
@@ -306,17 +307,22 @@ public class TXE1 extends JFrame {
 
 			}
 		});
+		
 		HcoL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
 						CoL);
-
+				Colors = CoL;
+				System.out.println(CoL);
+				System.out.println(Colors);
 			}
 		});
-
+		
+		
+		
 		findButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				try {
 
 					if (findText.getText().length() == 0) {
@@ -740,9 +746,38 @@ public class TXE1 extends JFrame {
 		this.setTitle("TXE 1.8 Ð " + currentFile);
 
 		this.setVisible(true);
+		
 
 	}
+	public void removeHighlight(JTextComponent comp) {
+		Highlighter highlighte = comp.getHighlighter();
+		Highlighter.Highlight[] higlite = highlighte.getHighlights();
+		for (int i = 0; i < higlite.length; i++) {
+			if (higlite[i].getPainter() instanceof highLight) {
+				highlighte.removeHighlight(higlite[i]);
+			}
+		}
+	}
 
+	public void highlight(JTextComponent comp, String pattern) {
+
+		removeHighlight(comp);
+
+		try {
+
+			Highlighter highlighte = comp.getHighlighter();
+			Document doc = comp.getDocument();
+			String text = doc.getText(0, doc.getLength());
+			int pos = 0;
+			while ((pos = text.toUpperCase()
+					.indexOf(pattern.toUpperCase(), pos)) >= 0) {
+				highlighte.addHighlight(pos, pos + pattern.length(), HighLight);
+				pos += pattern.length();
+			}
+		} catch (Exception ex) {
+
+		}
+	}
 	public void nimbusActionPerformed(ActionEvent e) {
 		try {
 			for (LookAndFeelInfo feel : UIManager.getInstalledLookAndFeels()) {
@@ -1103,7 +1138,7 @@ public class TXE1 extends JFrame {
 	 * 
 	 */
 
-	class FileSystemModel implements TreeModel {
+	static class FileSystemModel implements TreeModel, ActionListener {
 		private String root; // The root identifier
 
 		private Vector listeners; // Declare the listeners vector
@@ -1214,49 +1249,27 @@ public class TXE1 extends JFrame {
 			}
 
 		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
 	/**
 	 * 
-	 * @author ericzhu
+	 * @author ericzhu, and ProgrammingKnowledge 
 	 * 
 	 */
-	 static class highLight extends DefaultHighlighter.DefaultHighlightPainter {
-		public highLight(final Color color) {
+	 static class highLight extends DefaultHighlighter.DefaultHighlightPainter{
+		public highLight(Color color) {
 			super(color);
 		}
 
 	}
 
-	public void removeHighlight(JTextComponent comp) {
-		Highlighter highlighte = comp.getHighlighter();
-		Highlighter.Highlight[] higlite = highlighte.getHighlights();
-		for (int i = 0; i < higlite.length; i++) {
-			if (higlite[i].getPainter() instanceof highLight) {
-				highlighte.removeHighlight(higlite[i]);
-			}
-		}
-	}
-
-	public void highlight(JTextComponent comp, String pattern) {
-
-		removeHighlight(comp);
-
-		try {
-
-			Highlighter highlighte = comp.getHighlighter();
-			Document doc = comp.getDocument();
-			String text = doc.getText(0, doc.getLength());
-			int pos = 0;
-			while ((pos = text.toUpperCase()
-					.indexOf(pattern.toUpperCase(), pos)) >= 0) {
-				highlighte.addHighlight(pos, pos + pattern.length(), HighLight);
-				pos += pattern.length();
-			}
-		} catch (Exception ex) {
-
-		}
-	}
+	
 
 	public static void main(String[] args) {
 		TXE1 txe1 = new TXE1();
