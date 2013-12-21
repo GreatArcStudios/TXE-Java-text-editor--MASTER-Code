@@ -138,6 +138,10 @@ public class TXE1 extends JFrame {
 	public String currentText = TXEAREA.getText();
 
 	public String saveText = saveField.getText();
+	
+	public int fsizeString; 
+	
+	public String text;
 
 	public JFrame panel;
 
@@ -183,6 +187,7 @@ public class TXE1 extends JFrame {
 		document = new DefaultStyledDocument(styleContext);
 
 		TXEAREA.setDocument(document);
+		TXEAREA.requestFocus(true);
 
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
@@ -255,7 +260,9 @@ public class TXE1 extends JFrame {
 		sA.setToolTipText("Select All Text In Document");
 		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
 		pT.setToolTipText("Programmer's Text Pad");
-
+		JMenuItem sL = new JMenuItem("Text Size Larger");
+		sL.setToolTipText("Text Size Larger");
+		
 		JButton findButton = new JButton("Find");
 
 		document.addUndoableEditListener(new UndoableEditListener() {
@@ -266,7 +273,7 @@ public class TXE1 extends JFrame {
 			}
 
 		});
-
+		
 		undo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -483,6 +490,15 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		sL.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.print(fsizeString);
+				fsizeString ++;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(), TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
 		// add stuff to format
 		format.add(plain);
 		format.add(bold);
@@ -681,7 +697,9 @@ public class TXE1 extends JFrame {
 		edit.add(date);
 		edit.addSeparator();
 		edit.add(sA);
-
+		edit.addSeparator();
+		edit.add(sL);
+		
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
 				new ImageIcon(getClass().getResource("images/cut.gif")));
