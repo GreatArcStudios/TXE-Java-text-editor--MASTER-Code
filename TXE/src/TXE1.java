@@ -262,6 +262,10 @@ public class TXE1 extends JFrame {
 		pT.setToolTipText("Programmer's Text Pad");
 		JMenuItem sL = new JMenuItem("Text Size Larger");
 		sL.setToolTipText("Text Size Larger");
+		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, KeyEvent.CTRL_DOWN_MASK));
+		JMenuItem sS = new JMenuItem("Text Size Smaller");
+		sS.setToolTipText("Text Size Smaller");
+		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, KeyEvent.CTRL_DOWN_MASK));
 		
 		JButton findButton = new JButton("Find");
 
@@ -485,6 +489,7 @@ public class TXE1 extends JFrame {
 		cL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				{
+					JOptionPane.showOptionDialog(null,null,"Would you like to save your document", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
 					TXEAREA.setText(changeLog);
 				}
 			}
@@ -493,8 +498,17 @@ public class TXE1 extends JFrame {
 		sL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				fsizeString = TXEAREA.getFont().getSize();
-				System.out.print(fsizeString);
+				System.out.println(fsizeString);
 				fsizeString ++;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(), TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		sS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString --;
 				text = TXEAREA.getText();
 				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(), TXEAREA.getFont().getStyle(), fsizeString));
 			}
@@ -553,8 +567,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JFontChooser fontChooser = new JFontChooser();
 
-				int result = fontChooser.showDialog(TXEAREA);
-				if (result == JFontChooser.OK_OPTION) {
+				int option = fontChooser.showDialog(TXEAREA);
+				if (option == JFontChooser.OK_OPTION) {
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
@@ -651,7 +665,7 @@ public class TXE1 extends JFrame {
 		// file menu items
 		file.add(About);
 		file.addSeparator();
-		/** file.add(cL); **/
+		//file.add(cL); 
 		file.add(New);
 		file.addSeparator();
 		file.add(Open);
@@ -699,6 +713,7 @@ public class TXE1 extends JFrame {
 		edit.add(sA);
 		edit.addSeparator();
 		edit.add(sL);
+		edit.add(sS);
 		
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
