@@ -734,7 +734,6 @@ public class TXE1 extends JFrame {
 		edit.add(sS);
 		edit.addSeparator();
 		edit.add(cP);
-		edit.add(dC);
 		
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(

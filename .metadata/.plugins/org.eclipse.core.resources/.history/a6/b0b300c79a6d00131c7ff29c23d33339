@@ -268,8 +268,6 @@ public class TXE1 extends JFrame {
 		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, KeyEvent.CTRL_DOWN_MASK));
 		JMenuItem cP = new JMenuItem("Captilize Text");
 		cP.setToolTipText("Captilize Text");
-		JMenuItem dC = new JMenuItem("Decaptilize Text");
-		dC.setToolTipText("Decaptilize Text");
 		
 		JButton findButton = new JButton("Find");
 
@@ -524,13 +522,6 @@ public class TXE1 extends JFrame {
 			}
 
 		});
-		dC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				currentText = TXEAREA.getText().toLowerCase().toString();
-				TXEAREA.setText(currentText);
-			}
-
-		});
 		// add stuff to format
 		format.add(plain);
 		format.add(bold);
@@ -734,7 +725,6 @@ public class TXE1 extends JFrame {
 		edit.add(sS);
 		edit.addSeparator();
 		edit.add(cP);
-		edit.add(dC);
 		
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(

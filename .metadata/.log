@@ -441,3 +441,6 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86 -product org.eclipse.epp
 
 !ENTRY org.eclipse.core.net 1 0 2013-12-23 17:35:45.211
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jdt.launching 4 107 2013-12-25 13:56:36.073
+!MESSAGE Launch configuration NapkinQuickTest references non-existing project NeptuneScreen.
