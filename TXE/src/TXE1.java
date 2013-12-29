@@ -139,6 +139,8 @@ public class TXE1 extends JFrame {
 
 	public String saveText = saveField.getText();
 	
+	public String caseText; 
+	
 	public int fsizeString; 
 	
 	public String text;
@@ -270,6 +272,8 @@ public class TXE1 extends JFrame {
 		cP.setToolTipText("Captilize Text");
 		JMenuItem dC = new JMenuItem("Decaptilize Text");
 		dC.setToolTipText("Decaptilize Text");
+		JMenuItem nor = new JMenuItem("Original Text Style");
+		nor.setToolTipText("Original Text Style");
 		
 		JButton findButton = new JButton("Find");
 
@@ -519,14 +523,22 @@ public class TXE1 extends JFrame {
 		});
 		cP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				currentText = TXEAREA.getText().toUpperCase().toString();
-				TXEAREA.setText(currentText);
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toUpperCase().toString();
+				TXEAREA.setText(caseText);
 			}
 
 		});
 		dC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				currentText = TXEAREA.getText().toLowerCase().toString();
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toLowerCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		nor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setText(currentText);
 			}
 
@@ -735,6 +747,7 @@ public class TXE1 extends JFrame {
 		edit.addSeparator();
 		edit.add(cP);
 		edit.add(dC);
+		edit.add(nor);
 		
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
