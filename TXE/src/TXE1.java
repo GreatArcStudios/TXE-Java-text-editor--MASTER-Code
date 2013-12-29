@@ -125,7 +125,7 @@ public class TXE1 extends JFrame {
 	private JFileChooser dialog = new JFileChooser(
 			System.getProperty("home.dir"));
 
-	private String currentFile = "Untitled Document";
+	public static String currentFile = "Untitled Document";
 
 	private boolean changed = false;
 
@@ -274,6 +274,8 @@ public class TXE1 extends JFrame {
 		dC.setToolTipText("Decaptilize Text");
 		JMenuItem nor = new JMenuItem("Original Text Style");
 		nor.setToolTipText("Original Text Style");
+		JMenuItem dS = new JMenuItem("Document Stats");
+		dS.setToolTipText("Document Stats");
 		
 		JButton findButton = new JButton("Find");
 
@@ -543,6 +545,12 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		dS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new InfoFrame().setVisible(true);
+			}
+
+		});
 		// add stuff to format
 		format.add(plain);
 		format.add(bold);
@@ -724,6 +732,8 @@ public class TXE1 extends JFrame {
 		TXESettings.add(HcoL);
 		TXESettings.addSeparator();
 		TXESettings.add(pT);
+		TXESettings.addSeparator();
+		TXESettings.add(dS);
 		for (int i = 0; i < 1; i++)
 
 			file.getItem(i).setIcon(null);
