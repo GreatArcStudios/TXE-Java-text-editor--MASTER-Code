@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -40,8 +42,9 @@ public class InfoFrame extends javax.swing.JFrame {
         String lCount = Integer.toString(TXE1.TXEAREA.getLineCount());
         String characters = Integer.toString(TXE1.TXEAREA.getText().length());
         String Words = Integer.toString(TXE1.TXEAREA.getText().split("\\s").length);
-        String TextColor = TXE1.TXEAREA.getColorModel().toString();
-        String TextColorHex = Integer.toString(TXE1.TXEAREA.getColorModel().getRGB(0));
+        @SuppressWarnings("static-access")
+		//String TextColor = TXE1.color.getColor(color).toString();
+        String TextColorHex = TXE1.color.toString();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setName("Document Stats"); // NOI18N
@@ -59,7 +62,7 @@ public class InfoFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Words:");
 
-        jLabel4.setText("Text Color:");
+        //jLabel4.setText("Text Color:");
 
         jLabel5.setText("Characters:");
 
@@ -73,7 +76,7 @@ public class InfoFrame extends javax.swing.JFrame {
 
         jLabel10.setText(TextColorHex);
 
-        jLabel11.setText(TextColor);
+        //jLabel11.setText(TextColor);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

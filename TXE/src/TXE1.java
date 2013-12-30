@@ -129,7 +129,7 @@ public class TXE1 extends JFrame {
 
 	private boolean changed = false;
 
-	private Color color = (Color.WHITE);
+	public static Color color = (Color.WHITE);
 			
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
@@ -617,25 +617,25 @@ public class TXE1 extends JFrame {
 		gR.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.green);
-
+				color = Color.green;
 			}
 		});
 		bL.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.blue);
-
+				color = Color.blue;
 			}
 		});
 		rD.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.red);
-
+				color = Color.red;
 			}
 		});
 		bLa.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.black);
-
+				color = Color.black;
 			}
 		});
 		About.addActionListener(new java.awt.event.ActionListener() {
@@ -912,6 +912,7 @@ public class TXE1 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.GREEN);
+				color = Color.green;
 			}
 		}
 
@@ -928,6 +929,7 @@ public class TXE1 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.black);
+				color = Color.black;
 			}
 		}
 
@@ -943,6 +945,7 @@ public class TXE1 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.red);
+				color = Color.red;
 			}
 		}
 
@@ -958,6 +961,7 @@ public class TXE1 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.blue);
+				color = Color.blue;
 			}
 		}
 
