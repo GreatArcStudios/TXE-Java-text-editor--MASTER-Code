@@ -2,20 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.security.Security;
-import javax.crypto.*;
-import javax.crypto.spec.SecretKeySpec;
+
+import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
-import javax.swing.Action;
-import javax.swing.ActionMap;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultEditorKit;
-import javax.swing.*;
-import javax.*;
 /**
  *
  * @author ericzhu

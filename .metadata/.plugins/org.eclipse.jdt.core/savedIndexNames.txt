@@ -15,7 +15,6 @@ INDEX VERSION 1.126+/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/.metadata/
 463039411.index
 3459680011.index
 2833605561.index
-3329524827.index
 3714043128.index
 1384487945.index
 1102243989.index
