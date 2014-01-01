@@ -40,7 +40,7 @@ public class InfoFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         String lCount = Integer.toString(TXE1.TXEAREA.getLineCount());
         String characters = Integer.toString(TXE1.TXEAREA.getText().length());
-        String Words = Integer.toString(TXE1.TXEAREA.getText().split("\\s+").length);
+        String Words = Integer.toString(TXE1.TXEAREA.getText().split("\\s").length);
         @SuppressWarnings("static-access")
 		//String TextColor = TXE1.color.getColor(color).toString();
         String TextColorHex = TXE1.color.toString();

@@ -75,14 +75,14 @@ public class SettingsProgrammer extends JFrame {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEProgrammer.TXEAREA.getCaretPosition();
 				TXEProgrammer.TXEAREA.insert(nameText, 20);
-				
+
 			}
 		});
 		bold.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEProgrammer.TXEAREA
 						.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-				
+
 			}
 		});
 		italics.addActionListener(new java.awt.event.ActionListener() {
