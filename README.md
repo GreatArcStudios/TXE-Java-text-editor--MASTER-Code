@@ -125,29 +125,45 @@ into the project folder, from either finder or Windows explorer.
 <b><a href="https://netbeans.org">NetBeans</a> instructions</b>
 
 
+
+
 1.Create new workspace, preferably named: TXE Forked.
 
 
+
+
 2.Make a new project named TXE
+
+
 
 
 3.Drag all of the files that you have downloaded from GitHub and Dropbox 
 into the project folder, from either finder or Windows Explorer.
 
 
+
+
 4.Download the bouncy castle jar for the encryption file from http://www.bouncycastle.org/latest_releases.html 
+
+
 
 
 5.Right click on project in the explorer and click on configure build path
 
 
+
+
 6.Add the jar downloaded from http://www.bouncycastle.org/latest_releases.html as an EXTERNAL JAR
+
+
 
 
 7.Debug and run it should work
 
 
+
 8.Create your versions of TXE 
+
 
 
 <p>9.Please share or report your versions of TXE to the community.</p>
