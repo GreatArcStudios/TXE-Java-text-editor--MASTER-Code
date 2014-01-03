@@ -8,7 +8,6 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -44,7 +43,6 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -138,7 +136,7 @@ public class TXE1 extends JFrame {
 	
 	public String colS;
 	
-	public JPopupMenu pm = new JPopupMenu("Options");
+	public JPopupMenu pm = new JPopupMenu();
 
 	public TXE1() {
 		
@@ -224,10 +222,10 @@ public class TXE1 extends JFrame {
 		pT.setToolTipText("Programmer's Text Pad");
 		JMenuItem sL = new JMenuItem("Text Size Larger");
 		sL.setToolTipText("Text Size Larger");
-		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, InputEvent.CTRL_DOWN_MASK));
+		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, KeyEvent.CTRL_DOWN_MASK));
 		JMenuItem sS = new JMenuItem("Text Size Smaller");
 		sS.setToolTipText("Text Size Smaller");
-		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_DOWN_MASK));
+		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, KeyEvent.CTRL_DOWN_MASK));
 		JMenuItem cP = new JMenuItem("Captilize Text");
 		cP.setToolTipText("Captilize Text");
 		JMenuItem dC = new JMenuItem("Decaptilize Text");
@@ -249,7 +247,6 @@ public class TXE1 extends JFrame {
 		});
 		
 		undo.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					undoManager.undo();
@@ -268,7 +265,6 @@ public class TXE1 extends JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 
 		redo.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					undoManager.redo();
@@ -286,7 +282,6 @@ public class TXE1 extends JFrame {
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
 		pT.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEProgrammer TP = new TXEProgrammer();
 
@@ -294,10 +289,9 @@ public class TXE1 extends JFrame {
 		});
 		
 		HcoL.addActionListener(new ActionListener() {
-			@Override
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				JColorChooser.showDialog(null, "Pick Highlighter Color", CoL); 
+				CC.showDialog(null, "Pick Highlighter Color", CoL); 
 				Colors = CoL;
 				System.out.println(CoL);
 				System.out.println(Colors);
@@ -307,7 +301,6 @@ public class TXE1 extends JFrame {
 		
 		
 		findButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
@@ -327,7 +320,6 @@ public class TXE1 extends JFrame {
 		});
 
 		sA.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.selectAll();
 
@@ -335,7 +327,6 @@ public class TXE1 extends JFrame {
 		});
 
 		date.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
@@ -346,7 +337,6 @@ public class TXE1 extends JFrame {
 		});
 
 		print.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					boolean print = TXEAREA.print();
@@ -365,7 +355,6 @@ public class TXE1 extends JFrame {
 		});
 
 		natives.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				nativeActionPerformed(e);
 			}
@@ -373,13 +362,11 @@ public class TXE1 extends JFrame {
 		});
 
 		nimbus.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				nimbusActionPerformed(e);
 			}
 		});
 		srenSht.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				/**
 				 * TXESHOT txesh = new TXESHOT(); txesh.setVisible(true);
@@ -415,7 +402,6 @@ public class TXE1 extends JFrame {
 
 		});
 		coL.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				color = JColorChooser
 						.showDialog(null, "Pick Text Color", color);
@@ -425,34 +411,29 @@ public class TXE1 extends JFrame {
 
 		});
 		enC.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Encrypt enc = new Encrypt();
 				enc.setVisible(true);
 			}
 		});
 		lsA.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			}
 		});
 		rsA.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
 			}
 		});
 		settingsFrame.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings txesettings = new Settings();
 				txesettings.setVisible(true);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings settingsWeb = new Settings();
 
@@ -460,7 +441,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		addname.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings settingsWeb = new Settings();
 				;
@@ -468,7 +448,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				Settings settingsWeb = new Settings();
 
@@ -476,7 +455,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		cL.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
 					JOptionPane.showOptionDialog(null,null,"Would you like to save your document", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
@@ -486,7 +464,6 @@ public class TXE1 extends JFrame {
 
 		});
 		sL.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				fsizeString = TXEAREA.getFont().getSize();
 				System.out.println(fsizeString);
@@ -496,7 +473,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		sS.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				fsizeString = TXEAREA.getFont().getSize();
 				System.out.println(fsizeString);
@@ -506,7 +482,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		cP.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentText = TXEAREA.getText().toString();
 				caseText = TXEAREA.getText().toUpperCase().toString();
@@ -515,7 +490,6 @@ public class TXE1 extends JFrame {
 
 		});
 		dC.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentText = TXEAREA.getText().toString();
 				caseText = TXEAREA.getText().toLowerCase().toString();
@@ -524,14 +498,12 @@ public class TXE1 extends JFrame {
 
 		});
 		nor.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setText(currentText);
 			}
 
 		});
 		dS.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				new InfoFrame().setVisible(true);
 			}
@@ -555,7 +527,6 @@ public class TXE1 extends JFrame {
 		format.add(lsA);
 
 		italics.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
 					TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
@@ -564,7 +535,6 @@ public class TXE1 extends JFrame {
 
 		});
 		plain.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
 					TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -573,7 +543,6 @@ public class TXE1 extends JFrame {
 
 		});
 		bold.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
 					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -582,7 +551,6 @@ public class TXE1 extends JFrame {
 
 		});
 		bI.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
 					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
@@ -592,7 +560,6 @@ public class TXE1 extends JFrame {
 
 		});
 		Fr.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JFontChooser fontChooser = new JFontChooser();
 
@@ -606,35 +573,30 @@ public class TXE1 extends JFrame {
 			}
 		});
 		gR.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.green);
 				color = Color.green;
 			}
 		});
 		bL.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.blue);
 				color = Color.blue;
 			}
 		});
 		rD.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.red);
 				color = Color.red;
 			}
 		});
 		bLa.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.black);
 				color = Color.black;
 			}
 		});
 		About.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				About about = new About();
 				about.setVisible(true);
@@ -642,7 +604,6 @@ public class TXE1 extends JFrame {
 			}
 		});
 		caL.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				Calculator calculator = new Calculator();
 				calculator.setVisible(true);
@@ -656,29 +617,26 @@ public class TXE1 extends JFrame {
 		JMenuItem vhsbA = new JMenuItem(
 				"Vertical And Horizontal Scroll Bar Always");
 		vsbA.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollv = new JScrollPane(TXEAREA,
-						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 			}
 		});
 		vsbA.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollh = new JScrollPane(TXEAREA,
-						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 			}
 		});
 		vhsbA.addActionListener(new java.awt.event.ActionListener() {
-			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollvh = new JScrollPane(TXEAREA,
-						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 			}
 		});
@@ -891,7 +849,6 @@ public class TXE1 extends JFrame {
 
 	private KeyListener k1 = new KeyAdapter() {
 
-		@Override
 		public void keyPressed(KeyEvent e) {
 
 			changed = true;
@@ -910,7 +867,6 @@ public class TXE1 extends JFrame {
  */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.GREEN);
@@ -944,7 +900,6 @@ public class TXE1 extends JFrame {
  */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.red);
@@ -961,7 +916,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.blue);
@@ -979,7 +933,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
@@ -997,7 +950,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -1014,7 +966,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -1031,7 +982,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
@@ -1066,7 +1016,6 @@ public class TXE1 extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveOld();
@@ -1095,7 +1044,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			if (!currentFile.equals(currentFile))
@@ -1117,7 +1065,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveFileAs();
@@ -1133,7 +1080,6 @@ public class TXE1 extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveOld();
@@ -1246,19 +1192,16 @@ public class TXE1 extends JFrame {
 			listeners = new Vector();
 		}
 
-		@Override
 		public Object getRoot() {
 			return (new File(root));
 		}
 
-		@Override
 		public Object getChild(Object parent, int index) {
 			File directory = (File) parent;
 			String[] directoryMembers = directory.list();
 			return (new File(directory, directoryMembers[index]));
 		}
 
-		@Override
 		public int getChildCount(Object parent) {
 			File fileSystemMember = (File) parent;
 			if (fileSystemMember.isDirectory()) {
@@ -1272,7 +1215,6 @@ public class TXE1 extends JFrame {
 			}
 		}
 
-		@Override
 		public int getIndexOfChild(Object parent, Object child) {
 			File directory = (File) parent;
 			File directoryMember = (File) child;
@@ -1289,26 +1231,22 @@ public class TXE1 extends JFrame {
 			return result;
 		}
 
-		@Override
 		public boolean isLeaf(Object node) {
 			return ((File) node).isFile();
 		}
 
-		@Override
 		public void addTreeModelListener(TreeModelListener l) {
 			if (l != null && !listeners.contains(l)) {
 				listeners.addElement(l);
 			}
 		}
 
-		@Override
 		public void removeTreeModelListener(TreeModelListener l) {
 			if (l != null) {
 				listeners.removeElement(l);
 			}
 		}
 
-		@Override
 		public void valueForPathChanged(TreePath path, Object newValue) {
 			// Does Nothing!
 		}
