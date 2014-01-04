@@ -90,7 +90,7 @@ public class TXE1 extends JFrame {
 	private boolean changed = false;
 
 	public static Color color = (Color.WHITE);
-			
+
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
 	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is TXE 1.8!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
@@ -98,18 +98,18 @@ public class TXE1 extends JFrame {
 	public String currentText = TXEAREA.getText();
 
 	public String saveText = saveField.getText();
-	
-	public String caseText; 
-	
-	public int fsizeString; 
-	
+
+	public String caseText;
+
+	public int fsizeString;
+
 	public String text;
 
 	public JFrame panel;
 
 	public JTextField findText = new JTextField();
 
-	public JScrollPane scroll = new	 JScrollPane(TXEAREA,
+	public JScrollPane scroll = new JScrollPane(TXEAREA,
 			JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 			JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	FileSystemModel fsm = new FileSystemModel();
@@ -120,7 +120,6 @@ public class TXE1 extends JFrame {
 	public Color CoL = Color.YELLOW;
 	public Color Colors = CoL;
 	Highlighter.HighlightPainter HighLight = new highLight(Colors);
-	
 
 	// DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -135,15 +134,15 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
-	
+
 	JColorChooser CC = new JColorChooser();
-	
+
 	public String colS;
-	
+
 	public JPopupMenu pm = new JPopupMenu("Options");
 
 	public TXE1() {
-		
+
 		undoManager = new UndoManager();
 
 		styleContext = new StyleContext();
@@ -163,6 +162,10 @@ public class TXE1 extends JFrame {
 		findText.setText("Type word or phrase to be found here.");
 
 		this.getContentPane().add(splitpane);
+		
+		ImageIcon ImgIc = new ImageIcon(getClass()
+				.getResource("images/normal.gif"));
+		this.setIconImage(ImgIc.getImage());
 
 		splitpane.setResizeWeight(0.5);
 		splitpane.setOneTouchExpandable(true);
@@ -226,10 +229,12 @@ public class TXE1 extends JFrame {
 		pT.setToolTipText("Programmer's Text Pad");
 		JMenuItem sL = new JMenuItem("Text Size Larger");
 		sL.setToolTipText("Text Size Larger");
-		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, InputEvent.CTRL_DOWN_MASK));
+		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD,
+				InputEvent.CTRL_DOWN_MASK));
 		JMenuItem sS = new JMenuItem("Text Size Smaller");
 		sS.setToolTipText("Text Size Smaller");
-		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, InputEvent.CTRL_DOWN_MASK));
+		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+				InputEvent.CTRL_DOWN_MASK));
 		JMenuItem cP = new JMenuItem("Captilize Text");
 		cP.setToolTipText("Captilize Text");
 		JMenuItem dC = new JMenuItem("Decaptilize Text");
@@ -238,7 +243,7 @@ public class TXE1 extends JFrame {
 		nor.setToolTipText("Original Text Style");
 		JMenuItem dS = new JMenuItem("Document Stats");
 		dS.setToolTipText("Document Stats");
-		
+
 		JButton findButton = new JButton("Find");
 
 		document.addUndoableEditListener(new UndoableEditListener() {
@@ -249,7 +254,7 @@ public class TXE1 extends JFrame {
 			}
 
 		});
-		
+
 		undo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -294,24 +299,22 @@ public class TXE1 extends JFrame {
 
 			}
 		});
-		
+
 		HcoL.addActionListener(new ActionListener() {
 			@Override
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				JColorChooser.showDialog(null, "Pick Highlighter Color", CoL); 
+				JColorChooser.showDialog(null, "Pick Highlighter Color", CoL);
 				Colors = CoL;
 				System.out.println(CoL);
 				System.out.println(Colors);
 			}
 		});
-		
-		
-		
+
 		findButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
 
 					if (findText.getText().length() == 0) {
@@ -481,7 +484,10 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					JOptionPane.showOptionDialog(null,null,"Would you like to save your document", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,null,null);
+					JOptionPane.showOptionDialog(null, null,
+							"Would you like to save your document",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, null, null);
 					TXEAREA.setText(changeLog);
 				}
 			}
@@ -492,9 +498,10 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				fsizeString = TXEAREA.getFont().getSize();
 				System.out.println(fsizeString);
-				fsizeString ++;
+				fsizeString++;
 				text = TXEAREA.getText();
-				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(), TXEAREA.getFont().getStyle(), fsizeString));
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
 			}
 		});
 		sS.addActionListener(new ActionListener() {
@@ -502,9 +509,10 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				fsizeString = TXEAREA.getFont().getSize();
 				System.out.println(fsizeString);
-				fsizeString --;
+				fsizeString--;
 				text = TXEAREA.getText();
-				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(), TXEAREA.getFont().getStyle(), fsizeString));
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
 			}
 		});
 		cP.addActionListener(new ActionListener() {
@@ -684,41 +692,44 @@ public class TXE1 extends JFrame {
 
 			}
 		});
-		
-		//add popupmenu to form
-		this.add(pm);
-		pm.addMouseListener(new MouseListener(){
-			
+
+		// add popupmenu to form
+		pm.add(About);
+		pm.addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent evt) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
+			public void mouseEntered(MouseEvent evt) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
-			public void mouseExited(MouseEvent arg0) {
+			public void mouseExited(MouseEvent evt) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
-			public void mousePressed(MouseEvent arg0) {
+			public void mousePressed(MouseEvent evt) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent evt) {
 				// TODO Auto-generated method stub
-				
+				if (evt.isPopupTrigger()) {
+
+					pm.show(TXEAREA, evt.getX(), evt.getY());
+				}
 			}
+
 		});
 
 		ScrollSettings.add(vsbA);
@@ -741,7 +752,7 @@ public class TXE1 extends JFrame {
 		// file menu items
 		file.add(About);
 		file.addSeparator();
-		//file.add(cL); 
+		// file.add(cL);
 		file.add(New);
 		file.addSeparator();
 		file.add(Open);
@@ -796,7 +807,7 @@ public class TXE1 extends JFrame {
 		edit.add(cP);
 		edit.add(dC);
 		edit.add(nor);
-		
+
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
 				new ImageIcon(getClass().getResource("images/cut.gif")));
@@ -862,9 +873,9 @@ public class TXE1 extends JFrame {
 		this.setTitle("TXE 1.8 Ð " + currentFile);
 
 		this.setVisible(true);
-		
 
 	}
+
 	public void removeHighlight(JTextComponent comp) {
 		Highlighter highlighte = comp.getHighlighter();
 		Highlighter.Highlight[] higlite = highlighte.getHighlights();
@@ -894,6 +905,7 @@ public class TXE1 extends JFrame {
 
 		}
 	}
+
 	public void nimbusActionPerformed(ActionEvent e) {
 		try {
 			for (LookAndFeelInfo feel : UIManager.getInstalledLookAndFeels()) {
@@ -912,7 +924,7 @@ public class TXE1 extends JFrame {
 	public void nativeActionPerformed(java.awt.event.ActionEvent e) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			
+
 		} catch (Exception exc) {
 		}
 	}
@@ -1393,23 +1405,21 @@ public class TXE1 extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
 
 	/**
 	 * 
-	 * @author ericzhu, and ProgrammingKnowledge 
+	 * @author ericzhu, and ProgrammingKnowledge
 	 * 
 	 */
-	 static class highLight extends DefaultHighlighter.DefaultHighlightPainter{
+	static class highLight extends DefaultHighlighter.DefaultHighlightPainter {
 		public highLight(Color color) {
 			super(color);
 		}
 
 	}
-
-	
 
 	public static void main(String[] args) {
 		TXE1 txe1 = new TXE1();
