@@ -132,7 +132,6 @@ public class TXE1 extends JFrame {
 	JColorChooser CC = new JColorChooser();
 
 	public String colS;
-	
 
 	public TXE1() {
 
@@ -218,6 +217,8 @@ public class TXE1 extends JFrame {
 		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
+		JMenuItem sAP = new JMenuItem("Select All");
+		sAP.setToolTipText("Select All Text In Document");
 		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
 		pT.setToolTipText("Programmer's Text Pad");
 		JMenuItem sL = new JMenuItem("Text Size Larger");
@@ -236,6 +237,32 @@ public class TXE1 extends JFrame {
 		nor.setToolTipText("Original Text Style");
 		JMenuItem dS = new JMenuItem("Document Stats");
 		dS.setToolTipText("Document Stats");
+		JMenuItem pe = new JMenuItem("No Editing");
+		JMenuItem ae = new JMenuItem("Allow Editing");
+		JMenuItem boldP = new JMenuItem("Bold Document");
+		JMenuItem italicsP = new JMenuItem("Italicize Document");
+		italicsP.setToolTipText("Italicize, using Times New Roman 12 pt font.");
+		JMenuItem plainP = new JMenuItem("Normal Style");
+		plain.setToolTipText("Normal style and Times New Roman 12 pt font.");
+		JMenuItem bIP = new JMenuItem("Bold and Italicize Document");
+		bIP.setToolTipText("Bold and Italicize, using Times New Roman 12 pt font.");
+		JMenuItem FrP = new JMenuItem("Font");
+		FrP.setToolTipText("Choose a font");
+		JMenuItem bLP = new JMenuItem("Blue");
+		bLP.setToolTipText("Make text blue");
+		JMenuItem rDP = new JMenuItem("Red");
+		rDP.setToolTipText("Make text red");
+		JMenuItem gRP = new JMenuItem("Green");
+		gRP.setToolTipText("Make text green");
+		JMenuItem bLaP = new JMenuItem("Normal");
+		bLaP.setToolTipText("Make text black");
+		JMenuItem rsAP = new JMenuItem("Text Align Right");
+		rsAP.setToolTipText("Align text right");
+		JMenuItem lsAP = new JMenuItem("Text Align Left");
+		lsAP.setToolTipText("Align text left");
+		JMenuItem csAP = new JMenuItem("Text Align Center");
+		csAP.setToolTipText("Align text middle");
+
 
 		JButton findButton = new JButton("Find");
 
@@ -331,7 +358,13 @@ public class TXE1 extends JFrame {
 
 			}
 		});
+		sAP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TXEAREA.selectAll();
 
+			}
+		});
 		date.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -358,6 +391,23 @@ public class TXE1 extends JFrame {
 				} catch (Exception exc) {
 
 				}
+			}
+
+		});
+		
+		pe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+					TXEAREA.setEditable(false);	
+			}
+
+		});
+		ae.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+					TXEAREA.setEditable(true);	
 			}
 
 		});
@@ -556,6 +606,9 @@ public class TXE1 extends JFrame {
 		format.addSeparator();
 		format.add(rsA);
 		format.add(lsA);
+		format.addSeparator();
+		format.add(pe);
+		format.add(ae);
 
 		italics.addActionListener(new ActionListener() {
 			@Override
@@ -685,45 +738,47 @@ public class TXE1 extends JFrame {
 
 			}
 		});
-		//Popupmenu
-		 final JPopupMenu popup = new JPopupMenu();
-		 	popup.add(About);
-		 	popup.addSeparator();
-		 	popup.add(bold);
-		 	popup.add(italics);
-			popup.add(plain);
-			popup.add(bI);
-			popup.addSeparator();		
-			popup.add(Fr);
-			popup.addSeparator();
-			popup.add(coL);
-	        // add mouse listener
-	        TXEAREA.addMouseListener(new MouseAdapter() {
-
-	            @Override
-	            public void mousePressed(MouseEvent e) {
-	                showPopup(e);
-	            }
-
-	            @Override
-	            public void mouseReleased(MouseEvent e) {
-	                showPopup(e);
-	            }
-
-	            private void showPopup(MouseEvent e) {
-	                if (e.isPopupTrigger()) {
-	                    popup.show(e.getComponent(),
-	                            e.getX(), e.getY());
-	                }
-	            }
-	        });
-		// New project menu item
-		//MouseListener PopUpShow = new popupshow();
-		//this.addMouseListener(PopUpShow);
-		//TXEAREA.addMouseListener(PopUpShow);
-		//splitpane.addMouseListener(PopUpShow);
-		//scroll.addMouseListener(PopUpShow);
+		// Popupmenu
+		final JPopupMenu popup = new JPopupMenu();
 		
+		popup.add(sAP);
+		popup.addSeparator();
+		popup.add(boldP);
+		popup.add(italicsP);
+		popup.add(plainP);
+		popup.add(bIP);
+		popup.addSeparator();
+		popup.add(FrP);
+		popup.addSeparator();
+		popup.add(coL);
+		popup.addSeparator();
+		popup.add(print);
+		// add mouse listener
+		TXEAREA.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				showPopup(e);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				showPopup(e);
+			}
+
+			private void showPopup(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					popup.show(e.getComponent(), e.getX(), e.getY());
+				}
+			}
+		});
+		// New project menu item
+		// MouseListener PopUpShow = new popupshow();
+		// this.addMouseListener(PopUpShow);
+		// TXEAREA.addMouseListener(PopUpShow);
+		// splitpane.addMouseListener(PopUpShow);
+		// scroll.addMouseListener(PopUpShow);
+
 		ScrollSettings.add(vsbA);
 		ScrollSettings.add(hsbA);
 		ScrollSettings.add(vhsbA);
@@ -1412,7 +1467,6 @@ public class TXE1 extends JFrame {
 		}
 
 	}
-	
 
 	public static void main(String[] args) {
 		TXE1 txe1 = new TXE1();
