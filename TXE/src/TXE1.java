@@ -661,6 +661,20 @@ public class TXE1 extends JFrame {
 
 			}
 		});
+		FrP.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				JFontChooser fontChooser = new JFontChooser();
+
+				int option = fontChooser.showDialog(TXEAREA);
+				if (option == JFontChooser.OK_OPTION) {
+					Font font = fontChooser.getSelectedFont();
+					TXEAREA.setFont(font);
+					System.out.println("Selected Font : " + font);
+				}
+
+			}
+		});
 		gR.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -750,9 +764,9 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(FrP);
 		popup.addSeparator();
-		popup.add(coL);
+		//popup.add(coL);
 		popup.addSeparator();
-		popup.add(print);
+		//popup.add(print);
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {
 
