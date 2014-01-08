@@ -474,16 +474,6 @@ public class TXE1 extends JFrame {
 			}
 
 		});
-		coLP.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				color = JColorChooser
-						.showDialog(null, "Pick Text Color", color);
-				TXEAREA.setForeground(color);
-
-			}
-
-		});
 		enC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -776,7 +766,7 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(FrP);
 		popup.addSeparator();
-		popup.add(coLP);
+		//popup.add(coL);
 		popup.addSeparator();
 		//popup.add(print);
 		// add mouse listener

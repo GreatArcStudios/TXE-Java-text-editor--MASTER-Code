@@ -776,7 +776,7 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(FrP);
 		popup.addSeparator();
-		popup.add(coLP);
+		//popup.add(coL);
 		popup.addSeparator();
 		//popup.add(print);
 		// add mouse listener

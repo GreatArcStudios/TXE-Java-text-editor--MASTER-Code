@@ -205,8 +205,6 @@ public class TXE1 extends JFrame {
 		enC.setToolTipText("Encrypt a message");
 		JMenuItem coL = new JMenuItem("Color Chooser");
 		coL.setToolTipText("Choose a color");
-		JMenuItem coLP = new JMenuItem("Color Chooser");
-		coLP.setToolTipText("Choose a color");
 		JMenuItem HcoL = new JMenuItem("Color Chooser");
 		HcoL.setToolTipText("Choose a highlighter color");
 		JMenuItem srenSht = new JMenuItem("Screenshot");
@@ -465,16 +463,6 @@ public class TXE1 extends JFrame {
 
 		});
 		coL.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				color = JColorChooser
-						.showDialog(null, "Pick Text Color", color);
-				TXEAREA.setForeground(color);
-
-			}
-
-		});
-		coLP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				color = JColorChooser
@@ -776,7 +764,7 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(FrP);
 		popup.addSeparator();
-		popup.add(coLP);
+		//popup.add(coL);
 		popup.addSeparator();
 		//popup.add(print);
 		// add mouse listener
