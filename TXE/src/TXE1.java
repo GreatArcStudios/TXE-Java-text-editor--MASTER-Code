@@ -631,7 +631,25 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		italicsP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+				}
+			}
+
+		});
 		plain.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+				}
+			}
+
+		});
+		plainP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
@@ -645,6 +663,16 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
+				}
+			}
+
+		});
+		boldP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, 12));
 				}
 			}
 
