@@ -216,6 +216,8 @@ public class TXE1 extends JFrame {
 		JMenuItem natives = new JMenuItem("Native Style");
 		JMenuItem print = new JMenuItem("Print");
 		print.setToolTipText("Print current document");
+		JMenuItem printP = new JMenuItem("Print");
+		printP.setToolTipText("Print current document");
 		JMenuItem date = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
@@ -241,6 +243,8 @@ public class TXE1 extends JFrame {
 		dS.setToolTipText("Document Stats");
 		JMenuItem pe = new JMenuItem("No Editing");
 		JMenuItem ae = new JMenuItem("Allow Editing");
+		JMenuItem peP = new JMenuItem("No Editing");
+		JMenuItem aeP = new JMenuItem("Allow Editing");
 		JMenuItem boldP = new JMenuItem("Bold Document");
 		JMenuItem italicsP = new JMenuItem("Italicize Document");
 		italicsP.setToolTipText("Italicize, using Times New Roman 12 pt font.");
@@ -396,6 +400,24 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		printP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					boolean print = TXEAREA.print();
+					if (print) {
+						JOptionPane
+								.showMessageDialog(null, "Printing is Done!");
+					} else {
+
+					}
+
+				} catch (Exception exc) {
+
+				}
+			}
+
+		});
 		
 		pe.addActionListener(new ActionListener() {
 			@Override
@@ -406,6 +428,22 @@ public class TXE1 extends JFrame {
 
 		});
 		ae.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+					TXEAREA.setEditable(true);	
+			}
+
+		});
+		peP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+					TXEAREA.setEditable(false);	
+			}
+
+		});
+		aeP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -812,6 +850,9 @@ public class TXE1 extends JFrame {
 		// Popupmenu
 		final JPopupMenu popup = new JPopupMenu();
 		
+		popup.add(aeP);
+		popup.add(peP);
+		popup.addSeparator();
 		popup.add(sAP);
 		popup.addSeparator();
 		popup.add(boldP);
@@ -823,7 +864,8 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(coLP);
 		popup.addSeparator();
-		//popup.add(print);
+		popup.add(printP);
+	
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {
 
