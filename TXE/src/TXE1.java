@@ -687,6 +687,16 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		bIP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
+							+ Font.ITALIC, 12));
+				}
+			}
+
+		});
 		Fr.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
