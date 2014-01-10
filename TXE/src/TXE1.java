@@ -626,7 +626,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, 12));
 				}
 			}
 
@@ -635,7 +636,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, 12));
 				}
 			}
 
@@ -644,7 +646,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, 12));
 				}
 			}
 
@@ -653,7 +656,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, 12));
 				}
 			}
 
@@ -662,7 +666,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, 12));
 				}
 			}
 
@@ -681,7 +686,8 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD
 							+ Font.ITALIC, 12));
 				}
 			}
@@ -690,8 +696,9 @@ public class TXE1 extends JFrame {
 		bIP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
+				{	
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD
 							+ Font.ITALIC, 12));
 				}
 			}
