@@ -128,6 +128,10 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
+	
+	JMenuItem undoP = new JMenuItem("Undo");
+
+	JMenuItem redoP = new JMenuItem("Redo");
 
 	JColorChooser CC = new JColorChooser();
 
@@ -219,6 +223,7 @@ public class TXE1 extends JFrame {
 		JMenuItem printP = new JMenuItem("Print");
 		printP.setToolTipText("Print current document");
 		JMenuItem date = new JMenuItem("Insert Date and Time");
+		JMenuItem dateP = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
 		JMenuItem sAP = new JMenuItem("Select All");
@@ -318,6 +323,43 @@ public class TXE1 extends JFrame {
 		redo.setAccelerator(KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
+		undoP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					undoManager.undo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Undo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
+			}
+		});
+		undoP.setIcon(new ImageIcon(getClass().getResource(
+				"images/Undo_16x16.png")));
+		undoP.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_Z,
+				java.awt.event.InputEvent.CTRL_MASK));
+
+		redoP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					undoManager.redo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Redo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
+			}
+		});
+		redoP.setIcon(new ImageIcon(getClass().getResource(
+				"images/Redo_16x16.png")));
+		redoP.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_X,
+				java.awt.event.InputEvent.CTRL_MASK));
 		pT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -372,6 +414,16 @@ public class TXE1 extends JFrame {
 			}
 		});
 		date.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Date date = new Date();
+				SimpleDateFormat sdt = new SimpleDateFormat(
+						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
+				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
+
+			}
+		});
+		dateP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Date date = new Date();
@@ -850,6 +902,9 @@ public class TXE1 extends JFrame {
 		// Popupmenu
 		final JPopupMenu popup = new JPopupMenu();
 		
+		popup.add(undoP);
+		popup.add(redoP);
+		popup.addSeparator();
 		popup.add(aeP);
 		popup.add(peP);
 		popup.addSeparator();
@@ -865,6 +920,8 @@ public class TXE1 extends JFrame {
 		popup.add(coLP);
 		popup.addSeparator();
 		popup.add(printP);
+		popup.addSeparator();
+		popup.add(dateP);
 	
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {
