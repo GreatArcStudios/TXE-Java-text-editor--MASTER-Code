@@ -62,6 +62,9 @@ import javax.swing.undo.UndoManager;
 
 import say.swing.JFontChooser;
 
+import com.sun.speech.*;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 /**
  * 
  * @author ericzhu
@@ -273,6 +276,8 @@ public class TXE1 extends JFrame {
 		lsAP.setToolTipText("Align text left");
 		JMenuItem csAP = new JMenuItem("Text Align Center");
 		csAP.setToolTipText("Align text middle");
+		JMenuItem tts = new JMenuItem("TTS");
+		tts.setToolTipText("Align text middle");
 
 
 		JButton findButton = new JButton("Find");
@@ -692,6 +697,23 @@ public class TXE1 extends JFrame {
 			}
 
 		});
+		final String vName = "kevin16";
+		tts.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Voice voice;
+				VoiceManager vm =  VoiceManager.getInstance();
+				voice = vm.getVoice(vName);
+				voice.allocate();
+				try{
+					voice.speak(TXEAREA.getText());
+				}catch(Exception ex){
+					
+				}
+				
+			}
+
+		});
 		// add stuff to format
 		format.add(plain);
 		format.add(bold);
@@ -1024,6 +1046,8 @@ public class TXE1 extends JFrame {
 		edit.add(cP);
 		edit.add(dC);
 		edit.add(nor);
+		edit.addSeparator();
+		edit.add(tts);
 
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
