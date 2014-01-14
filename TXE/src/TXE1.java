@@ -241,10 +241,22 @@ public class TXE1 extends JFrame {
 		sS.setToolTipText("Text Size Smaller");
 		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
 				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem sLP = new JMenuItem("Text Size Larger");
+		sLP.setToolTipText("Text Size Larger");
+		sLP.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD,
+				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem sSP = new JMenuItem("Text Size Smaller");
+		sSP.setToolTipText("Text Size Smaller");
+		sSP.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+				InputEvent.CTRL_DOWN_MASK));
 		JMenuItem cP = new JMenuItem("Captilize Text");
 		cP.setToolTipText("Captilize Text");
 		JMenuItem dC = new JMenuItem("Decaptilize Text");
 		dC.setToolTipText("Decaptilize Text");
+		JMenuItem cPP = new JMenuItem("Captilize Text");
+		cPP.setToolTipText("Captilize Text");
+		JMenuItem dCP = new JMenuItem("Decaptilize Text");
+		dCP.setToolTipText("Decaptilize Text");
 		JMenuItem nor = new JMenuItem("Original Text Style");
 		nor.setToolTipText("Original Text Style");
 		JMenuItem dS = new JMenuItem("Document Stats");
@@ -665,6 +677,28 @@ public class TXE1 extends JFrame {
 						TXEAREA.getFont().getStyle(), fsizeString));
 			}
 		});
+		sLP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString++;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		sSP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString--;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
 		cP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -675,6 +709,24 @@ public class TXE1 extends JFrame {
 
 		});
 		dC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toLowerCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		cPP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toUpperCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		dCP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				currentText = TXEAREA.getText().toString();
@@ -922,6 +974,7 @@ public class TXE1 extends JFrame {
 			}
 		});
 		// Popupmenu
+		//Note the naming of these components for the popup menu is the normal component and with a p for Popupmenu
 		final JPopupMenu popup = new JPopupMenu();
 		
 		popup.add(undoP);
@@ -944,6 +997,12 @@ public class TXE1 extends JFrame {
 		popup.add(printP);
 		popup.addSeparator();
 		popup.add(dateP);
+		popup.addSeparator();
+		popup.add(dCP);
+		popup.add(cPP);
+		popup.addSeparator();
+		popup.add(sLP);
+		popup.add(sSP);
 	
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {

@@ -44,6 +44,7 @@ public class About extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(204, 204, 204));
         setResizable(false);
+        //does not work for java 6
         setType(java.awt.Window.Type.POPUP);
 
         jLabel1.setFont(new java.awt.Font("Footlight MT Light", 1, 13)); // NOI18N
