@@ -65,6 +65,7 @@ import say.swing.JFontChooser;
 import com.sun.speech.*;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+
 /**
  * 
  * @author ericzhu
@@ -131,7 +132,7 @@ public class TXE1 extends JFrame {
 	JMenuItem undo = new JMenuItem("Undo");
 
 	JMenuItem redo = new JMenuItem("Redo");
-	
+
 	JMenuItem undoP = new JMenuItem("Undo");
 
 	JMenuItem redoP = new JMenuItem("Redo");
@@ -288,9 +289,8 @@ public class TXE1 extends JFrame {
 		lsAP.setToolTipText("Align text left");
 		JMenuItem csAP = new JMenuItem("Text Align Center");
 		csAP.setToolTipText("Align text middle");
-		JMenuItem tts = new JMenuItem("TTS");
-		tts.setToolTipText("Align text middle");
-
+		JMenuItem tts = new JMenuItem("Text To Speech");
+		tts.setToolTipText("Text To Speech");
 
 		JButton findButton = new JButton("Find");
 
@@ -487,12 +487,12 @@ public class TXE1 extends JFrame {
 			}
 
 		});
-		
+
 		pe.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-					TXEAREA.setEditable(false);	
+				TXEAREA.setEditable(false);
 			}
 
 		});
@@ -500,7 +500,7 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-					TXEAREA.setEditable(true);	
+				TXEAREA.setEditable(true);
 			}
 
 		});
@@ -508,7 +508,7 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-					TXEAREA.setEditable(false);	
+				TXEAREA.setEditable(false);
 			}
 
 		});
@@ -516,7 +516,7 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-					TXEAREA.setEditable(true);	
+				TXEAREA.setEditable(true);
 			}
 
 		});
@@ -754,15 +754,15 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Voice voice;
-				VoiceManager vm =  VoiceManager.getInstance();
+				VoiceManager vm = VoiceManager.getInstance();
 				voice = vm.getVoice(vName);
 				voice.allocate();
-				try{
+				try {
 					voice.speak(TXEAREA.getText());
-				}catch(Exception ex){
-					
+				} catch (Exception ex) {
+
 				}
-				
+
 			}
 
 		});
@@ -791,7 +791,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -801,7 +802,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -811,7 +813,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -821,7 +824,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -831,7 +835,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.BOLD, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -841,7 +846,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.BOLD, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
@@ -851,8 +857,8 @@ public class TXE1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.BOLD
-							+ Font.ITALIC, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD + Font.ITALIC,
+							TXEAREA.getFont().getSize()));
 				}
 			}
 
@@ -860,10 +866,10 @@ public class TXE1 extends JFrame {
 		bIP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				{	
+				{
 					String txtFont = TXEAREA.getFont().getFontName();
-					TXEAREA.setFont(new Font(txtFont, Font.BOLD
-							+ Font.ITALIC, 12));
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD + Font.ITALIC,
+							TXEAREA.getFont().getSize()));
 				}
 			}
 
@@ -872,9 +878,10 @@ public class TXE1 extends JFrame {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JFontChooser fontChooser = new JFontChooser();
-
+				fontChooser.setSelectedFont(TXEAREA.getFont());
 				int option = fontChooser.showDialog(TXEAREA);
 				if (option == JFontChooser.OK_OPTION) {
+					fontChooser.setSelectedFont(TXEAREA.getFont());
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
@@ -885,10 +892,11 @@ public class TXE1 extends JFrame {
 		FrP.addActionListener(new java.awt.event.ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				JFontChooser fontChooser = new JFontChooser();
-
+				JFontChooser fontChooser = new JFontChooser();	
+				fontChooser.setSelectedFont(TXEAREA.getFont());
 				int option = fontChooser.showDialog(TXEAREA);
 				if (option == JFontChooser.OK_OPTION) {
+					fontChooser.setSelectedFont(TXEAREA.getFont());
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
@@ -974,9 +982,10 @@ public class TXE1 extends JFrame {
 			}
 		});
 		// Popupmenu
-		//Note the naming of these components for the popup menu is the normal component and with a p for Popupmenu
+		// Note the naming of these components for the popup menu is the normal
+		// component and with a p for Popupmenu
 		final JPopupMenu popup = new JPopupMenu();
-		
+
 		popup.add(undoP);
 		popup.add(redoP);
 		popup.addSeparator();
@@ -1003,7 +1012,7 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(sLP);
 		popup.add(sSP);
-	
+
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {
 
