@@ -881,7 +881,7 @@ public class TXE1 extends JFrame {
 				fontChooser.setSelectedFont(TXEAREA.getFont());
 				int option = fontChooser.showDialog(TXEAREA);
 				if (option == JFontChooser.OK_OPTION) {
-					//fontChooser.setSelectedFont(TXEAREA.getFont());
+					fontChooser.setSelectedFont(TXEAREA.getFont());
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
@@ -896,7 +896,7 @@ public class TXE1 extends JFrame {
 				fontChooser.setSelectedFont(TXEAREA.getFont());
 				int option = fontChooser.showDialog(TXEAREA);
 				if (option == JFontChooser.OK_OPTION) {
-					//fontChooser.setSelectedFont(TXEAREA.getFont());
+					fontChooser.setSelectedFont(TXEAREA.getFont());
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
