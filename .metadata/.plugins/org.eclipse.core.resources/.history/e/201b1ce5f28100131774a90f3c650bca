@@ -986,8 +986,12 @@ public class TXE1 extends JFrame {
 		// component and with a p for Popupmenu
 		final JPopupMenu popup = new JPopupMenu();
 
-		
-		
+		popup.add(undoP);
+		popup.add(redoP);
+		popup.addSeparator();
+		popup.add(aeP);
+		popup.add(peP);
+		popup.addSeparator();
 		popup.add(sAP);
 		popup.addSeparator();
 		popup.add(boldP);
@@ -997,7 +1001,9 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(FrP);
 		popup.addSeparator();
-		popup.add(coLP);	
+		popup.add(coLP);
+		popup.addSeparator();
+		popup.add(printP);
 		popup.addSeparator();
 		popup.add(dateP);
 		popup.addSeparator();
@@ -1006,14 +1012,6 @@ public class TXE1 extends JFrame {
 		popup.addSeparator();
 		popup.add(sLP);
 		popup.add(sSP);
-		popup.addSeparator();
-		popup.add(undoP);
-		popup.add(redoP);
-		popup.addSeparator();
-		popup.add(aeP);
-		popup.add(peP);
-		popup.addSeparator();
-		popup.add(printP);
 
 		// add mouse listener
 		TXEAREA.addMouseListener(new MouseAdapter() {

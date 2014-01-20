@@ -987,7 +987,7 @@ public class TXE1 extends JFrame {
 		final JPopupMenu popup = new JPopupMenu();
 
 		
-		
+		popup.addSeparator();
 		popup.add(sAP);
 		popup.addSeparator();
 		popup.add(boldP);
