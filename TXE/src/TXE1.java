@@ -46,6 +46,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.DefaultEditorKit;
@@ -84,7 +86,9 @@ public class TXE1 extends JFrame {
 			System.getProperty("home.dir"));
 
 	public static String currentFile = "Untitled Document";
-
+	
+	public static String currentFilePath = "user.dir";
+	
 	private boolean changed = false;
 
 	public static Color color = (Color.WHITE);
@@ -140,6 +144,8 @@ public class TXE1 extends JFrame {
 	JColorChooser CC = new JColorChooser();
 
 	public String colS;
+	
+	public static String fileNode; 
 
 	public TXE1() {
 
@@ -1414,7 +1420,8 @@ public class TXE1 extends JFrame {
 			if (dialog.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 
 				readInFile(dialog.getSelectedFile().getAbsolutePath());
-
+				
+				currentFilePath = dialog.getSelectedFile().getAbsolutePath();
 			}
 
 			SaveAs.setEnabled(true);
@@ -1592,15 +1599,15 @@ public class TXE1 extends JFrame {
 	 * @author Eric Zhu of Great Ark Studios and http://www.java2s.com/
 	 * 
 	 */
-
+	 
 	static class FileSystemModel implements TreeModel, ActionListener {
 		private String root; // The root identifier
 
 		private Vector listeners; // Declare the listeners vector
 
 		public FileSystemModel() {
-
-			root = System.getProperty("user.dir");
+			
+			root = System.getProperty(currentFilePath);
 			File tempFile = new File(root);
 			root = tempFile.getParent();
 
@@ -1716,10 +1723,20 @@ public class TXE1 extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-
+			
 		}
+		
+		  public void valueChanged(TreeSelectionEvent e) {
+              TreePath treepath = e.getPath();
+              System.out.println("Java: " + treepath.getLastPathComponent());
+              Object elements[] = treepath.getPath();
+              for (int i = 0, n = elements.length; i < n; i++) {
+                System.out.print("->" + elements[i]);
+              }
+              System.out.println();
+            }  
 	}
-
+	
 	/**
 	 * 
 	 * @author ericzhu, and ProgrammingKnowledge
