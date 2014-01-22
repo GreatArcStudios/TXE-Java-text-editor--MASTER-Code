@@ -792,16 +792,6 @@ public class TXE1 extends JFrame {
 		format.add(pe);
 		format.add(ae);
 
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
-
-			public void valueChanged(TreeSelectionEvent e) {
-
-				TreePath tp = e.getNewLeadSelectionPath();
-				if (tp != null )
-					readInFile(tp.getLastPathComponent().toString());
-				System.out.print(tp);
-			}
-		});
 		italics.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1198,6 +1188,28 @@ public class TXE1 extends JFrame {
 		this.setTitle("TXE 1.8 Ð " + currentFile);
 
 		this.setVisible(true);
+
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+
+			public void valueChanged(TreeSelectionEvent e) {
+
+				TreePath tP = e.getNewLeadSelectionPath();
+				if (tP != null && changed ==false ) {
+					readInFile(tP.getLastPathComponent().toString());
+					System.out.print(tP);
+				} else {
+					
+					  if(JOptionPane.showConfirmDialog(null,
+					  "Would you like to save " + currentFile + " ?", "Save",
+					  JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+					  
+					  saveFile(currentFile);
+					 
+					System.out.print(tP);
+					readInFile(tP.getLastPathComponent().toString());
+				}
+			}
+		});
 
 	}
 
