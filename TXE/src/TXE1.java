@@ -72,6 +72,7 @@ import com.sun.speech.freetts.VoiceManager;
  * 
  * @author ericzhu
  * 
+ * 
  */
 @SuppressWarnings("unused")
 public class TXE1 extends JFrame {
@@ -1195,17 +1196,27 @@ public class TXE1 extends JFrame {
 			public void valueChanged(TreeSelectionEvent e) {
 
 				TreePath tP = e.getNewLeadSelectionPath();
-				if (tP != null && changed ==false) {
+				if (tP != null
+						&& changed == false
+						&& tP.getLastPathComponent().toString()
+								.endsWith(".xml")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".java")|| tP.getLastPathComponent().toString()
+								.endsWith(".md")) {
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
-				} else {
-					
-					  if(JOptionPane.showConfirmDialog(null,
-					  "Would you like to save " + currentFile + " ?", "Save",
-					  JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-					  
-					  saveFile(currentFile);
-					 
+				} else if (tP.getLastPathComponent().toString()
+						.endsWith(".xml")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".java") || tP.getLastPathComponent().toString()
+								.endsWith(".md")) {
+
+					if (JOptionPane.showConfirmDialog(null,
+							"Would you like to save " + currentFile + " ?",
+							"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+
+						saveFile(currentFile);
+
 					System.out.print(tP);
 					readInFile(tP.getLastPathComponent().toString());
 				}
