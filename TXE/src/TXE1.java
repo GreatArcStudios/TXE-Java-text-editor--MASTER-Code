@@ -180,6 +180,7 @@ public class TXE1 extends JFrame {
 		tree.setMinimumSize(minimumSize);
 		tree.setVisible(true);
 		tree.setSize(100, 1000);
+		tree.putClientProperty("JTree.lineStyle", "Angled");
 
 		JMenuItem About = new JMenuItem("About");
 		JMenu format = new JMenu("Format");
@@ -1194,7 +1195,7 @@ public class TXE1 extends JFrame {
 			public void valueChanged(TreeSelectionEvent e) {
 
 				TreePath tP = e.getNewLeadSelectionPath();
-				if (tP != null && changed ==false ) {
+				if (tP != null && changed ==false) {
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
 				} else {
