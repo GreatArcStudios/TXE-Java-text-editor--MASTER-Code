@@ -401,7 +401,7 @@ public class TXEProgrammer extends JFrame {
 		pT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TXE1 TP = new TXE1();
+				TXEProgrammer TP = new TXEProgrammer();
 
 			}
 		});
