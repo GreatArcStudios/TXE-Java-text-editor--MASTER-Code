@@ -103,6 +103,8 @@ public class TXE1 extends JFrame {
 	public String saveText = saveField.getText();
 
 	public String caseText;
+	
+	public String currentVersion = "Nighty Build";
 
 	public int fsizeString;
 
@@ -1187,7 +1189,7 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE 1.8 Ð " + currentFile);
+		this.setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 		this.setVisible(true);
 
@@ -1475,7 +1477,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = "Untitled Document";
 
-			setTitle("TXE 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 
@@ -1577,7 +1579,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 
-			setTitle("TXE 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 
@@ -1604,7 +1606,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 			// important
-			setTitle("Txe 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 
