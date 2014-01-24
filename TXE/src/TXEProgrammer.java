@@ -8,9 +8,12 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
@@ -35,16 +38,21 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.DefaultEditorKit;
@@ -60,6 +68,9 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.UndoManager;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 
 import say.swing.JFontChooser;
 
@@ -84,6 +95,8 @@ public class TXEProgrammer extends JFrame {
 
 	private boolean changed = false;
 
+	public String caseText;
+
 	private Color color = (Color.WHITE);
 
 	public Color CoL = (Color.YELLOW);
@@ -98,6 +111,12 @@ public class TXEProgrammer extends JFrame {
 
 	public JFrame panel;
 
+	JMenuItem undoP = new JMenuItem("Undo");
+
+	JMenuItem redoP = new JMenuItem("Redo");
+
+	public static String currentFilePath = "user.dir";
+
 	public JTextField findText = new JTextField();
 
 	public JScrollPane scroll = new JScrollPane(TXEAREA,
@@ -110,6 +129,8 @@ public class TXEProgrammer extends JFrame {
 	JScrollPane scrollTree = new JScrollPane(tree);
 
 	Highlighter.HighlightPainter HighLight = new highLight(CoL);
+
+	public String text;
 
 	// DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -126,6 +147,12 @@ public class TXEProgrammer extends JFrame {
 	JMenuItem redo = new JMenuItem("Redo");
 
 	public String colS;
+
+	public Color Colors = CoL;
+
+	public int fsizeString;
+
+	public String currentVersion = "Nighty Build";
 
 	public TXEProgrammer() {
 
@@ -150,12 +177,16 @@ public class TXEProgrammer extends JFrame {
 		TXEAREA.setCodeFoldingEnabled(true);
 		TXEAREA.setEOLMarkersVisible(false);
 		TXEAREA.setAutoIndentEnabled(true);
-		
+
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
 		findText.setText("Type word or phrase to be found here.");
 
 		this.getContentPane().add(splitpane);
+
+		ImageIcon ImgIc = new ImageIcon(getClass().getResource(
+				"images/normal.gif"));
+		this.setIconImage(ImgIc.getImage());
 
 		splitpane.setResizeWeight(0.5);
 		splitpane.setOneTouchExpandable(true);
@@ -164,6 +195,7 @@ public class TXEProgrammer extends JFrame {
 		tree.setMinimumSize(minimumSize);
 		tree.setVisible(true);
 		tree.setSize(100, 1000);
+		tree.putClientProperty("JTree.lineStyle", "Angled");
 
 		JMenuItem About = new JMenuItem("About");
 		JMenu format = new JMenu("Format");
@@ -203,6 +235,8 @@ public class TXEProgrammer extends JFrame {
 		enC.setToolTipText("Encrypt a message");
 		JMenuItem coL = new JMenuItem("Color Chooser");
 		coL.setToolTipText("Choose a color");
+		JMenuItem coLP = new JMenuItem("Color Chooser");
+		coLP.setToolTipText("Choose a color");
 		JMenuItem HcoL = new JMenuItem("Color Chooser");
 		HcoL.setToolTipText("Choose a highlighter color");
 		JMenuItem srenSht = new JMenuItem("Screenshot");
@@ -212,11 +246,73 @@ public class TXEProgrammer extends JFrame {
 		JMenuItem natives = new JMenuItem("Native Style");
 		JMenuItem print = new JMenuItem("Print");
 		print.setToolTipText("Print current document");
+		JMenuItem printP = new JMenuItem("Print");
+		printP.setToolTipText("Print current document");
 		JMenuItem date = new JMenuItem("Insert Date and Time");
+		JMenuItem dateP = new JMenuItem("Insert Date and Time");
 		JMenuItem sA = new JMenuItem("Select All");
 		sA.setToolTipText("Select All Text In Document");
-		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
-		pT.setToolTipText("Programmer's Text Pad");
+		JMenuItem sAP = new JMenuItem("Select All");
+		sAP.setToolTipText("Select All Text In Document");
+		JMenuItem pT = new JMenuItem("Open TXE");
+		pT.setToolTipText("Open TXE");
+		JMenuItem sL = new JMenuItem("Text Size Larger");
+		sL.setToolTipText("Text Size Larger");
+		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD,
+				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem sS = new JMenuItem("Text Size Smaller");
+		sS.setToolTipText("Text Size Smaller");
+		sS.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem sLP = new JMenuItem("Text Size Larger");
+		sLP.setToolTipText("Text Size Larger");
+		sLP.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD,
+				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem sSP = new JMenuItem("Text Size Smaller");
+		sSP.setToolTipText("Text Size Smaller");
+		sSP.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_MINUS,
+				InputEvent.CTRL_DOWN_MASK));
+		JMenuItem cP = new JMenuItem("Captilize Text");
+		cP.setToolTipText("Captilize Text");
+		JMenuItem dC = new JMenuItem("Decaptilize Text");
+		dC.setToolTipText("Decaptilize Text");
+		JMenuItem cPP = new JMenuItem("Captilize Text");
+		cPP.setToolTipText("Captilize Text");
+		JMenuItem dCP = new JMenuItem("Decaptilize Text");
+		dCP.setToolTipText("Decaptilize Text");
+		JMenuItem nor = new JMenuItem("Original Text Style");
+		nor.setToolTipText("Original Text Style");
+		JMenuItem dS = new JMenuItem("Document Stats");
+		dS.setToolTipText("Document Stats");
+		JMenuItem pe = new JMenuItem("No Editing");
+		JMenuItem ae = new JMenuItem("Allow Editing");
+		JMenuItem peP = new JMenuItem("No Editing");
+		JMenuItem aeP = new JMenuItem("Allow Editing");
+		JMenuItem boldP = new JMenuItem("Bold Document");
+		JMenuItem italicsP = new JMenuItem("Italicize Document");
+		italicsP.setToolTipText("Italicize, using Times New Roman 12 pt font.");
+		JMenuItem plainP = new JMenuItem("Normal Style");
+		plain.setToolTipText("Normal style and Times New Roman 12 pt font.");
+		JMenuItem bIP = new JMenuItem("Bold and Italicize Document");
+		bIP.setToolTipText("Bold and Italicize, using Times New Roman 12 pt font.");
+		JMenuItem FrP = new JMenuItem("Font");
+		FrP.setToolTipText("Choose a font");
+		JMenuItem bLP = new JMenuItem("Blue");
+		bLP.setToolTipText("Make text blue");
+		JMenuItem rDP = new JMenuItem("Red");
+		rDP.setToolTipText("Make text red");
+		JMenuItem gRP = new JMenuItem("Green");
+		gRP.setToolTipText("Make text green");
+		JMenuItem bLaP = new JMenuItem("Normal");
+		bLaP.setToolTipText("Make text black");
+		JMenuItem rsAP = new JMenuItem("Text Align Right");
+		rsAP.setToolTipText("Align text right");
+		JMenuItem lsAP = new JMenuItem("Text Align Left");
+		lsAP.setToolTipText("Align text left");
+		JMenuItem csAP = new JMenuItem("Text Align Center");
+		csAP.setToolTipText("Align text middle");
+		JMenuItem tts = new JMenuItem("Text To Speech");
+		tts.setToolTipText("Text To Speech");
 
 		JButton findButton = new JButton("Find");
 
@@ -265,15 +361,64 @@ public class TXEProgrammer extends JFrame {
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
 
-		HcoL.addActionListener(new ActionListener() {
+		undoP.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				CoL = JColorChooser.showDialog(null, "Pick Highlight Color",
-						CoL);
+				try {
+					undoManager.undo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Undo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
+			}
+		});
+		undoP.setIcon(new ImageIcon(getClass().getResource(
+				"images/Undo_16x16.png")));
+		undoP.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_Z,
+				java.awt.event.InputEvent.CTRL_MASK));
+
+		redoP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					undoManager.redo();
+				} catch (CannotRedoException ex) {
+					JOptionPane.showMessageDialog(rootPane,
+							"Exception: " + ex.getLocalizedMessage(),
+							"Redo Exception", JOptionPane.ERROR_MESSAGE);
+				}
+				updateUndoRedoMenu();
+			}
+		});
+		redoP.setIcon(new ImageIcon(getClass().getResource(
+				"images/Redo_16x16.png")));
+		redoP.setAccelerator(KeyStroke.getKeyStroke(
+				java.awt.event.KeyEvent.VK_X,
+				java.awt.event.InputEvent.CTRL_MASK));
+		pT.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TXEProgrammer TP = new TXEProgrammer();
 
 			}
 		});
 
+		HcoL.addActionListener(new ActionListener() {
+			@Override
+			@SuppressWarnings("static-access")
+			public void actionPerformed(ActionEvent e) {
+				JColorChooser.showDialog(null, "Pick Highlighter Color", CoL);
+				Colors = CoL;
+				System.out.println(CoL);
+				System.out.println(Colors);
+			}
+		});
+
 		findButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				try {
@@ -291,30 +436,62 @@ public class TXEProgrammer extends JFrame {
 				}
 			}
 		});
-		pT.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TXEProgrammer TP = new TXEProgrammer();
-			
-			}
-		});
+
 		sA.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.selectAll();
 
 			}
 		});
+		sAP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TXEAREA.selectAll();
 
+			}
+		});
 		date.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
-						"E dd.MM.yyyy 'at' hh:mm:ss a zzz");
+						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
+				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
+
+			}
+		});
+		dateP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Date date = new Date();
+				SimpleDateFormat sdt = new SimpleDateFormat(
+						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
 				TXEAREA.insert(sdt.format(date), TXEAREA.getCaretPosition());
 
 			}
 		});
 
 		print.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					boolean print = TXEAREA.print();
+					if (print) {
+						JOptionPane
+								.showMessageDialog(null, "Printing is Done!");
+					} else {
+
+					}
+
+				} catch (Exception exc) {
+
+				}
+			}
+
+		});
+		printP.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					boolean print = TXEAREA.print();
@@ -332,35 +509,55 @@ public class TXEProgrammer extends JFrame {
 
 		});
 
-		natives.addActionListener(new ActionListener() {
+		pe.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
-				} catch (Exception exc) {
 
-				}
+				TXEAREA.setEditable(false);
+			}
+
+		});
+		ae.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				TXEAREA.setEditable(true);
+			}
+
+		});
+		peP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				TXEAREA.setEditable(false);
+			}
+
+		});
+		aeP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				TXEAREA.setEditable(true);
+			}
+
+		});
+
+		natives.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nativeActionPerformed(e);
 			}
 
 		});
 
 		nimbus.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					for (LookAndFeelInfo feel : UIManager
-							.getInstalledLookAndFeels()) {
-						if ("Nimbus".equals(feel.getName())) {
-							UIManager.setLookAndFeel(feel.getClassName());
-							break;
-						}
-					}
-				} catch (Exception exc) {
-
-				}
-
+				nimbusActionPerformed(e);
 			}
 		});
 		srenSht.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				/**
 				 * TXESHOT txesh = new TXESHOT(); txesh.setVisible(true);
@@ -380,12 +577,12 @@ public class TXEProgrammer extends JFrame {
 					// frame.setSize(500,50);
 					// frame.add(saveField);
 					// saveField.setText("Screenshot name.png");
-					ImageIO.write(Capture, "png",
-							new File("TXE Screenshot "+sdt.format(date)+".png"));
+					ImageIO.write(Capture, "png", new File("TXE Screenshot "
+							+ sdt.format(date) + ".png"));
 					JOptionPane
 							.showMessageDialog(
 									getParent(),
-									"Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot"+sdt.format(date)+".png.");
+									"Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot.png.");
 				} catch (Exception ex) {
 
 					JOptionPane.showMessageDialog(getParent(),
@@ -396,6 +593,17 @@ public class TXEProgrammer extends JFrame {
 
 		});
 		coL.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				color = JColorChooser
+						.showDialog(null, "Pick Text Color", color);
+				TXEAREA.setForeground(color);
+
+			}
+
+		});
+		coLP.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				color = JColorChooser
 						.showDialog(null, "Pick Text Color", color);
@@ -405,52 +613,177 @@ public class TXEProgrammer extends JFrame {
 
 		});
 		enC.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				Encrypt enc = new Encrypt();
 				enc.setVisible(true);
 			}
 		});
 		lsA.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 			}
 		});
 		rsA.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				TXEAREA.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 
 			}
 		});
 		settingsFrame.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				SettingsProgrammer txesettings = new SettingsProgrammer();
 				txesettings.setVisible(true);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Settings settingsWeb = new Settings();
 
-				TXEAREA.setText(currentText + SettingsProgrammer.webText1);
+				TXEAREA.setText(currentText + settingsWeb.webText1);
 			}
 		});
 		addname.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				TXEAREA.insert(SettingsProgrammer.nameText, TXEAREA.getCaretPosition());
+				Settings settingsWeb = new Settings();
+				;
+				TXEAREA.setText(currentText + settingsWeb.nameText);
 			}
 		});
 		addwebsite.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				Settings settingsWeb = new Settings();
 
-				TXEAREA.insert(SettingsProgrammer.companyText1, TXEAREA.getCaretPosition());
+				TXEAREA.setText(currentText + settingsWeb.companyText1);
 			}
 		});
 		cL.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
+					JOptionPane.showOptionDialog(null, null,
+							"Would you like to save your document",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE, null, null, null);
 					TXEAREA.setText(changeLog);
 				}
+			}
+
+		});
+		sL.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString++;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		sS.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString--;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		sLP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString++;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		sSP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fsizeString = TXEAREA.getFont().getSize();
+				System.out.println(fsizeString);
+				fsizeString--;
+				text = TXEAREA.getText();
+				TXEAREA.setFont(new Font(TXEAREA.getFont().getFontName(),
+						TXEAREA.getFont().getStyle(), fsizeString));
+			}
+		});
+		cP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toUpperCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		dC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toLowerCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		cPP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toUpperCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		dCP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				currentText = TXEAREA.getText().toString();
+				caseText = TXEAREA.getText().toLowerCase().toString();
+				TXEAREA.setText(caseText);
+			}
+
+		});
+		nor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TXEAREA.setText(currentText);
+			}
+
+		});
+		dS.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new InfoFrame().setVisible(true);
+			}
+
+		});
+		final String vName = "kevin16";
+		tts.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Voice voice;
+				VoiceManager vm = VoiceManager.getInstance();
+				voice = vm.getVoice(vName);
+				voice.allocate();
+				try {
+					voice.speak(TXEAREA.getText());
+				} catch (Exception ex) {
+
+				}
+
 			}
 
 		});
@@ -470,46 +803,121 @@ public class TXEProgrammer extends JFrame {
 		format.addSeparator();
 		format.add(rsA);
 		format.add(lsA);
+		format.addSeparator();
+		format.add(pe);
+		format.add(ae);
 
 		italics.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, TXEAREA
+							.getFont().getSize()));
+				}
+			}
+
+		});
+		italicsP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.ITALIC, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
 		});
 		plain.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, TXEAREA
+							.getFont().getSize()));
+				}
+			}
+
+		});
+		plainP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.PLAIN, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
 		});
 		bold.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, TXEAREA
+							.getFont().getSize()));
+				}
+			}
+
+		});
+		boldP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD, TXEAREA
+							.getFont().getSize()));
 				}
 			}
 
 		});
 		bI.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				{
-					TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
-							+ Font.ITALIC, 12));
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD + Font.ITALIC,
+							TXEAREA.getFont().getSize()));
+				}
+			}
+
+		});
+		bIP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				{
+					String txtFont = TXEAREA.getFont().getFontName();
+					TXEAREA.setFont(new Font(txtFont, Font.BOLD + Font.ITALIC,
+							TXEAREA.getFont().getSize()));
 				}
 			}
 
 		});
 		Fr.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JFontChooser fontChooser = new JFontChooser();
+				fontChooser.setSelectedFont(TXEAREA.getFont());
+				int option = fontChooser.showDialog(TXEAREA);
+				if (option == JFontChooser.OK_OPTION) {
+					// fontChooser.setSelectedFont(TXEAREA.getFont());
+					Font font = fontChooser.getSelectedFont();
+					TXEAREA.setFont(font);
+					System.out.println("Selected Font : " + font);
+				}
 
-				int result = fontChooser.showDialog(TXEAREA);
-				if (result == JFontChooser.OK_OPTION) {
+			}
+		});
+		FrP.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				JFontChooser fontChooser = new JFontChooser();
+				fontChooser.setSelectedFont(TXEAREA.getFont());
+				int option = fontChooser.showDialog(TXEAREA);
+				if (option == JFontChooser.OK_OPTION) {
+					// fontChooser.setSelectedFont(TXEAREA.getFont());
 					Font font = fontChooser.getSelectedFont();
 					TXEAREA.setFont(font);
 					System.out.println("Selected Font : " + font);
@@ -518,30 +926,35 @@ public class TXEProgrammer extends JFrame {
 			}
 		});
 		gR.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.green);
-
+				color = Color.green;
 			}
 		});
 		bL.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.blue);
-
+				color = Color.blue;
 			}
 		});
 		rD.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.red);
-
+				color = Color.red;
 			}
 		});
 		bLa.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				TXEAREA.setForeground(Color.black);
-
+				color = Color.black;
 			}
 		});
 		About.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				About about = new About();
 				about.setVisible(true);
@@ -549,6 +962,7 @@ public class TXEProgrammer extends JFrame {
 			}
 		});
 		caL.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				Calculator calculator = new Calculator();
 				calculator.setVisible(true);
@@ -562,29 +976,89 @@ public class TXEProgrammer extends JFrame {
 		JMenuItem vhsbA = new JMenuItem(
 				"Vertical And Horizontal Scroll Bar Always");
 		vsbA.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollv = new JScrollPane(TXEAREA,
-						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 			}
 		});
 		vsbA.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollh = new JScrollPane(TXEAREA,
-						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-						JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 			}
 		});
 		vhsbA.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JScrollPane scrollvh = new JScrollPane(TXEAREA,
-						JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-						JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+						ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 			}
 		});
+		// Popupmenu
+		// Note the naming of these components for the popup menu is the normal
+		// component and with a p for Popupmenu
+		final JPopupMenu popup = new JPopupMenu();
+
+		popup.add(sAP);
+		popup.addSeparator();
+		popup.add(boldP);
+		popup.add(italicsP);
+		popup.add(plainP);
+		popup.add(bIP);
+		popup.addSeparator();
+		popup.add(FrP);
+		popup.addSeparator();
+		popup.add(coLP);
+		popup.addSeparator();
+		popup.add(dateP);
+		popup.addSeparator();
+		popup.add(dCP);
+		popup.add(cPP);
+		popup.addSeparator();
+		popup.add(sLP);
+		popup.add(sSP);
+		popup.addSeparator();
+		popup.add(undoP);
+		popup.add(redoP);
+		popup.addSeparator();
+		popup.add(aeP);
+		popup.add(peP);
+		popup.addSeparator();
+		popup.add(printP);
+
+		// add mouse listener
+		TXEAREA.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				showPopup(e);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				showPopup(e);
+			}
+
+			private void showPopup(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					popup.show(e.getComponent(), e.getX(), e.getY());
+				}
+			}
+		});
+		// New project menu item
+		// MouseListener PopUpShow = new popupshow();
+		// this.addMouseListener(PopUpShow);
+		// TXEAREA.addMouseListener(PopUpShow);
+		// splitpane.addMouseListener(PopUpShow);
+		// scroll.addMouseListener(PopUpShow);
 
 		ScrollSettings.add(vsbA);
 		ScrollSettings.add(hsbA);
@@ -606,7 +1080,7 @@ public class TXEProgrammer extends JFrame {
 		// file menu items
 		file.add(About);
 		file.addSeparator();
-		/** file.add(cL); **/
+		// file.add(cL);
 		file.add(New);
 		file.addSeparator();
 		file.add(Open);
@@ -633,8 +1107,10 @@ public class TXEProgrammer extends JFrame {
 		TXESettings.add(natives);
 		TXESettings.addSeparator();
 		TXESettings.add(HcoL);
-		//TXESettings.addSeparator();
-		//TXESettings.add(pT);
+		TXESettings.addSeparator();
+		TXESettings.add(pT);
+		TXESettings.addSeparator();
+		TXESettings.add(dS);
 		for (int i = 0; i < 1; i++)
 
 			file.getItem(i).setIcon(null);
@@ -646,12 +1122,21 @@ public class TXEProgrammer extends JFrame {
 		edit.add(Copy);
 		edit.add(Paste);
 		edit.addSeparator();
-		// edit.add(undo);
-		// edit.add(redo);
-		// edit.addSeparator();
+		edit.add(undo);
+		edit.add(redo);
+		edit.addSeparator();
 		edit.add(date);
 		edit.addSeparator();
 		edit.add(sA);
+		edit.addSeparator();
+		edit.add(sL);
+		edit.add(sS);
+		edit.addSeparator();
+		edit.add(cP);
+		edit.add(dC);
+		edit.add(nor);
+		edit.addSeparator();
+		edit.add(tts);
 
 		edit.getItem(0).setText("Cut		");
 		edit.getItem(0).setIcon(
@@ -715,10 +1200,95 @@ public class TXEProgrammer extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("Nightly Build – " + currentFile);
+		this.setTitle("TXE" + " " + currentVersion + " – " + currentFile);
 
 		this.setVisible(true);
 
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+
+			public void valueChanged(TreeSelectionEvent e) {
+
+				TreePath tP = e.getNewLeadSelectionPath();
+				if (tP != null
+						&& changed == false
+						&& tP.getLastPathComponent().toString()
+								.endsWith(".xml")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".java")
+						|| tP.getLastPathComponent().toString().endsWith(".md")) {
+					readInFile(tP.getLastPathComponent().toString());
+					System.out.print(tP);
+				} else if (tP.getLastPathComponent().toString()
+						.endsWith(".xml")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".java")
+						|| tP.getLastPathComponent().toString().endsWith(".md")) {
+
+					if (JOptionPane.showConfirmDialog(null,
+							"Would you like to save " + currentFile + " ?",
+							"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+
+						saveFile(currentFile);
+
+					System.out.print(tP);
+					readInFile(tP.getLastPathComponent().toString());
+				}
+			}
+		});
+
+	}
+
+	public void removeHighlight(JTextComponent comp) {
+		Highlighter highlighte = comp.getHighlighter();
+		Highlighter.Highlight[] higlite = highlighte.getHighlights();
+		for (int i = 0; i < higlite.length; i++) {
+			if (higlite[i].getPainter() instanceof highLight) {
+				highlighte.removeHighlight(higlite[i]);
+			}
+		}
+	}
+
+	public void highlight(JTextComponent comp, String pattern) {
+
+		removeHighlight(comp);
+
+		try {
+
+			Highlighter highlighte = comp.getHighlighter();
+			Document doc = comp.getDocument();
+			String text = doc.getText(0, doc.getLength());
+			int pos = 0;
+			while ((pos = text.toUpperCase()
+					.indexOf(pattern.toUpperCase(), pos)) >= 0) {
+				highlighte.addHighlight(pos, pos + pattern.length(), HighLight);
+				pos += pattern.length();
+			}
+		} catch (Exception ex) {
+
+		}
+	}
+
+	public void nimbusActionPerformed(ActionEvent e) {
+		try {
+			for (LookAndFeelInfo feel : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(feel.getName())) {
+					UIManager.setLookAndFeel(feel.getClassName());
+					SwingUtilities.updateComponentTreeUI(this);
+					break;
+				}
+			}
+		} catch (Exception exc) {
+
+		}
+
+	}
+
+	public void nativeActionPerformed(java.awt.event.ActionEvent e) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
+		} catch (Exception exc) {
+		}
 	}
 
 	public void updateUndoRedoMenu() {
@@ -733,6 +1303,7 @@ public class TXEProgrammer extends JFrame {
 
 	private KeyListener k1 = new KeyAdapter() {
 
+		@Override
 		public void keyPressed(KeyEvent e) {
 
 			changed = true;
@@ -751,9 +1322,11 @@ public class TXEProgrammer extends JFrame {
  */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.GREEN);
+				color = Color.green;
 			}
 		}
 
@@ -770,6 +1343,7 @@ public class TXEProgrammer extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.black);
+				color = Color.black;
 			}
 		}
 
@@ -782,9 +1356,11 @@ public class TXEProgrammer extends JFrame {
  */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.red);
+				color = Color.red;
 			}
 		}
 
@@ -797,9 +1373,11 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setForeground(Color.blue);
+				color = Color.blue;
 			}
 		}
 
@@ -813,6 +1391,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.BOLD
@@ -830,6 +1409,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
@@ -846,6 +1426,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -862,6 +1443,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			{
 				TXEAREA.setFont(new Font("Times New Roman", Font.ITALIC, 12));
@@ -884,6 +1466,7 @@ public class TXEProgrammer extends JFrame {
 
 				readInFile(dialog.getSelectedFile().getAbsolutePath());
 
+				currentFilePath = dialog.getSelectedFile().getAbsolutePath();
 			}
 
 			SaveAs.setEnabled(true);
@@ -896,6 +1479,7 @@ public class TXEProgrammer extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveOld();
@@ -904,7 +1488,7 @@ public class TXEProgrammer extends JFrame {
 
 			currentFile = "Untitled Document";
 
-			setTitle("TXE 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " – " + currentFile);
 
 			changed = false;
 
@@ -924,6 +1508,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			if (!currentFile.equals(currentFile))
@@ -945,6 +1530,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveFileAs();
@@ -960,6 +1546,7 @@ public class TXEProgrammer extends JFrame {
 	 */
 		private static final long serialVersionUID = 1L;
 
+		@Override
 		public void actionPerformed(ActionEvent e) {
 
 			saveOld();
@@ -1003,7 +1590,7 @@ public class TXEProgrammer extends JFrame {
 
 			currentFile = fileName;
 
-			setTitle("TXE 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " – " + currentFile);
 
 			changed = false;
 
@@ -1030,7 +1617,7 @@ public class TXEProgrammer extends JFrame {
 
 			currentFile = fileName;
 			// important
-			setTitle("Txe 1.7.1 Beta - " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " – " + currentFile);
 
 			changed = false;
 
@@ -1058,30 +1645,33 @@ public class TXEProgrammer extends JFrame {
 	 * 
 	 */
 
-	class FileSystemModel implements TreeModel {
+	static class FileSystemModel implements TreeModel, ActionListener {
 		private String root; // The root identifier
 
 		private Vector listeners; // Declare the listeners vector
 
 		public FileSystemModel() {
 
-			root = System.getProperty("user.dir");
+			root = System.getProperty(currentFilePath);
 			File tempFile = new File(root);
 			root = tempFile.getParent();
 
 			listeners = new Vector();
 		}
 
+		@Override
 		public Object getRoot() {
 			return (new File(root));
 		}
 
+		@Override
 		public Object getChild(Object parent, int index) {
 			File directory = (File) parent;
 			String[] directoryMembers = directory.list();
 			return (new File(directory, directoryMembers[index]));
 		}
 
+		@Override
 		public int getChildCount(Object parent) {
 			File fileSystemMember = (File) parent;
 			if (fileSystemMember.isDirectory()) {
@@ -1095,6 +1685,7 @@ public class TXEProgrammer extends JFrame {
 			}
 		}
 
+		@Override
 		public int getIndexOfChild(Object parent, Object child) {
 			File directory = (File) parent;
 			File directoryMember = (File) child;
@@ -1111,22 +1702,26 @@ public class TXEProgrammer extends JFrame {
 			return result;
 		}
 
+		@Override
 		public boolean isLeaf(Object node) {
 			return ((File) node).isFile();
 		}
 
+		@Override
 		public void addTreeModelListener(TreeModelListener l) {
 			if (l != null && !listeners.contains(l)) {
 				listeners.addElement(l);
 			}
 		}
 
+		@Override
 		public void removeTreeModelListener(TreeModelListener l) {
 			if (l != null) {
 				listeners.removeElement(l);
 			}
 		}
 
+		@Override
 		public void valueForPathChanged(TreePath path, Object newValue) {
 			// Does Nothing!
 		}
@@ -1169,48 +1764,34 @@ public class TXEProgrammer extends JFrame {
 			}
 
 		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		public void valueChanged(TreeSelectionEvent e) {
+			TreePath treepath = e.getPath();
+			System.out.println("Java: " + treepath.getLastPathComponent());
+			Object elements[] = treepath.getPath();
+			for (int i = 0, n = elements.length; i < n; i++) {
+				System.out.print("->" + elements[i]);
+			}
+			System.out.println();
+		}
 	}
 
 	/**
 	 * 
-	 * @author ericzhu
+	 * @author ericzhu, and ProgrammingKnowledge
 	 * 
 	 */
-	class highLight extends DefaultHighlighter.DefaultHighlightPainter {
+	static class highLight extends DefaultHighlighter.DefaultHighlightPainter {
 		public highLight(Color color) {
 			super(color);
 		}
 
-	}
-
-	public void removeHighlight(JTextComponent comp) {
-		Highlighter highlighte = comp.getHighlighter();
-		Highlighter.Highlight[] higlite = highlighte.getHighlights();
-		for (int i = 0; i < higlite.length; i++) {
-			if (higlite[i].getPainter() instanceof highLight) {
-				highlighte.removeHighlight(higlite[i]);
-			}
-		}
-	}
-
-	public void highlight(JTextComponent comp, String pattern) {
-
-		removeHighlight(comp);
-
-		try {
-
-			Highlighter highlighte = comp.getHighlighter();
-			Document doc = comp.getDocument();
-			String text = doc.getText(0, doc.getLength());
-			int pos = 0;
-			while ((pos = text.toUpperCase()
-					.indexOf(pattern.toUpperCase(), pos)) >= 0) {
-				highlighte.addHighlight(pos, pos + pattern.length(), HighLight);
-				pos += pattern.length();
-			}
-		} catch (Exception ex) {
-
-		}
 	}
 
 	public static void main(String[] args) {
