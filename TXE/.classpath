@@ -8,7 +8,6 @@
 	<classpathentry exported="true" kind="lib" path="src/swing-layout-1.0.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Library/Java/JavaVirtualMachines/jdk1.7.0_10.jdk/Contents/Home/jre/lib/rt.jar"/>
 	<classpathentry exported="true" kind="lib" path="src/rt.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Downloads/rsyntaxtextarea_2.5.0/rsyntaxtextarea.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/cmu_time_awb.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/cmu_us_kal.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/cmudict04.jar"/>
@@ -18,6 +17,8 @@
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/freetts-jsapi10.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/freetts.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/mbrola.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/autocomplete_2.5.1/autocomplete.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/rsyntaxtextarea_2.5.1/rsyntaxtextarea.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
