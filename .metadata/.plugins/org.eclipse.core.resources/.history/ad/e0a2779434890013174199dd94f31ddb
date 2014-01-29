@@ -103,7 +103,7 @@ public class TXE1 extends JFrame {
 	public String saveText = saveField.getText();
 
 	public String caseText;
-
+	
 	public String currentVersion = "Nighty Build";
 
 	public int fsizeString;
@@ -1189,7 +1189,7 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+		this.setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 		this.setVisible(true);
 
@@ -1216,13 +1216,10 @@ public class TXE1 extends JFrame {
 				} else if (tP.getLastPathComponent().toString()
 						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".java")
-						|| tP.getLastPathComponent().toString().endsWith(".md")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".txt")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".rtf")
-						|| tP.getLastPathComponent().toString()
+								.endsWith(".java") || tP.getLastPathComponent().toString()
+								.endsWith(".md") || tP.getLastPathComponent().toString()
+								.endsWith(".txt")|| tP.getLastPathComponent().toString()
+								.endsWith(".rtf")|| tP.getLastPathComponent().toString()
 								.endsWith(".form")) {
 
 					if (JOptionPane.showConfirmDialog(null,
@@ -1489,7 +1486,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = "Untitled Document";
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 
@@ -1591,7 +1588,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 
@@ -1618,7 +1615,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 			// important
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" +" "+ currentVersion+ " Ð "+ currentFile);
 
 			changed = false;
 

@@ -1,4 +1,11 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -7,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
@@ -35,7 +41,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
@@ -62,55 +67,60 @@ import javax.swing.tree.TreePath;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.UndoManager;
 
-import say.swing.JFontChooser;
-
-import com.sun.speech.*;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+
+import say.swing.JFontChooser;
+
+import org.fife.ui.autocomplete.AutoCompletion;
+import org.fife.ui.autocomplete.BasicCompletion;
+import org.fife.ui.autocomplete.CompletionProvider;
+import org.fife.ui.autocomplete.DefaultCompletionProvider;
+import org.fife.ui.rsyntaxtextarea.*;
+import org.fife.ui.autocomplete.*;
 
 /**
  * 
  * @author ericzhu
  * 
- * 
  */
 @SuppressWarnings("unused")
-public class TXE1 extends JFrame {
+public class TXEProgrammer extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public static JTextArea TXEAREA = new JTextArea();
+	public static RSyntaxTextArea TXEAREA = new RSyntaxTextArea();
 
 	public JEditorPane saveField = new JEditorPane();
 
 	private JFileChooser dialog = new JFileChooser(
 			System.getProperty("home.dir"));
 
-	public static String currentFile = "Untitled Document";
-
-	public static String currentFilePath = "user.dir";
+	private String currentFile = "Untitled Document";
 
 	private boolean changed = false;
 
-	public static Color color = (Color.WHITE);
+	public String caseText;
+
+	private Color color = (Color.WHITE);
+
+	public Color CoL = (Color.YELLOW);
 
 	public String changeLog = ("TXE 1.6.5 change log 1. New color buttons in the easy access bar  2.New about option 3.Colors are added  4.Menu Seperators are added  5.The scroll bars  auto hide  6. Added the Settings Tab 7. Minor bug fixes ");
 
-	public String DefualtText = ("Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n*Note* this is TXE 1.8!\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/");
+	public String DefualtText = ("'Welcome To TXE. The  new innovative Text Editor. Type what ever you want. Updates coming soon! \r\n\r\n'*Note* this is a Nightly Build!'\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nCredits: Eric Zhu of Great Ark Studios and Turk4n of CodeCall.net Icons from http://www.visualpharm.com/'");
 
 	public String currentText = TXEAREA.getText();
 
 	public String saveText = saveField.getText();
 
-	public String caseText;
-
-	public String currentVersion = "Nighty Build";
-
-	public int fsizeString;
-
-	public String text;
-
 	public JFrame panel;
+
+	JMenuItem undoP = new JMenuItem("Undo");
+
+	JMenuItem redoP = new JMenuItem("Redo");
+
+	public static String currentFilePath = "user.dir";
 
 	public JTextField findText = new JTextField();
 
@@ -122,9 +132,10 @@ public class TXE1 extends JFrame {
 	JTree tree = new JTree(fsm);
 
 	JScrollPane scrollTree = new JScrollPane(tree);
-	public Color CoL = Color.YELLOW;
-	public Color Colors = CoL;
-	Highlighter.HighlightPainter HighLight = new highLight(Colors);
+
+	Highlighter.HighlightPainter HighLight = new highLight(CoL);
+
+	public String text;
 
 	// DO NOT CHANGE
 	JSplitPane splitpane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
@@ -140,17 +151,15 @@ public class TXE1 extends JFrame {
 
 	JMenuItem redo = new JMenuItem("Redo");
 
-	JMenuItem undoP = new JMenuItem("Undo");
-
-	JMenuItem redoP = new JMenuItem("Redo");
-
-	JColorChooser CC = new JColorChooser();
-
 	public String colS;
 
-	public static String fileNode;
+	public Color Colors = CoL;
 
-	public TXE1() {
+	public int fsizeString;
+
+	public String currentVersion = "Nighty Build";
+
+	public TXEProgrammer() {
 
 		undoManager = new UndoManager();
 
@@ -158,18 +167,30 @@ public class TXE1 extends JFrame {
 
 		document = new DefaultStyledDocument(styleContext);
 
-		TXEAREA.setDocument(document);
-		TXEAREA.requestFocus(true);
+		// TXEAREA.setDocument(document);
 
 		this.setSize(1000, 1000);
 		TXEAREA.setText(DefualtText);
 		this.setLocationRelativeTo(null);
 		TXEAREA.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-
+		TXEAREA.setAntiAliasingEnabled(true);
+		TXEAREA.setBracketMatchingEnabled(true);
+		TXEAREA.setAnimateBracketMatching(true);
+		TXEAREA.setAutoscrolls(true);
+		TXEAREA.setCloseMarkupTags(true);
+		TXEAREA.setHyperlinksEnabled(true);
+		TXEAREA.setCodeFoldingEnabled(true);
+		TXEAREA.setEOLMarkersVisible(false);
+		TXEAREA.setAutoIndentEnabled(true);
+		CompletionProvider provider = createCompletionProvider();
+		AutoCompletion ac = new AutoCompletion(provider);
+		ac.install(TXEAREA);
 		findText.setToolTipText("Type word or phrase to be found");
 		findText.setSize(50, 200);
 		findText.setText("Type word or phrase to be found here.");
 
+		  
+		
 		this.getContentPane().add(splitpane);
 
 		ImageIcon ImgIc = new ImageIcon(getClass().getResource(
@@ -242,8 +263,8 @@ public class TXE1 extends JFrame {
 		sA.setToolTipText("Select All Text In Document");
 		JMenuItem sAP = new JMenuItem("Select All");
 		sAP.setToolTipText("Select All Text In Document");
-		JMenuItem pT = new JMenuItem("Programmer's Text Pad");
-		pT.setToolTipText("Programmer's Text Pad");
+		JMenuItem pT = new JMenuItem("Open TXE");
+		pT.setToolTipText("Open TXE");
 		JMenuItem sL = new JMenuItem("Text Size Larger");
 		sL.setToolTipText("Text Size Larger");
 		sL.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD,
@@ -314,7 +335,6 @@ public class TXE1 extends JFrame {
 		});
 
 		undo.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					undoManager.undo();
@@ -333,7 +353,6 @@ public class TXE1 extends JFrame {
 				java.awt.event.InputEvent.CTRL_MASK));
 
 		redo.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					undoManager.redo();
@@ -350,6 +369,7 @@ public class TXE1 extends JFrame {
 		redo.setAccelerator(KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
+
 		undoP.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -390,7 +410,7 @@ public class TXE1 extends JFrame {
 		pT.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TXEProgrammer TP = new TXEProgrammer();
+				TXE1 TP = new TXE1();
 
 			}
 		});
@@ -624,7 +644,7 @@ public class TXE1 extends JFrame {
 		settingsFrame.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Settings txesettings = new Settings();
+				SettingsProgrammer txesettings = new SettingsProgrammer();
 				txesettings.setVisible(true);
 			}
 		});
@@ -1189,7 +1209,7 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+		this.setTitle("TXE" + " " + currentVersion + " â€“ " + currentFile);
 
 		this.setVisible(true);
 
@@ -1201,15 +1221,12 @@ public class TXE1 extends JFrame {
 				if (tP != null
 						&& changed == false
 						&& tP.getLastPathComponent().toString()
-								.endsWith(".xml")
+						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".java")
-						|| tP.getLastPathComponent().toString().endsWith(".md")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".txt")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".rtf")
-						|| tP.getLastPathComponent().toString()
+								.endsWith(".java") || tP.getLastPathComponent().toString()
+								.endsWith(".md") || tP.getLastPathComponent().toString()
+								.endsWith(".txt")|| tP.getLastPathComponent().toString()
+								.endsWith(".rtf")|| tP.getLastPathComponent().toString()
 								.endsWith(".form")) {
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
@@ -1217,13 +1234,7 @@ public class TXE1 extends JFrame {
 						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".java")
-						|| tP.getLastPathComponent().toString().endsWith(".md")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".txt")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".rtf")
-						|| tP.getLastPathComponent().toString()
-								.endsWith(".form")) {
+						|| tP.getLastPathComponent().toString().endsWith(".md")) {
 
 					if (JOptionPane.showConfirmDialog(null,
 							"Would you like to save " + currentFile + " ?",
@@ -1489,7 +1500,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = "Untitled Document";
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " â€“ " + currentFile);
 
 			changed = false;
 
@@ -1591,7 +1602,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " â€“ " + currentFile);
 
 			changed = false;
 
@@ -1618,7 +1629,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 			// important
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " â€“ " + currentFile);
 
 			changed = false;
 
@@ -1794,9 +1805,73 @@ public class TXE1 extends JFrame {
 		}
 
 	}
+    
+		private CompletionProvider createCompletionProvider() {
 
+		      // A DefaultCompletionProvider is the simplest concrete implementation
+		      // of CompletionProvider. This provider has no understanding of
+		      // language semantics. It simply checks the text entered up to the
+		      // caret position for a match against known completions. This is all
+		      // that is needed in the majority of cases.
+		      DefaultCompletionProvider provider = new DefaultCompletionProvider();
+
+		      // Add completions for all Java keywords. A BasicCompletion is just
+		      // a straightforward word completion.
+		      provider.addCompletion(new BasicCompletion(provider, "abstract"));
+		      provider.addCompletion(new BasicCompletion(provider, "assert"));
+		      provider.addCompletion(new BasicCompletion(provider, "break"));
+		      provider.addCompletion(new BasicCompletion(provider, "case"));
+		      provider.addCompletion(new BasicCompletion(provider, "catch"));
+		      provider.addCompletion(new BasicCompletion(provider, "class"));
+		      provider.addCompletion(new BasicCompletion(provider, "const"));
+		      provider.addCompletion(new BasicCompletion(provider, "continue"));
+		      provider.addCompletion(new BasicCompletion(provider, "default"));
+		      provider.addCompletion(new BasicCompletion(provider, "do"));
+		      provider.addCompletion(new BasicCompletion(provider, "else"));	
+		      provider.addCompletion(new BasicCompletion(provider, "enum"));
+		      provider.addCompletion(new BasicCompletion(provider, "extends"));
+		      provider.addCompletion(new BasicCompletion(provider, "final"));
+		      provider.addCompletion(new BasicCompletion(provider, "finally"));
+		      provider.addCompletion(new BasicCompletion(provider, "for"));
+		      provider.addCompletion(new BasicCompletion(provider, "goto"));
+		      provider.addCompletion(new BasicCompletion(provider, "if"));
+		      provider.addCompletion(new BasicCompletion(provider, "implements"));
+		      provider.addCompletion(new BasicCompletion(provider, "import"));
+		      provider.addCompletion(new BasicCompletion(provider, "instanceof"));
+		      provider.addCompletion(new BasicCompletion(provider, "interface"));
+		      provider.addCompletion(new BasicCompletion(provider, "native"));
+		      provider.addCompletion(new BasicCompletion(provider, "new"));
+		      provider.addCompletion(new BasicCompletion(provider, "package"));
+		      provider.addCompletion(new BasicCompletion(provider, "private"));
+		      provider.addCompletion(new BasicCompletion(provider, "protected"));
+		      provider.addCompletion(new BasicCompletion(provider, "public"));
+		      provider.addCompletion(new BasicCompletion(provider, "return"));
+		      provider.addCompletion(new BasicCompletion(provider, "static"));
+		      provider.addCompletion(new BasicCompletion(provider, "strictfp"));
+		      provider.addCompletion(new BasicCompletion(provider, "super"));
+		      provider.addCompletion(new BasicCompletion(provider, "switch"));
+		      provider.addCompletion(new BasicCompletion(provider, "synchronized"));
+		      provider.addCompletion(new BasicCompletion(provider, "this"));
+		      provider.addCompletion(new BasicCompletion(provider, "throw"));
+		      provider.addCompletion(new BasicCompletion(provider, "throws"));
+		      provider.addCompletion(new BasicCompletion(provider, "transient"));
+		      provider.addCompletion(new BasicCompletion(provider, "try"));
+		      provider.addCompletion(new BasicCompletion(provider, "void"));
+		      provider.addCompletion(new BasicCompletion(provider, "volatile"));
+		      provider.addCompletion(new BasicCompletion(provider, "while"));
+
+		      // Add a couple of "shorthand" completions. These completions don't
+		      // require the input text to be the same thing as the replacement text.
+		      provider.addCompletion(new ShorthandCompletion(provider, "sysout",
+		            "System.out.println(", "System.out.println("));
+		      provider.addCompletion(new ShorthandCompletion(provider, "syserr",
+		            "System.err.println(", "System.err.println("));
+
+		      return provider;
+
+		}
 	public static void main(String[] args) {
-		TXE1 txe1 = new TXE1();
+		TXEProgrammer txe1 = new TXEProgrammer();
 
 	}
 
