@@ -1201,17 +1201,23 @@ public class TXE1 extends JFrame {
 				if (tP != null
 						&& changed == false
 						&& tP.getLastPathComponent().toString()
-								.endsWith(".xml")
+						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".java")|| tP.getLastPathComponent().toString()
-								.endsWith(".md")) {
+								.endsWith(".java") || tP.getLastPathComponent().toString()
+								.endsWith(".md") || tP.getLastPathComponent().toString()
+								.endsWith(".txt")|| tP.getLastPathComponent().toString()
+								.endsWith(".rtf")|| tP.getLastPathComponent().toString()
+								.endsWith(".form")) {
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
 				} else if (tP.getLastPathComponent().toString()
 						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".java") || tP.getLastPathComponent().toString()
-								.endsWith(".md")) {
+								.endsWith(".md") || tP.getLastPathComponent().toString()
+								.endsWith(".txt")|| tP.getLastPathComponent().toString()
+								.endsWith(".rtf")|| tP.getLastPathComponent().toString()
+								.endsWith(".form")) {
 
 					if (JOptionPane.showConfirmDialog(null,
 							"Would you like to save " + currentFile + " ?",

@@ -1824,7 +1824,7 @@ public class TXEProgrammer extends JFrame {
 		      provider.addCompletion(new BasicCompletion(provider, "continue"));
 		      provider.addCompletion(new BasicCompletion(provider, "default"));
 		      provider.addCompletion(new BasicCompletion(provider, "do"));
-		      provider.addCompletion(new BasicCompletion(provider, "else"));	
+		      provider.addCompletion(new BasicCompletion(provider, "else"));
 		      provider.addCompletion(new BasicCompletion(provider, "enum"));
 		      provider.addCompletion(new BasicCompletion(provider, "extends"));
 		      provider.addCompletion(new BasicCompletion(provider, "final"));
