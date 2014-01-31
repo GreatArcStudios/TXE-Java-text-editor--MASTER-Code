@@ -1223,13 +1223,12 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".rtf")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".form")) {
+								.endsWith(".form")
+						&& JOptionPane.showConfirmDialog(TXEAREA,
+								"Would you like to save " + currentFile + " ?",
+								"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-					if (JOptionPane.showConfirmDialog(null,
-							"Would you like to save " + currentFile + " ?",
-							"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-
-						saveFile(currentFile);
+					saveFile(currentFile);
 
 					System.out.print(tP);
 					readInFile(tP.getLastPathComponent().toString());
