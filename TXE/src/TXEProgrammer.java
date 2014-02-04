@@ -1230,7 +1230,9 @@ public class TXEProgrammer extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".form")
 						|| tP.getLastPathComponent().toString().endsWith(".h")
-						|| tP.getLastPathComponent().toString().endsWith(".c")) {
+						|| tP.getLastPathComponent().toString().endsWith(".c")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".rby")) {
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
 				} else if (tP.getLastPathComponent().toString()
@@ -1245,7 +1247,9 @@ public class TXEProgrammer extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".form")
 						|| tP.getLastPathComponent().toString().endsWith(".h")
-						|| tP.getLastPathComponent().toString().endsWith(".c")) {
+						|| tP.getLastPathComponent().toString().endsWith(".c")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".rby")) {
 
 					if (JOptionPane.showConfirmDialog(null,
 							"Would you like to save " + currentFile + " ?",
