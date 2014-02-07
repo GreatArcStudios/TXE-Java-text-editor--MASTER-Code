@@ -10,9 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -1608,7 +1610,18 @@ public class TXE1 extends JFrame {
 	private void saveFile(String fileName) {
 
 		try {
-
+			txe t = new txe();
+			t.alignment = TXEAREA.getComponentOrientation().toString();
+			t.color = TXEAREA.getForeground().toString();
+			t.text = TXEAREA.getText();
+			t.size = TXEAREA.getFont().getSize();
+			t.font = TXEAREA.getFont().getFontName().toString();
+			t.style = TXEAREA.getFont().getStyle();
+			FileOutputStream fileOut = new FileOutputStream("test.txe");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(t);
+			out.close();
+			fileOut.close();
 			FileWriter fw = new FileWriter(fileName);
 
 			TXEAREA.write(fw);

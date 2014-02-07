@@ -8,9 +8,10 @@ public class txe implements java.io.Serializable {
 	public String fileName;
 	public String text;
 	public String color;
-	public String size;
-	public String style;
+	public int size;
+	public int style;
 	public String editable;
 	public String alignment;
+	public String font;
 	
 }
