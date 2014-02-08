@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="480,442" key="UserLibraryLoadSaveDialog.size"/>
+	<item value="/Users/ericzhu/Downloads/autocomplete_2.5.1" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="false" key="SortMembers.sort_all"/>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
@@ -15,6 +17,9 @@
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="2" key="pageIndex"/>
+	</section>
 	<section name="FatJarPackageWizard">
 		<item value="TXE/TXE Nightly Build.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="Accept - TXE" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
@@ -25,14 +30,18 @@
 			<item value="TXE/TXE Nightly Build.jar"/>
 		</list>
 		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code.xml"/>
 			<item value=".xml"/>
 		</list>
+	</section>
+	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
-	<section name="quick_assist_proposal_size">
+	<section name="ClasspathContainerSelectionPage">
+		<item value="3" key="index"/>
 	</section>
 	<section name="BreadcrumbItemDropDown">
 	</section>

@@ -3,4 +3,11 @@
 <fullyQualifiedTypeName name="java.awt.Event"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
+<fullyQualifiedTypeName name="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.CompletionProvider"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.AutoCompletion"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.DefaultCompletionProvider"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.BasicCompletion"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 </qualifiedTypeNameHistroy>

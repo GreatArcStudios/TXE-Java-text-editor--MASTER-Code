@@ -10,10 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -1583,13 +1585,22 @@ public class TXE1 extends JFrame {
 	public void readInFile(String fileName) {
 
 		try {
-
-			FileReader fr = new FileReader(fileName);
-
-			TXEAREA.read(fr, null);
-
-			fr.close();
-
+			txe t = new txe();
+			FileInputStream fileIn = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			t = (txe) in.readObject();
+			in.close();
+			fileIn.close();
+			TXEAREA.setText(t.text);
+			TXEAREA.setFont(t.font);
+			TXEAREA.setForeground(t.color);
+			/**
+			 * FileReader fr = new FileReader(fileName);
+			 * 
+			 * TXEAREA.read(fr, null);
+			 * 
+			 * fr.close();
+			 **/
 			currentFile = fileName;
 
 			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
@@ -1598,7 +1609,7 @@ public class TXE1 extends JFrame {
 
 		}
 
-		catch (IOException e) {
+		catch (IOException | ClassNotFoundException e) {
 
 			JOptionPane.showMessageDialog(this, "TXE can not find the file: "
 					+ fileName);
@@ -1610,14 +1621,16 @@ public class TXE1 extends JFrame {
 	private void saveFile(String fileName) {
 
 		try {
+			currentFile = fileName;
 			txe t = new txe();
 			t.alignment = TXEAREA.getComponentOrientation().toString();
-			t.color = TXEAREA.getForeground().toString();
+			t.color = TXEAREA.getForeground();
 			t.text = TXEAREA.getText();
 			t.size = TXEAREA.getFont().getSize();
-			t.font = TXEAREA.getFont().getFontName().toString();
+			t.font = TXEAREA.getFont();
 			t.style = TXEAREA.getFont().getStyle();
-			FileOutputStream fileOut = new FileOutputStream("test.txe");
+			FileOutputStream fileOut = new FileOutputStream(currentFile
+					+ ".txe");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(t);
 			out.close();
@@ -1628,7 +1641,6 @@ public class TXE1 extends JFrame {
 
 			fw.close();
 
-			currentFile = fileName;
 			// important
 			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
 
