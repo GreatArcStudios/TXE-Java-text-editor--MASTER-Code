@@ -1594,7 +1594,6 @@ public class TXE1 extends JFrame {
 			TXEAREA.setText(t.text);
 			TXEAREA.setFont(t.font);
 			TXEAREA.setForeground(t.color);
-			TXEAREA.setComponentOrientation(t.alignment);
 			/**
 			 * FileReader fr = new FileReader(fileName);
 			 * 
@@ -1624,7 +1623,7 @@ public class TXE1 extends JFrame {
 		try {
 			currentFile = fileName;
 			txe t = new txe();
-			t.alignment = TXEAREA.getComponentOrientation();
+			t.alignment = TXEAREA.getComponentOrientation().toString();
 			t.color = TXEAREA.getForeground();
 			t.text = TXEAREA.getText();
 			t.size = TXEAREA.getFont().getSize();

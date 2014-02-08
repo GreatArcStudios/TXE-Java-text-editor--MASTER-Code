@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Font;
 
 
@@ -15,7 +14,7 @@ public class txe implements java.io.Serializable {
 	public int size;
 	public int style;
 	public String editable;
-	public ComponentOrientation alignment;
+	public String alignment;
 	public Font font;
 	
 }
