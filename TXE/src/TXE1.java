@@ -154,6 +154,8 @@ public class TXE1 extends JFrame {
 
 	public static String fileNode;
 
+	public boolean isTxe = true;
+
 	public TXE1() {
 
 		undoManager = new UndoManager();
@@ -1215,7 +1217,7 @@ public class TXE1 extends JFrame {
 								.endsWith(".rtf")
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".form")) {
-					readInFile(tP.getLastPathComponent().toString());
+					readInPlainText(tP.getLastPathComponent().toString());
 					System.out.print(tP);
 				} else if (tP.getLastPathComponent().toString()
 						.endsWith(".xml")
@@ -1227,15 +1229,14 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".rtf")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".form")
-						&& JOptionPane.showConfirmDialog(TXEAREA,
+								.endsWith(".form")) {
+					if(JOptionPane.showConfirmDialog(TXEAREA,
 								"Would you like to save " + currentFile + " ?",
-								"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-
+								"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
 					saveFile(currentFile);
-
+					}
 					System.out.print(tP);
-					readInFile(tP.getLastPathComponent().toString());
+					readInPlainText(tP.getLastPathComponent().toString());
 				}
 			}
 		});
@@ -1618,7 +1619,33 @@ public class TXE1 extends JFrame {
 		}
 
 	}
+	public void readInPlainText(String fileName) {
 
+		try {
+			
+			
+			 FileReader fr = new FileReader(fileName);
+			  
+			  TXEAREA.read(fr, null);
+			  
+			  fr.close();
+			 
+			currentFile = fileName;
+
+			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+
+			changed = false;
+
+		}
+
+		catch (IOException e) {
+
+			JOptionPane.showMessageDialog(this, "TXE can not find the file: "
+					+ fileName);
+
+		}
+
+	}
 	private void saveFile(String fileName) {
 
 		try {
@@ -1630,6 +1657,8 @@ public class TXE1 extends JFrame {
 			t.size = TXEAREA.getFont().getSize();
 			t.font = TXEAREA.getFont();
 			t.style = TXEAREA.getFont().getStyle();
+			t.cPos = TXEAREA.getCaretPosition();
+
 			FileOutputStream fileOut = new FileOutputStream(currentFile
 					+ ".txe");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);

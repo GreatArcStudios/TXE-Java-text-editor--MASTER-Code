@@ -17,5 +17,5 @@ public class txe implements java.io.Serializable {
 	public String editable;
 	public ComponentOrientation alignment;
 	public Font font;
-	
+	public int cPos;
 }
