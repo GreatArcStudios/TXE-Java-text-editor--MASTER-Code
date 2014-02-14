@@ -1216,9 +1216,18 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".rtf")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".form")) {
-					readInPlainText(tP.getLastPathComponent().toString());
+								.endsWith(".form")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".txe")) {
+
+					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
+						readInFile(tP.getLastPathComponent().toString());
+					} else {
+						readInPlainText(tP.getLastPathComponent().toString());
+					}
+
 					System.out.print(tP);
+
 				} else if (tP.getLastPathComponent().toString()
 						.endsWith(".xml")
 						|| tP.getLastPathComponent().toString()
@@ -1229,14 +1238,23 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".rtf")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".form")) {
-					if(JOptionPane.showConfirmDialog(TXEAREA,
-								"Would you like to save " + currentFile + " ?",
-								"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-					saveFile(currentFile);
+								.endsWith(".form")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".txe")) {
+					if (JOptionPane.showConfirmDialog(TXEAREA,
+							"Would you like to save " + currentFile + " ?",
+							"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						saveFile(currentFile);
+
 					}
 					System.out.print(tP);
-					readInPlainText(tP.getLastPathComponent().toString());
+					
+					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
+						readInFile(tP.getLastPathComponent().toString());
+					} else {
+						readInPlainText(tP.getLastPathComponent().toString());
+					}
+
 				}
 			}
 		});
@@ -1587,11 +1605,11 @@ public class TXE1 extends JFrame {
 
 		try {
 			txe t = new txe();
-			FileInputStream fileIn = new FileInputStream(fileName);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
+			FileInputStream fileRead = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fileRead);
 			t = (txe) in.readObject();
 			in.close();
-			fileIn.close();
+			fileRead.close();
 			TXEAREA.setText(t.text);
 			TXEAREA.setFont(t.font);
 			TXEAREA.setForeground(t.color);
@@ -1613,23 +1631,23 @@ public class TXE1 extends JFrame {
 
 		catch (IOException | ClassNotFoundException e) {
 
-			JOptionPane.showMessageDialog(this, "TXE can not find the file: "
-					+ fileName);
+			// JOptionPane.showMessageDialog(this, "TXE can not find the file: "
+			// + fileName);
 
 		}
 
 	}
+
 	public void readInPlainText(String fileName) {
 
 		try {
-			
-			
-			 FileReader fr = new FileReader(fileName);
-			  
-			  TXEAREA.read(fr, null);
-			  
-			  fr.close();
-			 
+
+			FileReader fr = new FileReader(fileName);
+
+			TXEAREA.read(fr, null);
+
+			fr.close();
+
 			currentFile = fileName;
 
 			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
@@ -1646,6 +1664,7 @@ public class TXE1 extends JFrame {
 		}
 
 	}
+
 	private void saveFile(String fileName) {
 
 		try {
