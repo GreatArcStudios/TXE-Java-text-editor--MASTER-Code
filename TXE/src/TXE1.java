@@ -1218,7 +1218,9 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".form")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".txe")) {
+								.endsWith(".txe")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".ini")) {
 
 					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
 						readInFile(tP.getLastPathComponent().toString());
@@ -1240,15 +1242,18 @@ public class TXE1 extends JFrame {
 						|| tP.getLastPathComponent().toString()
 								.endsWith(".form")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".txe")) {
+								.endsWith(".txe")
+						|| tP.getLastPathComponent().toString()
+								.endsWith(".ini")) {
 					if (JOptionPane.showConfirmDialog(TXEAREA,
 							"Would you like to save " + currentFile + " ?",
 							"Save", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
 						saveFile(currentFile);
 
 					}
 					System.out.print(tP);
-					
+
 					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
 						readInFile(tP.getLastPathComponent().toString());
 					} else {

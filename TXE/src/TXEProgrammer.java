@@ -207,6 +207,7 @@ public class TXEProgrammer extends JFrame {
 		JMenuItem About = new JMenuItem("About");
 		JMenu format = new JMenu("Format");
 		JMenu TXESettings = new JMenu("Tools");
+		JMenu codeEx = new JMenu("Examples");
 		TXESettings.setToolTipText("Extra apps and settings.");
 		JMenuItem settingsFrame = new JMenuItem("Settings");
 		JMenuItem addwebsite = new JMenuItem("Add Website Signature");
@@ -320,6 +321,8 @@ public class TXEProgrammer extends JFrame {
 		csAP.setToolTipText("Align text middle");
 		JMenuItem tts = new JMenuItem("Text To Speech");
 		tts.setToolTipText("Text To Speech");
+		JMenuItem hwsJ = new JMenuItem("Hello World Java");
+		hwsJ.setToolTipText("Hello World Java");
 
 		JButton findButton = new JButton("Find");
 
@@ -1009,6 +1012,15 @@ public class TXEProgrammer extends JFrame {
 
 			}
 		});
+		hwsJ.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+				TXEAREA.setText("public class helloWorld {					public static void main(String[] args) {			System.out.println('Hello World');}}");
+
+			}
+
+		});
 		// Popupmenu
 		// Note the naming of these components for the popup menu is the normal
 		// component and with a p for Popupmenu
@@ -1083,6 +1095,10 @@ public class TXEProgrammer extends JFrame {
 		JMB.add(edit);
 		JMB.add(format);
 		JMB.add(TXESettings);
+		JMB.add(codeEx);
+
+		// Code examples
+		codeEx.add(hwsJ);
 
 		// file menu items
 		file.add(About);
@@ -1201,7 +1217,7 @@ public class TXEProgrammer extends JFrame {
 
 		SaveAs.setEnabled(false);
 
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		this.pack();
 
@@ -1232,7 +1248,25 @@ public class TXEProgrammer extends JFrame {
 						|| tP.getLastPathComponent().toString().endsWith(".h")
 						|| tP.getLastPathComponent().toString().endsWith(".c")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".rby")) {
+								.endsWith(".rby")
+						|| tP.getLastPathComponent().toString().endsWith(".vb")) {
+					if (tP.getLastPathComponent().toString().endsWith(".java")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".c")
+							|| tP.getLastPathComponent().toString()
+									.endsWith(".h")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".xml")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".rby")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_RUBY);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".vb")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_VISUAL_BASIC);
+					}
 					readInFile(tP.getLastPathComponent().toString());
 					System.out.print(tP);
 				} else if (tP.getLastPathComponent().toString()
@@ -1249,7 +1283,8 @@ public class TXEProgrammer extends JFrame {
 						|| tP.getLastPathComponent().toString().endsWith(".h")
 						|| tP.getLastPathComponent().toString().endsWith(".c")
 						|| tP.getLastPathComponent().toString()
-								.endsWith(".rby")) {
+								.endsWith(".rby")
+						|| tP.getLastPathComponent().toString().endsWith(".vb")) {
 
 					if (JOptionPane.showConfirmDialog(null,
 							"Would you like to save " + currentFile + " ?",
@@ -1258,7 +1293,26 @@ public class TXEProgrammer extends JFrame {
 						saveFile(currentFile);
 
 					System.out.print(tP);
+					if (tP.getLastPathComponent().toString().endsWith(".java")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".xml")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
+					}
+
+					if (tP.getLastPathComponent().toString().endsWith(".c")
+							|| tP.getLastPathComponent().toString()
+									.endsWith(".h")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_C);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".rby")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_RUBY);
+					}
+					if (tP.getLastPathComponent().toString().endsWith(".vb")) {
+						TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_VISUAL_BASIC);
+					}
 					readInFile(tP.getLastPathComponent().toString());
+
 				}
 			}
 		});
@@ -1490,7 +1544,18 @@ public class TXEProgrammer extends JFrame {
 			saveOld();
 
 			if (dialog.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-
+				if(dialog.getSelectedFile().getAbsoluteFile().toString().endsWith(".java")){
+					TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+				}
+				if(dialog.getSelectedFile().getAbsoluteFile().toString().endsWith(".vb")){
+					TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_VISUAL_BASIC);
+				}
+				if(dialog.getSelectedFile().getAbsoluteFile().toString().endsWith(".rby")){
+					TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_RUBY);
+				}
+				if(dialog.getSelectedFile().getAbsoluteFile().toString().endsWith(".xml")){
+					TXEAREA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_XML);
+				}
 				readInFile(dialog.getSelectedFile().getAbsolutePath());
 
 				currentFilePath = dialog.getSelectedFile().getAbsolutePath();
