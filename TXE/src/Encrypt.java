@@ -21,7 +21,8 @@ import javax.swing.text.DefaultEditorKit;
 public class Encrypt extends javax.swing.JFrame {
 	byte[] input;
 	byte[] keyBytes = "12345678".getBytes();
-	byte[] ivBytes = "input476".getBytes();
+	byte[] ivBytes = "keyss125"
+			.getBytes();
 	SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
 	IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
 	Cipher cipher;
@@ -123,7 +124,7 @@ public class Encrypt extends javax.swing.JFrame {
 		jLabel2.setText("Encrypt Text Here");
 
 		jLabel3.setFont(new java.awt.Font("Batang", 0, 13)); // NOI18N
-		jLabel3.setText("Text Encryption Version 1.0");
+		jLabel3.setText("Text Encryption Version 1.2.1.0");
 
 		jMenu1.setText("File");
 
@@ -248,15 +249,35 @@ public class Encrypt extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+		try {
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			input = jTextArea1.getText().getBytes();
+			SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
+			IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+			cipher = Cipher.getInstance("DES/OFB8/NoPadding", "BC");
+			cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
+			cipherText = new byte[cipher.getOutputSize(input.length)];
+			ctLength = cipher.update(input, 0, input.length, cipherText, 0);
+			ctLength += cipher.doFinal(cipherText, ctLength);
+			jTextArea3.setText(new String(cipherText));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
+	}// GEN-LAST:event_jButton1ActionPerformed
+
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		try {
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
+			IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
 			cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
 			byte[] plainText = new byte[cipher.getOutputSize(ctLength)];
 			int ptLength = cipher.update(cipherText, 0, ctLength, plainText, 0);
 			ptLength += cipher.doFinal(plainText, ptLength);
 
 			jTextArea2.setText(new String(plainText));
-
+			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -276,23 +297,6 @@ public class Encrypt extends javax.swing.JFrame {
 		about.setVisible(true);
 	}// GEN-LAST:event_jMenuItem6ActionPerformed
 
-	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		try {
-			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			input = jTextArea1.getText().getBytes();
-			SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
-			IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-			cipher = Cipher.getInstance("DES/OFB8/NoPadding", "BC");
-			cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
-			cipherText = new byte[cipher.getOutputSize(input.length)];
-			ctLength = cipher.update(input, 0, input.length, cipherText, 0);
-			ctLength += cipher.doFinal(cipherText, ctLength);
-			jTextArea3.setText(new String(cipherText));
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
-		}
-	}// GEN-LAST:event_jButton1ActionPerformed
-
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -307,27 +311,7 @@ public class Encrypt extends javax.swing.JFrame {
 		 * http://download.oracle.com/javase
 		 * /tutorial/uiswing/lookandfeel/plaf.html
 		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
-					.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Encrypt.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Encrypt.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Encrypt.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Encrypt.class.getName()).log(
-					java.util.logging.Level.SEVERE, null, ex);
-		}
+		
 		// </editor-fold>
 
 		/* Create and display the form */
