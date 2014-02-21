@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +37,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -47,6 +49,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
@@ -557,13 +560,14 @@ public class TXE1 extends JFrame {
 				/**
 				 * TXESHOT txesh = new TXESHOT(); txesh.setVisible(true);
 				 **/
+				MySnipTool cp = new MySnipTool();
+
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
 						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
-				try {
+				/**try {
 
-					Rectangle screenshotRect = new Rectangle(Toolkit
-							.getDefaultToolkit().getScreenSize());
+					Rectangle screenshotRect = new Rectangle(cp.selectionBounds);
 					BufferedImage Capture = new Robot()
 							.createScreenCapture(screenshotRect);
 					// JFrame frame = new JFrame();
@@ -583,10 +587,11 @@ public class TXE1 extends JFrame {
 					JOptionPane.showMessageDialog(getParent(),
 							"Error processing image...");
 
-				}
+				}*/
 			}
 
 		});
+
 		coL.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1858,6 +1863,144 @@ public class TXE1 extends JFrame {
 				System.out.print("->" + elements[i]);
 			}
 			System.out.println();
+		}
+	}
+
+	public static class MySnipTool {
+
+		public static void main(String[] args) {
+			new MySnipTool();
+		}
+
+		public MySnipTool() {
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						UIManager.setLookAndFeel(UIManager
+								.getSystemLookAndFeelClassName());
+					} catch (ClassNotFoundException | InstantiationException
+							| IllegalAccessException
+							| UnsupportedLookAndFeelException ex) {
+					}
+
+					JFrame frame = new JFrame("Testing");
+					frame.setUndecorated(true);
+					frame.setBackground(new Color(0, 0, 0, 0));
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setLayout(new BorderLayout());
+					frame.add(new CapturePane());
+					Rectangle bounds = getVirtualBounds();
+					frame.setLocation(bounds.getLocation());
+					frame.setSize(bounds.getSize());
+					frame.setAlwaysOnTop(true);
+					frame.setVisible(true);
+
+				}
+			});
+		}
+
+		public static class CapturePane extends JPanel {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			private static Rectangle selectionBounds;
+			private  Point clickPoint;
+
+			public CapturePane() {
+				setOpaque(false);
+
+				MouseAdapter mouseHandler = new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if (SwingUtilities.isLeftMouseButton(e)
+								&& e.getClickCount() == 2) {
+							/**
+							 * try{ Rectangle screenshotRect = new
+							 * Rectangle(selectionBounds.getBounds());
+							 * BufferedImage Capture = new
+							 * Robot().createScreenCapture(screenshotRect);
+							 * ImageIO.write(Capture, "png", new File("sc"));
+							 * }catch (Exception ex){ System.err.print(ex); }
+							 **/
+							
+						}
+					}
+
+					@Override
+					public void mousePressed(MouseEvent e) {
+						clickPoint = e.getPoint();
+						selectionBounds = null;
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent e) {
+						Date date = new Date();
+						SimpleDateFormat sdt = new SimpleDateFormat(
+								"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
+						try {
+							Rectangle screenshotRect = new Rectangle(
+									selectionBounds.getBounds());
+							BufferedImage Capture = new Robot()
+									.createScreenCapture(screenshotRect);
+							ImageIO.write(Capture, "png", new File("TXEScreenshot"+sdt.format(date)+".png"));
+						} catch (IOException | AWTException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+						clickPoint = null;
+					}
+
+					@Override
+					public void mouseDragged(MouseEvent e) {
+						Point dragPoint = e.getPoint();
+						int x = Math.min(clickPoint.x, dragPoint.x);
+						int y = Math.min(clickPoint.y, dragPoint.y);
+						int width = Math.max(clickPoint.x - dragPoint.x,
+								dragPoint.x - clickPoint.x);
+						int height = Math.max(clickPoint.y - dragPoint.y,
+								dragPoint.y - clickPoint.y);
+						selectionBounds = new Rectangle(x, y, width, height);
+						repaint();
+					}
+				};
+
+				addMouseListener(mouseHandler);
+				addMouseMotionListener(mouseHandler);
+			}
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				Graphics2D g2d = (Graphics2D) g.create();
+				g2d.setColor(new Color(255, 255, 255, 128));
+
+				Area fill = new Area(new Rectangle(new Point(0, 0), getSize()));
+				if (selectionBounds != null) {
+					fill.subtract(new Area(selectionBounds));
+				}
+				g2d.fill(fill);
+				if (selectionBounds != null) {
+					g2d.setColor(Color.BLACK);
+					g2d.draw(selectionBounds);
+				}
+				g2d.dispose();
+			}
+		}
+
+		public static Rectangle getVirtualBounds() {
+			Rectangle bounds = new Rectangle(0, 0, 0, 0);
+
+			GraphicsEnvironment ge = GraphicsEnvironment
+					.getLocalGraphicsEnvironment();
+			GraphicsDevice lstGDs[] = ge.getScreenDevices();
+			for (GraphicsDevice gd : lstGDs) {
+				bounds.add(gd.getDefaultConfiguration().getBounds());
+			}
+			return bounds;
 		}
 	}
 
