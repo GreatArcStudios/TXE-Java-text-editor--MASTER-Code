@@ -69,6 +69,9 @@ import javax.swing.tree.TreePath;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.UndoManager;
 
+import org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel;
+import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
+
 import say.swing.JFontChooser;
 
 import com.sun.speech.*;
@@ -565,29 +568,27 @@ public class TXE1 extends JFrame {
 				Date date = new Date();
 				SimpleDateFormat sdt = new SimpleDateFormat(
 						"E MM.dd.yyyy 'at' hh:mm:ss a zzz");
-				/**try {
-
-					Rectangle screenshotRect = new Rectangle(cp.selectionBounds);
-					BufferedImage Capture = new Robot()
-							.createScreenCapture(screenshotRect);
-					// JFrame frame = new JFrame();
-					// frame.setVisible(true);
-					// frame.setResizable(false);
-					// frame.setSize(500,50);
-					// frame.add(saveField);
-					// saveField.setText("Screenshot name.png");
-					ImageIO.write(Capture, "png", new File("TXE Screenshot "
-							+ sdt.format(date) + ".png"));
-					JOptionPane
-							.showMessageDialog(
-									getParent(),
-									"Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot.png.");
-				} catch (Exception ex) {
-
-					JOptionPane.showMessageDialog(getParent(),
-							"Error processing image...");
-
-				}*/
+				/**
+				 * try {
+				 * 
+				 * Rectangle screenshotRect = new Rectangle(cp.selectionBounds);
+				 * BufferedImage Capture = new Robot()
+				 * .createScreenCapture(screenshotRect); // JFrame frame = new
+				 * JFrame(); // frame.setVisible(true); //
+				 * frame.setResizable(false); // frame.setSize(500,50); //
+				 * frame.add(saveField); //
+				 * saveField.setText("Screenshot name.png");
+				 * ImageIO.write(Capture, "png", new File("TXE Screenshot " +
+				 * sdt.format(date) + ".png")); JOptionPane .showMessageDialog(
+				 * getParent(),
+				 * "Your file has been saved, please change the file name to prevent overwriting. It was saved under the name TXE Screenshot.png."
+				 * ); } catch (Exception ex) {
+				 * 
+				 * JOptionPane.showMessageDialog(getParent(),
+				 * "Error processing image...");
+				 * 
+				 * }
+				 */
 			}
 
 		});
@@ -1200,11 +1201,11 @@ public class TXE1 extends JFrame {
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+		this.setTitle("TXE" + " " + currentVersion + " ï¿½ " + currentFile);
 
 		this.setVisible(true);
 
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
+                    tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			public void valueChanged(TreeSelectionEvent e) {
 
@@ -1256,7 +1257,8 @@ public class TXE1 extends JFrame {
 
 						saveFile(currentFile);
 
-					}
+					}   
+                                       
 					System.out.print(tP);
 
 					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
@@ -1521,7 +1523,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = "Untitled Document";
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " ï¿½ " + currentFile);
 
 			changed = false;
 
@@ -1633,7 +1635,7 @@ public class TXE1 extends JFrame {
 			 **/
 			currentFile = fileName;
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " ï¿½ " + currentFile);
 
 			changed = false;
 
@@ -1660,7 +1662,7 @@ public class TXE1 extends JFrame {
 
 			currentFile = fileName;
 
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " ï¿½ " + currentFile);
 
 			changed = false;
 
@@ -1701,7 +1703,7 @@ public class TXE1 extends JFrame {
 			fw.close();
 
 			// important
-			setTitle("TXE" + " " + currentVersion + " Ð " + currentFile);
+			setTitle("TXE" + " " + currentVersion + " ï¿½ " + currentFile);
 
 			changed = false;
 
@@ -1870,64 +1872,51 @@ public class TXE1 extends JFrame {
 
 		public static void main(String[] args) {
 			new MySnipTool();
+
 		}
 
 		public MySnipTool() {
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						UIManager.setLookAndFeel(UIManager
-								.getSystemLookAndFeelClassName());
-					} catch (ClassNotFoundException | InstantiationException
-							| IllegalAccessException
-							| UnsupportedLookAndFeelException ex) {
+			final CapturePane cp = new CapturePane();
+			final JFrame frame = new JFrame("Testing");
+			frame.setUndecorated(true);
+			frame.setBackground(new Color(0, 0, 0, 0));
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			frame.setLayout(new BorderLayout());
+			frame.add(cp);
+			Rectangle bounds = getVirtualBounds();
+			frame.setLocation(bounds.getLocation());
+			frame.setSize(bounds.getSize());
+			frame.setVisible(true);
+			MouseAdapter mouseHandler = new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					if (SwingUtilities.isLeftMouseButton(e)
+							&& e.getClickCount() == 2) {
+							
+						frame.getContentPane().remove(cp);
+						frame.repaint();
+						frame.dispose();
+						frame.repaint();
+
 					}
-
-					JFrame frame = new JFrame("Testing");
-					frame.setUndecorated(true);
-					frame.setBackground(new Color(0, 0, 0, 0));
-					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					frame.setLayout(new BorderLayout());
-					frame.add(new CapturePane());
-					Rectangle bounds = getVirtualBounds();
-					frame.setLocation(bounds.getLocation());
-					frame.setSize(bounds.getSize());
-					frame.setAlwaysOnTop(true);
-					frame.setVisible(true);
-
 				}
-			});
+			};
+			frame.addMouseListener(mouseHandler);
+			
 		}
 
-		public static class CapturePane extends JPanel {
+		public final static class CapturePane extends JPanel {
 
 			/**
 			 * 
 			 */
 			private static final long serialVersionUID = 1L;
 			private static Rectangle selectionBounds;
-			private  Point clickPoint;
+			private Point clickPoint;
 
 			public CapturePane() {
 				setOpaque(false);
-
+				
 				MouseAdapter mouseHandler = new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						if (SwingUtilities.isLeftMouseButton(e)
-								&& e.getClickCount() == 2) {
-							/**
-							 * try{ Rectangle screenshotRect = new
-							 * Rectangle(selectionBounds.getBounds());
-							 * BufferedImage Capture = new
-							 * Robot().createScreenCapture(screenshotRect);
-							 * ImageIO.write(Capture, "png", new File("sc"));
-							 * }catch (Exception ex){ System.err.print(ex); }
-							 **/
-							
-						}
-					}
 
 					@Override
 					public void mousePressed(MouseEvent e) {
@@ -1945,7 +1934,11 @@ public class TXE1 extends JFrame {
 									selectionBounds.getBounds());
 							BufferedImage Capture = new Robot()
 									.createScreenCapture(screenshotRect);
-							ImageIO.write(Capture, "png", new File("TXEScreenshot"+sdt.format(date)+".png"));
+							ImageIO.write(Capture, "png", new File(
+									"TXEScreenshot " + sdt.format(date)
+											+ ".png"));
+							JOptionPane.showMessageDialog(null, "Saved!");
+							
 						} catch (IOException | AWTException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -1956,6 +1949,7 @@ public class TXE1 extends JFrame {
 
 					@Override
 					public void mouseDragged(MouseEvent e) {
+						
 						Point dragPoint = e.getPoint();
 						int x = Math.min(clickPoint.x, dragPoint.x);
 						int y = Math.min(clickPoint.y, dragPoint.y);
@@ -2018,7 +2012,14 @@ public class TXE1 extends JFrame {
 
 	public static void main(String[] args) {
 		TXE1 txe1 = new TXE1();
-
+		 try {
+			UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+			UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel");
+		} catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 	}
 
 }

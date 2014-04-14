@@ -16,4 +16,10 @@
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="java.awt.ComponentOrientation"/>
 <fullyQualifiedTypeName name="org.fife.ui.rsyntaxtextarea.SyntaxConstants"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.SubstanceLookAndFeel"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.GraphiteGlassSkin"/>
 </qualifiedTypeNameHistroy>

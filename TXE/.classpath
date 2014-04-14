@@ -16,8 +16,10 @@
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/freetts-jsapi10.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/freetts.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/mbrola.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/untitled folder/downloads feb 2014\/autocomplete_2.5.1/autocomplete.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/ericzhu/Desktop/untitled folder/downloads feb 2014\/rsyntaxtextarea_2.5.1/rsyntaxtextarea.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/autocomplete.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/rsyntaxtextarea.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/substance-6.2.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/trident-6.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
