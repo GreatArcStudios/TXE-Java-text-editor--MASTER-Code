@@ -119,6 +119,8 @@ public class TXE1 extends JFrame {
 	public int fsizeString;
 
 	public String text;
+	
+	public static String osName;
 
 	public JFrame panel;
 
@@ -1197,11 +1199,11 @@ public class TXE1 extends JFrame {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		this.pack();
+
 
 		TXEAREA.addKeyListener(k1);
 
-		this.setTitle("TXE" + " " + currentVersion + " � " + currentFile);
+		this.setTitle("TXE" + " " + currentVersion + "-" + currentFile);
 
 		this.setVisible(true);
 
@@ -1321,7 +1323,7 @@ public class TXE1 extends JFrame {
 	public void nativeActionPerformed(java.awt.event.ActionEvent e) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
+			SwingUtilities.updateComponentTreeUI(this);
 		} catch (Exception exc) {
 		}
 	}
@@ -1999,7 +2001,7 @@ public class TXE1 extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Highlighter Code 
 	 * @author ericzhu, and ProgrammingKnowledge
 	 * 
 	 */
@@ -2010,15 +2012,27 @@ public class TXE1 extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-		TXE1 txe1 = new TXE1();
-		 try {
-			UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
-			UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel");
-		} catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		 //UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+		osName = System.getProperty("os.name");
+        System.out.print(osName);
+        if (osName == "Mac OS X"){
+        	System.setProperty("apple.laf.useScreenMenuBar", "true"); 
+        	System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TXE");
+        }
+		
+       
+		
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	
+            	TXE1 txe1 = new TXE1();
+             
+                
+            }
+        });
+		
+		
         
 	}
 
