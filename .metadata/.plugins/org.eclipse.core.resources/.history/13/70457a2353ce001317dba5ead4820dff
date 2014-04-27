@@ -2013,7 +2013,8 @@ public class TXE1 extends JFrame {
 	}
 
 	public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-		 
+		 UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+		 SwingUtilities.updateComponentTreeUI(this);
 		osName = System.getProperty("os.name");
         System.out.print(osName);
         if (osName == "Mac OS X"){
@@ -2027,13 +2028,7 @@ public class TXE1 extends JFrame {
             public void run() {
             	
             	TXE1 txe1 = new TXE1();
-            	try {
-					UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
-				} catch (UnsupportedLookAndFeelException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-          		 SwingUtilities.updateComponentTreeUI(txe1);
+             
                 
             }
         });

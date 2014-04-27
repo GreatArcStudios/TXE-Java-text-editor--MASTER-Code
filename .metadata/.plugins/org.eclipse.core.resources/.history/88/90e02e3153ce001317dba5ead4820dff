@@ -2033,7 +2033,7 @@ public class TXE1 extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-          		 SwingUtilities.updateComponentTreeUI(txe1);
+       		 SwingUtilities.updateComponentTreeUI(txe1);
                 
             }
         });

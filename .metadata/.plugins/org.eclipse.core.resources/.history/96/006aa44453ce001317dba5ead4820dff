@@ -2029,11 +2029,12 @@ public class TXE1 extends JFrame {
             	TXE1 txe1 = new TXE1();
             	try {
 					UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+					SwingUtilities.updateComponentTreeUI(txe1);
 				} catch (UnsupportedLookAndFeelException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-          		 SwingUtilities.updateComponentTreeUI(txe1);
+       		 
                 
             }
         });
