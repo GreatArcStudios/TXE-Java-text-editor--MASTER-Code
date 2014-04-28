@@ -1,10 +1,6 @@
 <head><link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <style>
-body {
-  font-family: 'Open Sans';
-  font-size: 48px;
-  text-shadow: 4px 4px 4px #aaa;
-}
+
 </style>
 </head>
 <body>
