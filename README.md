@@ -3,13 +3,13 @@
 
 </style>
 </head>
-<body>
+
 <h1><b>STATUS:</b></h1><h2>Working and new nightly builds coming!</h2>
-=
+
 
 ![TXE](http://i.imgur.com/V3vxGWH.png "TXE")
 
-TXE-MASTER-Code Resopsitory 
+<span style = 'Open Sans'> TXE-MASTER-Code Resopsitory </span> 
 ===============
 
 Watch the TXE development happen, with new code updated frequently and with a nightly build!
@@ -173,4 +173,4 @@ into the project folder, from either finder or Windows Explorer.
 
 
 <p>9.Please share or report your versions of TXE to the community.</p>
-</body>
+
