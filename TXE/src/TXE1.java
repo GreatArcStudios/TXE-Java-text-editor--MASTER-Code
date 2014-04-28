@@ -119,7 +119,7 @@ public class TXE1 extends JFrame {
 	public int fsizeString;
 
 	public String text;
-	
+
 	public static String osName;
 
 	public JFrame panel;
@@ -317,6 +317,7 @@ public class TXE1 extends JFrame {
 		tts.setToolTipText("Text To Speech");
 
 		JButton findButton = new JButton("Find");
+		JButton viewHtml = new JButton("Preview HTML");
 
 		document.addUndoableEditListener(new UndoableEditListener() {
 			@Override
@@ -440,6 +441,14 @@ public class TXE1 extends JFrame {
 			}
 		});
 
+		viewHtml.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				viewHtml vH = new viewHtml();
+				vH.setVisible(true);
+			}
+		});
 		sA.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1192,14 +1201,14 @@ public class TXE1 extends JFrame {
 		TXEBAR.addSeparator();
 		TXEBAR.add(findButton);
 		TXEBAR.add(findText);
-
+		TXEBAR.addSeparator();
+		TXEBAR.add(viewHtml);
+		
 		Save.setEnabled(false);
 
 		SaveAs.setEnabled(false);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-
 
 		TXEAREA.addKeyListener(k1);
 
@@ -1207,7 +1216,7 @@ public class TXE1 extends JFrame {
 
 		this.setVisible(true);
 
-                    tree.addTreeSelectionListener(new TreeSelectionListener() {
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
 
 			public void valueChanged(TreeSelectionEvent e) {
 
@@ -1259,8 +1268,8 @@ public class TXE1 extends JFrame {
 
 						saveFile(currentFile);
 
-					}   
-                                       
+					}
+
 					System.out.print(tP);
 
 					if (tP.getLastPathComponent().toString().endsWith(".txe") == true) {
@@ -1893,7 +1902,7 @@ public class TXE1 extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					if (SwingUtilities.isLeftMouseButton(e)
 							&& e.getClickCount() == 2) {
-							
+
 						frame.getContentPane().remove(cp);
 						frame.repaint();
 						frame.dispose();
@@ -1903,7 +1912,7 @@ public class TXE1 extends JFrame {
 				}
 			};
 			frame.addMouseListener(mouseHandler);
-			
+
 		}
 
 		public final static class CapturePane extends JPanel {
@@ -1917,7 +1926,7 @@ public class TXE1 extends JFrame {
 
 			public CapturePane() {
 				setOpaque(false);
-				
+
 				MouseAdapter mouseHandler = new MouseAdapter() {
 
 					@Override
@@ -1940,7 +1949,7 @@ public class TXE1 extends JFrame {
 									"TXEScreenshot " + sdt.format(date)
 											+ ".png"));
 							JOptionPane.showMessageDialog(null, "Saved!");
-							
+
 						} catch (IOException | AWTException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -1951,7 +1960,7 @@ public class TXE1 extends JFrame {
 
 					@Override
 					public void mouseDragged(MouseEvent e) {
-						
+
 						Point dragPoint = e.getPoint();
 						int x = Math.min(clickPoint.x, dragPoint.x);
 						int y = Math.min(clickPoint.y, dragPoint.y);
@@ -2001,7 +2010,8 @@ public class TXE1 extends JFrame {
 	}
 
 	/**
-	 * Highlighter Code 
+	 * Highlighter Code
+	 * 
 	 * @author ericzhu, and ProgrammingKnowledge
 	 * 
 	 */
@@ -2012,34 +2022,34 @@ public class TXE1 extends JFrame {
 
 	}
 
-	public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-		 
+	public static void main(String[] args)
+			throws UnsupportedLookAndFeelException, ClassNotFoundException,
+			InstantiationException, IllegalAccessException {
+
 		osName = System.getProperty("os.name");
-        System.out.print(osName);
-        if (osName == "Mac OS X"){
-        	System.setProperty("apple.laf.useScreenMenuBar", "true"); 
-        	System.setProperty("com.apple.mrj.application.apple.menu.about.name", "TXE");
-        }
-		
-       
-		
+		System.out.print(osName);
+		if (osName == "Mac OS X") {
+			System.setProperty("apple.laf.useScreenMenuBar", "true");
+			System.setProperty(
+					"com.apple.mrj.application.apple.menu.about.name", "TXE");
+		}
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	
-            	TXE1 txe1 = new TXE1();
-            	try {
-					UIManager.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+			public void run() {
+
+				TXE1 txe1 = new TXE1();
+				try {
+					UIManager
+							.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
 				} catch (UnsupportedLookAndFeelException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-          		 SwingUtilities.updateComponentTreeUI(txe1);
-                
-            }
-        });
-		
-		
-        
+				SwingUtilities.updateComponentTreeUI(txe1);
+
+			}
+		});
+
 	}
 
 }

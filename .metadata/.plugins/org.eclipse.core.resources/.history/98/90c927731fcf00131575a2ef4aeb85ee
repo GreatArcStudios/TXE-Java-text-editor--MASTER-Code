@@ -1,0 +1,42 @@
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel;
+
+public class viewHtml extends JFrame {
+	/**
+	 * 
+	 */
+	public static JEditorPane htmlPane;
+	
+	private static final long serialVersionUID = 1L;
+	
+	public viewHtml() {
+		
+		htmlPane.setText(TXE1.TXEAREA.getText());
+		this.add(htmlPane);
+		this.setSize(1280, 600);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+
+	public static void main(String[] args) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+
+				TXE1 txe1 = new TXE1();
+				try {
+					UIManager
+							.setLookAndFeel(new SubstanceGraphiteAquaLookAndFeel());
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				SwingUtilities.updateComponentTreeUI(txe1);
+
+			}
+		});
+	}
+}
