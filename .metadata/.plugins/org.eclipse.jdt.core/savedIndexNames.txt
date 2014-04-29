@@ -1,0 +1,26 @@
+INDEX VERSION 1.126+/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE/.metadata/.plugins/org.eclipse.jdt.core
+463039411.index
+1819685514.index
+3302703152.index
+726084570.index
+1148731955.index
+3714043128.index
+2879378706.index
+4274516793.index
+1279742098.index
+3321539481.index
+3284087476.index
+3712507179.index
+1271342938.index
+2545238116.index
+2664866423.index
+2833605561.index
+2098878423.index
+1102243989.index
+156905802.index
+1384487945.index
+4238209716.index
+3266567714.index
+304150353.index
+1833648217.index
+1785539419.index

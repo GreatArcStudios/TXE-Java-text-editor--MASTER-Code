@@ -1,0 +1,11 @@
+import javax.swing.JEditorPane;
+
+
+public class viewHtml extends JEditorPane {
+	public viewHtml(){
+		
+	}
+	public static void main (String args[]){
+		
+	}
+}

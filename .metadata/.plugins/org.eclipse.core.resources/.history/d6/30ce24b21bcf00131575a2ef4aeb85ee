@@ -1,0 +1,19 @@
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+
+public class viewHtml extends JFrame {
+	/**
+	 * 
+	 */
+	public static JEditorPane htmlPane;
+	
+	private static final long serialVersionUID = 1L;
+
+	public viewHtml() {
+
+	}
+
+	public static void main(String args[]) {
+
+	}
+}

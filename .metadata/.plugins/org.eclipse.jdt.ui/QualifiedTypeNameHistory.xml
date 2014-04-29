@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.awt.Event"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
+<fullyQualifiedTypeName name="org.fife.ui.rsyntaxtextarea.RSyntaxTextArea"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.CompletionProvider"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.AutoCompletion"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.DefaultCompletionProvider"/>
+<fullyQualifiedTypeName name="org.fife.ui.autocomplete.BasicCompletion"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="java.awt.Font"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.awt.ComponentOrientation"/>
+<fullyQualifiedTypeName name="org.fife.ui.rsyntaxtextarea.SyntaxConstants"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.SubstanceLookAndFeel"/>
+<fullyQualifiedTypeName name="org.pushingpixels.substance.api.skin.GraphiteGlassSkin"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+</qualifiedTypeNameHistroy>
