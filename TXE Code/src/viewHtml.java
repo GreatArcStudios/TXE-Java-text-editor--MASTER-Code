@@ -15,6 +15,7 @@ public class viewHtml extends JFrame {
 	public static JEditorPane htmlPane = new JEditorPane("text/html", null);
 
 	JScrollPane scroll = new JScrollPane(htmlPane);
+	JButton refresh = new JButton("Refresh");
 
 	public viewHtml() {
 		this.add(scroll);
@@ -25,7 +26,7 @@ public class viewHtml extends JFrame {
 		} catch (Exception e) {
 
 		}
-
+		this.add(refresh);
 		this.setSize(1000, 600);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("HTML Viewer");

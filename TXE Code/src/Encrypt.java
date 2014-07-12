@@ -2,12 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.Component;
+import java.awt.TrayIcon.MessageType;
 import java.awt.event.KeyEvent;
 import java.security.Security;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.Icon;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -248,35 +251,49 @@ public class Encrypt extends javax.swing.JFrame {
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
-
+	Icon icon;
+	Component component;
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-		try {
-			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-			input = jTextArea1.getText().getBytes();
-			SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
-			IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-			cipher = Cipher.getInstance("DES/OFB8/NoPadding", "BC");
-			cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
-			cipherText = new byte[cipher.getOutputSize(input.length)];
-			ctLength = cipher.update(input, 0, input.length, cipherText, 0);
-			ctLength += cipher.doFinal(cipherText, ctLength);
-			jTextArea3.setText(new String(cipherText));
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
+		if(jTextArea1.getText().length() == 0){
+			JOptionPane.showMessageDialog(null, "Type a message");
+			
+		}else{
+			try {
+				Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+				input = jTextArea1.getText().getBytes();
+				SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
+				IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+				cipher = Cipher.getInstance("DES/OFB8/NoPadding", "BC");
+				cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
+				cipherText = new byte[cipher.getOutputSize(input.length)];
+				ctLength = cipher.update(input, 0, input.length, cipherText, 0);
+				ctLength += cipher.doFinal(cipherText, ctLength);
+				jTextArea2.setText(new String(cipherText));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
 		}
+		
+		
 	}// GEN-LAST:event_jButton1ActionPerformed
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		try {
 			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			input = jTextArea3.getText().getBytes();
 			SecretKeySpec key = new SecretKeySpec(keyBytes, "DES");
 			IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+			cipher = Cipher.getInstance("DES/OFB8/NoPadding", "BC");
 			cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
+			//cipherText = new byte[cipher.getOutputSize(input.length)];
+			
+			
 			byte[] plainText = new byte[cipher.getOutputSize(ctLength)];
 			int ptLength = cipher.update(cipherText, 0, ctLength, plainText, 0);
 			ptLength += cipher.doFinal(plainText, ptLength);
 
 			jTextArea2.setText(new String(plainText));
+			
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e);

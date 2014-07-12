@@ -2,5 +2,26 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/Jars/jfxrt.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/Jars/rsyntaxtextarea.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/Jars/rt.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/substance-6.2.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/trident-6.2.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/cmudict04.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/cmulex.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/en_us.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/freetts.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/mbrola.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/autocomplete.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/swing-layout-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Desktop/TXE java 7/TXE MASTER Code/TXE Code/src/bcprov-jdk15on-149.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/j3d-1_5_2-macosx/j3d-jre.zip"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/j3d-1_5_2-macosx/lib/ext/j3dcore.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/j3d-1_5_2-macosx/lib/ext/j3dutils.jar"/>
+	<classpathentry kind="lib" path="/Users/ericzhu/Downloads/j3d-1_5_2-macosx/lib/ext/vecmath.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
