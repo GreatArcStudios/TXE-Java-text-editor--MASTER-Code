@@ -7,7 +7,7 @@
 <h1><b>STATUS:</b></h1><h2>Working and new nightly builds coming!</h2>
 
 
-![TXE](http://i.imgur.com/V3vxGWH.png "TXE")
+![TXE](http://i.imgur.com/MZkzkJh.png "TXE")
 
 <span style = 'Open Sans'> TXE-MASTER-Code Resopsitory </span> 
 ===============
