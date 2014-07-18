@@ -14,6 +14,13 @@
 
 Watch the TXE development happen, with new code updated frequently and with a nightly build!
 
+Social Media
+
+<div class="button-group">
+  <button class="button-outline" type="button"><a href="http://greatarkstudios.weebly.com">Our amazing website</a> </button>
+  <button class="button-outline" type="button"><a href="http://twitter.com/garcstudios">Our Twitter</a></button>
+  </button>
+</div>
 ===========
 <h2>Overview</h2>
 <p>TXE is a open source, fully Java based word processor. <b>Now with a programmer's text pad!</b></p>
