@@ -17,7 +17,7 @@ Watch the TXE development happen, with new code updated frequently and with a ni
 Social Media
 
 <div class="button-group">
-  <button class="button-outline" type="button" >Our amazing website </button>
+  <button class="button-outline" type="button"><a href="http://greatarkstudios.weebly.com">Our amazing website</a> </button>
   <button class="button-outline" type="button"><a href="http://twitter.com/garcstudios">Our Twitter</a></button>
   </button>
 </div>
