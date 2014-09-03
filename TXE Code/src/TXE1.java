@@ -79,7 +79,7 @@ import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
 /**
- * 
+ * Originally created by Turk4n at code call: http://forum.codecall.net/topic/49721-simple-text-editor/
  * @author ericzhu
  * 
  * 
